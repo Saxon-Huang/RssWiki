@@ -1,0 +1,18 @@
+feeds:
+  - name: Simon Willison
+    url: https://simonwillison.net/atom/everything/
+    category: tech-blog
+
+  - name: OpenAI News
+    url: https://openai.com/news/rss.xml
+    category: ai-news
+
+  - name: Hacker News Frontpage
+    url: https://rsshub.app/hn/frontpage
+    category: tech-news
+    via: rsshub
+
+  - name: arXiv cs.AI
+    url: https://rsshub.app/arxiv/category/cs.AI
+    category: paper
+    via: rsshub
