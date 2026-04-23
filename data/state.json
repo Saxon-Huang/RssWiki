@@ -1,3 +1,34 @@
 {
-  "seen_urls": []
+  "seen_urls": [
+    "https://simonwillison.net/2026/Apr/23/maggie-appleton/#atom-everything",
+    "https://simonwillison.net/2026/Apr/22/qwen36-27b/#atom-everything",
+    "https://simonwillison.net/2026/Apr/22/bobby-holley/#atom-everything",
+    "https://simonwillison.net/2026/Apr/22/changes-to-github-copilot/#atom-everything",
+    "https://simonwillison.net/2026/Apr/22/claude-code-confusion/#atom-everything",
+    "https://simonwillison.net/2026/Apr/21/gpt-image-2/#atom-everything",
+    "https://simonwillison.net/2026/Apr/21/andreas-pahlsson-notini/#atom-everything",
+    "https://simonwillison.net/2026/Apr/21/scosman/#atom-everything",
+    "https://simonwillison.net/2026/Apr/20/llm-openrouter/#atom-everything",
+    "https://simonwillison.net/2026/Apr/20/datasette-sql/#atom-everything",
+    "https://simonwillison.net/2026/Apr/20/claude-token-counts/#atom-everything",
+    "https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything",
+    "https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything",
+    "https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything",
+    "https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/#atom-everything",
+    "https://simonwillison.net/2026/Apr/17/pycon-us-2026/#atom-everything",
+    "https://simonwillison.net/2026/Apr/17/datasette/#atom-everything",
+    "https://simonwillison.net/2026/Apr/16/llm-anthropic/#atom-everything",
+    "https://simonwillison.net/2026/Apr/16/qwen-beats-opus/#atom-everything",
+    "https://simonwillison.net/2026/Apr/16/datasette-io-preview/#atom-everything",
+    "https://simonwillison.net/2026/Apr/15/datasette-export-database/#atom-everything",
+    "https://simonwillison.net/2026/Apr/15/datasette/#atom-everything",
+    "https://simonwillison.net/2026/Apr/15/john-gruber/#atom-everything",
+    "https://simonwillison.net/2026/Apr/15/gemini-31-flash-tts/#atom-everything",
+    "https://simonwillison.net/2026/Apr/15/gemini-flash-tts/#atom-everything",
+    "https://simonwillison.net/2026/Apr/15/kyle-kingsbury/#atom-everything",
+    "https://simonwillison.net/2026/Apr/15/datasette-ports/#atom-everything",
+    "https://simonwillison.net/2026/Apr/15/juicy-main/#atom-everything",
+    "https://simonwillison.net/2026/Apr/14/replace-token-based-csrf/#atom-everything",
+    "https://simonwillison.net/2026/Apr/14/trusted-access-openai/#atom-everything"
+  ]
 }
