@@ -27,8 +27,8 @@ jobs:
       - name: Run fetch script
         run: python scripts/fetch.py
 
-      - name: Commit new articles
+      - name: Commit updated metadata inbox
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(rss): fetch new articles"
-          file_pattern: "articles/ data/state.json"
+          commit_message: "chore(rss): update candidate inbox"
+          file_pattern: "data/ docs/"
