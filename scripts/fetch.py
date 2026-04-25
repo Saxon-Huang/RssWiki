@@ -202,6 +202,17 @@ def preview_summary(summary_text: str) -> str:
     return summary_text[: SUMMARY_PREVIEW_LENGTH - 1].rstrip() + "…"
 
 
+def format_utc8(value: str, include_time: bool = True) -> str:
+    try:
+        dt = datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        dt_utc8 = dt + timedelta(hours=8)
+        if include_time:
+            return dt_utc8.strftime("%Y-%m-%d %H:%M UTC+8")
+        return dt_utc8.strftime("%Y-%m-%d")
+    except (TypeError, ValueError):
+        return value
+
+
 def category_label(category: str) -> str:
     mapping = {
         "tech-blog": "Tech Blog",
@@ -289,47 +300,83 @@ def build_html(candidates: dict) -> str:
         '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
         '  <title>RssWiki Inbox</title>',
         "  <style>",
-        "    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; background: #0b1020; color: #e5e7eb; }",
-        "    .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }",
+        "    :root { color-scheme: light; --bg: #f6f8fb; --surface: #ffffff; --surface-soft: #edf2f7; --border: #dbe4ee; --text: #122033; --muted: #5f6f82; --accent: #2563eb; --accent-soft: #dbeafe; --tag-bg: #eef4ff; }",
+        "    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; background: linear-gradient(180deg, #f9fbfd 0%, #f3f6fb 100%); color: var(--text); }",
+        "    .container { max-width: 980px; margin: 0 auto; padding: 36px 20px 80px; }",
         "    h1, h2, h3 { margin: 0; }",
-        "    .meta { color: #94a3b8; margin-top: 8px; margin-bottom: 24px; }",
-        "    .batch { margin-top: 32px; }",
-        "    .batch-header { padding-bottom: 10px; border-bottom: 1px solid #1f2937; margin-bottom: 20px; }",
+        "    .hero { background: rgba(255,255,255,0.84); border: 1px solid rgba(219,228,238,0.9); border-radius: 20px; padding: 24px 24px 18px; box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06); backdrop-filter: blur(6px); }",
+        "    .meta { color: var(--muted); margin-top: 10px; margin-bottom: 0; line-height: 1.6; }",
+        "    .batch { margin-top: 24px; }",
+        "    .batch-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 14px 38px rgba(15, 23, 42, 0.05); overflow: hidden; }",
+        "    .batch-header { padding: 20px 22px 18px; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%); }",
+        "    details.batch-panel > summary { list-style: none; cursor: pointer; }",
+        "    details.batch-panel > summary::-webkit-details-marker { display: none; }",
+        "    .batch-summary-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }",
+        "    .batch-toggle { color: var(--accent); font-size: 0.92rem; font-weight: 600; white-space: nowrap; }",
+        "    .batch-body { padding: 0 22px 22px; }",
         "    .category { margin-top: 24px; }",
         "    .cards { display: grid; gap: 16px; margin-top: 12px; }",
-        "    .card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 16px 18px; }",
-        "    .card-title { font-size: 1.05rem; font-weight: 600; color: #f8fafc; text-decoration: none; }",
-        "    .card-title:hover { color: #7dd3fc; }",
-        "    .card-meta { color: #94a3b8; font-size: 0.9rem; margin-top: 8px; }",
+        "    .card { background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%); border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; }",
+        "    .card-title { font-size: 1.05rem; font-weight: 650; color: var(--text); text-decoration: none; }",
+        "    .card-title:hover { color: var(--accent); }",
+        "    .card-meta { color: var(--muted); font-size: 0.9rem; margin-top: 8px; }",
         "    .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }",
-        "    .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; background: #1e293b; color: #93c5fd; }",
-        "    .summary { margin-top: 12px; line-height: 1.65; color: #d1d5db; }",
-        "    .original-link { display: inline-block; margin-top: 14px; color: #7dd3fc; text-decoration: none; }",
+        "    .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; background: var(--tag-bg); color: #315ea8; }",
+        "    .summary { margin-top: 12px; line-height: 1.7; color: #334155; }",
+        "    .original-link { display: inline-block; margin-top: 14px; color: var(--accent); text-decoration: none; font-weight: 600; }",
         "    .original-link:hover { text-decoration: underline; }",
-        "    .empty { margin-top: 48px; color: #94a3b8; }",
+        "    .empty { margin-top: 48px; color: var(--muted); }",
         "  </style>",
         "</head>",
         "<body>",
         '  <div class="container">',
-        "    <h1>RssWiki Inbox</h1>",
-        f"    <div class=\"meta\">Metadata-only candidate inbox · Last updated {escape(generated_at)} · Recent {MAX_BATCHES} batches</div>",
+        '    <section class="hero">',
+        "      <h1>RssWiki Inbox</h1>",
+        f"      <div class=\"meta\">Metadata-only candidate inbox · Last updated {escape(format_utc8(generated_at))} · Default view shows only the newest batch</div>",
+        "    </section>",
     ]
 
     if not batches:
         parts.append('    <div class="empty">No candidates discovered yet.</div>')
     else:
-        for batch in batches:
+        for index, batch in enumerate(batches):
             batch_id = escape(batch.get("batch_id", "unknown"))
-            batch_generated_at = escape(batch.get("generated_at", "unknown"))
+            batch_generated_at = escape(format_utc8(batch.get("generated_at", "unknown")))
+            details_tag = "section" if index == 0 else "details"
+            details_attrs = ' class="batch-panel" open' if index == 0 else ' class="batch-panel"'
             parts.extend(
                 [
                     '    <section class="batch">',
-                    '      <div class="batch-header">',
-                    f"        <h2>Batch · {batch_generated_at}</h2>",
-                    f"        <div class=\"meta\">ID: {batch_id} · {len(batch.get('items', []))} items</div>",
-                    "      </div>",
+                    f"      <{details_tag}{details_attrs}>",
                 ]
             )
+
+            if index == 0:
+                parts.extend(
+                    [
+                        '        <div class="batch-header">',
+                        '          <div class="batch-summary-row">',
+                        f"            <h2>Latest batch · {batch_generated_at}</h2>",
+                        '            <div class="batch-toggle">Expanded by default</div>',
+                        "          </div>",
+                        f"          <div class=\"meta\">ID: {batch_id} · {len(batch.get('items', []))} items</div>",
+                        "        </div>",
+                        '        <div class="batch-body">',
+                    ]
+                )
+            else:
+                parts.extend(
+                    [
+                        '        <summary class="batch-header">',
+                        '          <div class="batch-summary-row">',
+                        f"            <h2>Previous batch · {batch_generated_at}</h2>",
+                        '            <div class="batch-toggle">Click to expand</div>',
+                        "          </div>",
+                        f"          <div class=\"meta\">ID: {batch_id} · {len(batch.get('items', []))} items</div>",
+                        "        </summary>",
+                        '        <div class="batch-body">',
+                    ]
+                )
 
             grouped: dict[str, list[dict]] = {}
             for item in batch.get("items", []):
@@ -352,7 +399,7 @@ def build_html(candidates: dict) -> str:
                         [
                             escape(item.get("source", "Unknown source")),
                             escape(item.get("category", "unknown")),
-                            escape(item.get("published_at", "unknown")[:10]),
+                            escape(format_utc8(item.get("published_at", "unknown"), include_time=False)),
                         ]
                     )
                     parts.extend(
@@ -371,7 +418,7 @@ def build_html(candidates: dict) -> str:
                     parts.append("          </article>")
                 parts.extend(["        </div>", "      </div>"])
 
-            parts.append("    </section>")
+            parts.extend(["        </div>", f"      </{details_tag}>", "    </section>"])
 
     parts.extend(["  </div>", "</body>", "</html>"])
     return "\n".join(parts) + "\n"
