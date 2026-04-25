@@ -1,9 +1,4 @@
-"""RssWiki RSS fetch pipeline.
-
-Reads feeds.yml, fetches RSS feeds, extracts full article text with
-trafilatura, and saves articles as Markdown files with YAML frontmatter.
-Uses state.json for URL-based deduplication.
-"""
+"""RssWiki metadata-first RSS pipeline."""
 
 import hashlib
 import json
@@ -12,22 +7,25 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
+from html import escape
 from pathlib import Path
+from typing import Optional
 
 import feedparser
-import trafilatura
 import yaml
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 FEEDS_PATH = ROOT_DIR / "feeds.yml"
-STATE_PATH = ROOT_DIR / "data" / "state.json"
-ARTICLES_DIR = ROOT_DIR / "articles"
+DISCOVERED_PATH = ROOT_DIR / "data" / "discovered_urls.json"
+CANDIDATES_PATH = ROOT_DIR / "data" / "candidates.json"
+LEGACY_STATE_PATH = ROOT_DIR / "data" / "state.json"
+DOCS_PATH = ROOT_DIR / "docs" / "index.html"
 
 FEED_RETRIES = 2
-EXTRACT_RETRIES = 1
-MIN_CONTENT_LENGTH = 50
 RECENT_DAYS = 7
 MAX_ENTRIES_PER_FEED = 20
+MAX_BATCHES = 3
+SUMMARY_PREVIEW_LENGTH = 280
 
 logging.basicConfig(
     level=logging.INFO,
@@ -36,18 +34,13 @@ logging.basicConfig(
 log = logging.getLogger("rsswiki")
 
 
-# ---------------------------------------------------------------------------
-# Run summary tracker
-# ---------------------------------------------------------------------------
 class RunSummary:
-    """Collects metrics for the run summary output."""
-
     def __init__(self):
         self.feeds_processed = 0
         self.entries_per_feed: dict[str, int] = {}
-        self.articles_added = 0
-        self.articles_skipped = 0
-        self.articles_failed = 0
+        self.candidates_added = 0
+        self.entries_skipped = 0
+        self.feeds_failed = 0
 
     def print_summary(self):
         log.info("=" * 50)
@@ -56,9 +49,9 @@ class RunSummary:
         log.info("Feeds processed: %d", self.feeds_processed)
         for name, count in self.entries_per_feed.items():
             log.info("  %-30s %d entries", name, count)
-        log.info("New articles added:   %d", self.articles_added)
-        log.info("Articles skipped:     %d", self.articles_skipped)
-        log.info("Articles failed:       %d", self.articles_failed)
+        log.info("New candidates added: %d", self.candidates_added)
+        log.info("Entries skipped:      %d", self.entries_skipped)
+        log.info("Feeds failed:         %d", self.feeds_failed)
         log.info("=" * 50)
 
 
@@ -66,32 +59,24 @@ summary = RunSummary()
 
 
 def load_feeds(path: Path) -> list[dict]:
-    """Load feeds.yml, validate required fields, skip invalid entries."""
-    with open(path, "r", encoding="utf-8") as f:
-        data = yaml.safe_load(f)
+    with open(path, "r", encoding="utf-8") as file:
+        data = yaml.safe_load(file)
 
     feeds = data.get("feeds", []) if data else []
     valid = []
     for entry in feeds:
-        missing = [k for k in ("name", "url", "category") if k not in entry]
+        missing = [key for key in ("name", "url", "category") if key not in entry]
         if missing:
-            log.warning(
-                "Skipping feed entry missing %s: %s",
-                ", ".join(missing),
-                entry,
-            )
+            log.warning("Skipping feed entry missing %s: %s", ", ".join(missing), entry)
             continue
         valid.append(entry)
     return valid
 
 
-def fetch_feed(url: str, name: str) -> feedparser.FeedParserDict | None:
-    """Fetch and parse an RSS/Atom feed. Returns parsed feed or None on failure."""
-    for attempt in range(1, FEED_RETRIES + 2):  # 1-based, total = FEED_RETRIES+1
+def fetch_feed(url: str, name: str) -> Optional[feedparser.FeedParserDict]:
+    for attempt in range(1, FEED_RETRIES + 2):
         try:
-            log.info(
-                "Fetching feed %s (attempt %d/%d)", url, attempt, FEED_RETRIES + 1
-            )
+            log.info("Fetching feed %s (attempt %d/%d)", url, attempt, FEED_RETRIES + 1)
             parsed = feedparser.parse(url, request_headers={"User-Agent": "RssWiki/1.0"})
             if parsed.bozo and not parsed.entries:
                 raise RuntimeError(f"Feed parse error: {parsed.bozo_exception}")
@@ -105,126 +90,62 @@ def fetch_feed(url: str, name: str) -> feedparser.FeedParserDict | None:
                 exc,
             )
             if attempt < FEED_RETRIES + 1:
-                time.sleep(2 ** attempt)
+                time.sleep(2**attempt)
     return None
 
 
-def load_state(path: Path) -> dict:
-    """Load state.json. Returns {"seen_urls": []} if missing or invalid."""
-    if path.exists():
+def load_discovered_urls() -> set[str]:
+    if DISCOVERED_PATH.exists():
         try:
-            with open(path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            if isinstance(data, dict) and "seen_urls" in data:
+            with open(DISCOVERED_PATH, "r", encoding="utf-8") as file:
+                data = json.load(file)
+            urls = data.get("discovered_urls", []) if isinstance(data, dict) else []
+            return {url for url in urls if isinstance(url, str)}
+        except (json.JSONDecodeError, OSError):
+            log.warning("Invalid discovered_urls.json, starting fresh")
+
+    if LEGACY_STATE_PATH.exists():
+        try:
+            with open(LEGACY_STATE_PATH, "r", encoding="utf-8") as file:
+                data = json.load(file)
+            urls = data.get("seen_urls", []) if isinstance(data, dict) else []
+            migrated = {url for url in urls if isinstance(url, str)}
+            if migrated:
+                log.info("Migrated %d legacy URLs from state.json", len(migrated))
+            return migrated
+        except (json.JSONDecodeError, OSError):
+            log.warning("Invalid legacy state.json, starting fresh")
+
+    return set()
+
+
+def save_discovered_urls(discovered_urls: set[str]) -> None:
+    DISCOVERED_PATH.parent.mkdir(parents=True, exist_ok=True)
+    payload = {"discovered_urls": sorted(discovered_urls)}
+    with open(DISCOVERED_PATH, "w", encoding="utf-8") as file:
+        json.dump(payload, file, indent=2, ensure_ascii=False)
+
+
+def load_candidates() -> dict:
+    if CANDIDATES_PATH.exists():
+        try:
+            with open(CANDIDATES_PATH, "r", encoding="utf-8") as file:
+                data = json.load(file)
+            if isinstance(data, dict) and isinstance(data.get("batches"), list):
+                data.setdefault("generated_at", None)
                 return data
         except (json.JSONDecodeError, OSError):
-            log.warning("Invalid state.json, starting fresh")
-    return {"seen_urls": []}
+            log.warning("Invalid candidates.json, starting fresh")
+    return {"generated_at": None, "batches": []}
 
 
-def save_state(path: Path, state: dict) -> None:
-    """Persist state.json to disk."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(state, f, indent=2, ensure_ascii=False)
+def save_candidates(candidates: dict) -> None:
+    CANDIDATES_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(CANDIDATES_PATH, "w", encoding="utf-8") as file:
+        json.dump(candidates, file, indent=2, ensure_ascii=False)
 
 
-def extract_content(url: str) -> str | None:
-    """Extract main text content from a URL using trafilatura.
-
-    Returns extracted text or None on failure / too-short content.
-    """
-    for attempt in range(1, EXTRACT_RETRIES + 2):
-        try:
-            downloaded = trafilatura.fetch_url(url)
-            if downloaded is None:
-                log.warning("trafilatura fetch returned None for %s", url)
-                if attempt < EXTRACT_RETRIES + 1:
-                    time.sleep(2)
-                continue
-
-            result = trafilatura.extract(
-                downloaded,
-                include_comments=False,
-                include_tables=True,
-                favor_precision=True,
-            )
-            if result and len(result.strip()) >= MIN_CONTENT_LENGTH:
-                return result.strip()
-            else:
-                log.warning(
-                    "Content too short or empty for %s (attempt %d)", url, attempt
-                )
-                if attempt < EXTRACT_RETRIES + 1:
-                    time.sleep(2)
-                continue
-        except Exception as exc:
-            log.warning(
-                "Extraction attempt %d/%d failed for %s: %s",
-                attempt,
-                EXTRACT_RETRIES + 1,
-                url,
-                exc,
-            )
-            if attempt < EXTRACT_RETRIES + 1:
-                time.sleep(2)
-
-    return None
-
-
-def slugify(title: str) -> str:
-    """Convert a title to a filesystem-safe slug."""
-    slug = title.lower().strip()
-    slug = re.sub(r"[^a-z0-9]+", "-", slug)
-    slug = slug.strip("-")
-    return slug[:80] if len(slug) > 80 else slug
-
-
-def build_filepath(category: str, date_str: str, title: str, state_urls: set) -> Path:
-    slug = slugify(title)
-    filename = f"{date_str}-{slug}.md"
-    filepath = ARTICLES_DIR / category / filename
-
-    if filepath.exists():
-        short_hash = hashlib.md5(title.encode()).hexdigest()[:6]
-        filename = f"{date_str}-{slug}-{short_hash}.md"
-        filepath = ARTICLES_DIR / category / filename
-
-    return filepath
-
-
-def generate_markdown(
-    title: str,
-    url: str,
-    date: str,
-    source: str,
-    category: str,
-    tags: list[str],
-    fetched_at: str,
-    content: str,
-) -> str:
-    """Generate a Markdown string with YAML frontmatter and content."""
-    frontmatter = {
-        "title": title,
-        "url": url,
-        "date": date,
-        "source": source,
-        "category": category,
-        "tags": tags if tags else [],
-        "fetched_at": fetched_at,
-    }
-    fm_str = yaml.dump(frontmatter, allow_unicode=True, default_flow_style=False).strip()
-    return f"---\n{fm_str}\n---\n\n{content}\n"
-
-
-def write_article(filepath: Path, markdown: str) -> None:
-    """Write a Markdown file to disk, creating parent dirs as needed."""
-    filepath.parent.mkdir(parents=True, exist_ok=True)
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(markdown)
-
-
-def parse_entry_datetime(entry: dict) -> datetime | None:
+def parse_entry_datetime(entry: dict) -> Optional[datetime]:
     for date_field in ("published_parsed", "updated_parsed"):
         parsed = entry.get(date_field)
         if parsed:
@@ -236,34 +157,92 @@ def parse_entry_datetime(entry: dict) -> datetime | None:
 
 
 def parse_entry_tags(entry: dict) -> list[str]:
-    """Extract tag labels from a feedparser entry's tags field."""
     tags = entry.get("tags", [])
     if isinstance(tags, list):
-        return [t.get("term", "") for t in tags if isinstance(t, dict) and t.get("term")]
+        return [tag.get("term", "") for tag in tags if isinstance(tag, dict) and tag.get("term")]
     return []
 
 
-def process_feed(feed_config: dict, state: dict) -> int:
-    """Process a single feed: fetch, deduplicate, extract, write.
+def strip_html(value: str) -> str:
+    without_tags = re.sub(r"<[^>]+>", " ", value)
+    normalized = re.sub(r"\s+", " ", without_tags)
+    return normalized.strip()
 
-    Returns the number of new articles successfully added.
-    """
+
+def extract_summary(entry: dict) -> str:
+    candidates = []
+    for key in ("summary", "description"):
+        value = entry.get(key)
+        if isinstance(value, str) and value.strip():
+            candidates.append(value)
+
+    content_list = entry.get("content", [])
+    if isinstance(content_list, list):
+        for item in content_list:
+            if isinstance(item, dict):
+                value = item.get("value")
+                if isinstance(value, str) and value.strip():
+                    candidates.append(value)
+
+    for value in candidates:
+        summary_text = strip_html(value)
+        if summary_text:
+            return summary_text
+
+    return "No summary available."
+
+
+def candidate_id(url: str) -> str:
+    return hashlib.sha1(url.encode("utf-8")).hexdigest()[:12]
+
+
+def preview_summary(summary_text: str) -> str:
+    if len(summary_text) <= SUMMARY_PREVIEW_LENGTH:
+        return summary_text
+    return summary_text[: SUMMARY_PREVIEW_LENGTH - 1].rstrip() + "…"
+
+
+def category_label(category: str) -> str:
+    mapping = {
+        "tech-blog": "Tech Blog",
+        "ai-news": "AI / LLM",
+        "tech-news": "Tech News",
+        "paper": "Paper",
+    }
+    return mapping.get(category, category)
+
+
+def build_candidate(entry: dict, feed_config: dict, entry_datetime: datetime, discovered_at: str) -> dict:
+    url = entry["link"]
+    title = entry.get("title", "Untitled").strip() or "Untitled"
+    summary_text = extract_summary(entry)
+    return {
+        "id": candidate_id(url),
+        "title": title,
+        "url": url,
+        "source": feed_config["name"],
+        "category": feed_config["category"],
+        "published_at": entry_datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "summary": summary_text,
+        "tags": parse_entry_tags(entry),
+        "discovered_at": discovered_at,
+    }
+
+
+def process_feed(feed_config: dict, discovered_urls: set[str], batch_items: list[dict], discovered_at: str) -> int:
     name = feed_config["name"]
-    url = feed_config["url"]
-    category = feed_config["category"]
-
-    parsed = fetch_feed(url, name)
+    parsed = fetch_feed(feed_config["url"], name)
     if parsed is None:
         log.error("All retries failed for feed: %s", name)
+        summary.feeds_failed += 1
         return -1
 
     entries = parsed.entries or []
     summary.entries_per_feed[name] = len(entries)
 
-    seen_urls = set(state["seen_urls"])
-    new_count = 0
     cutoff = datetime.now(timezone.utc) - timedelta(days=RECENT_DAYS)
     processed_recent_entries = 0
+    added = 0
 
     for entry in entries:
         if processed_recent_entries >= MAX_ENTRIES_PER_FEED:
@@ -271,88 +250,180 @@ def process_feed(feed_config: dict, state: dict) -> int:
 
         entry_url = entry.get("link")
         if not entry_url:
+            summary.entries_skipped += 1
             continue
 
         entry_datetime = parse_entry_datetime(entry)
         if entry_datetime is None or entry_datetime < cutoff:
-            summary.articles_skipped += 1
+            summary.entries_skipped += 1
             continue
 
         processed_recent_entries += 1
 
-        if entry_url in seen_urls:
-            summary.articles_skipped += 1
+        if entry_url in discovered_urls:
+            summary.entries_skipped += 1
             continue
 
-        title = entry.get("title", "Untitled")
-        log.info("Processing: %s — %s", name, title)
+        batch_items.append(build_candidate(entry, feed_config, entry_datetime, discovered_at))
+        discovered_urls.add(entry_url)
+        added += 1
+        summary.candidates_added += 1
+        log.info("Discovered candidate: %s — %s", name, entry.get("title", "Untitled"))
 
-        content = extract_content(entry_url)
-        if content is None:
-            summary.articles_failed += 1
-            continue
+    return added
 
-        date_str = entry_datetime.strftime("%Y-%m-%d")
-        filepath = build_filepath(category, date_str, title, seen_urls)
 
-        tags = parse_entry_tags(entry)
-        fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-        markdown = generate_markdown(
-            title=title,
-            url=entry_url,
-            date=date_str,
-            source=name,
-            category=category,
-            tags=tags,
-            fetched_at=fetched_at,
-            content=content,
-        )
+def trim_batches(candidates: dict) -> None:
+    candidates["batches"] = candidates.get("batches", [])[:MAX_BATCHES]
 
-        try:
-            write_article(filepath, markdown)
-            state["seen_urls"].append(entry_url)
-            seen_urls.add(entry_url)
-            new_count += 1
-            summary.articles_added += 1
-            log.info("Saved: %s", filepath.relative_to(ROOT_DIR))
-        except OSError as exc:
-            log.error("Failed to write %s: %s", filepath, exc)
-            summary.articles_failed += 1
 
-    return new_count
+def build_html(candidates: dict) -> str:
+    generated_at = candidates.get("generated_at") or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    batches = candidates.get("batches", [])
+
+    parts = [
+        "<!DOCTYPE html>",
+        '<html lang="en">',
+        "<head>",
+        '  <meta charset="UTF-8">',
+        '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
+        '  <title>RssWiki Inbox</title>',
+        "  <style>",
+        "    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; background: #0b1020; color: #e5e7eb; }",
+        "    .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }",
+        "    h1, h2, h3 { margin: 0; }",
+        "    .meta { color: #94a3b8; margin-top: 8px; margin-bottom: 24px; }",
+        "    .batch { margin-top: 32px; }",
+        "    .batch-header { padding-bottom: 10px; border-bottom: 1px solid #1f2937; margin-bottom: 20px; }",
+        "    .category { margin-top: 24px; }",
+        "    .cards { display: grid; gap: 16px; margin-top: 12px; }",
+        "    .card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 16px 18px; }",
+        "    .card-title { font-size: 1.05rem; font-weight: 600; color: #f8fafc; text-decoration: none; }",
+        "    .card-title:hover { color: #7dd3fc; }",
+        "    .card-meta { color: #94a3b8; font-size: 0.9rem; margin-top: 8px; }",
+        "    .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }",
+        "    .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; background: #1e293b; color: #93c5fd; }",
+        "    .summary { margin-top: 12px; line-height: 1.65; color: #d1d5db; }",
+        "    .original-link { display: inline-block; margin-top: 14px; color: #7dd3fc; text-decoration: none; }",
+        "    .original-link:hover { text-decoration: underline; }",
+        "    .empty { margin-top: 48px; color: #94a3b8; }",
+        "  </style>",
+        "</head>",
+        "<body>",
+        '  <div class="container">',
+        "    <h1>RssWiki Inbox</h1>",
+        f"    <div class=\"meta\">Metadata-only candidate inbox · Last updated {escape(generated_at)} · Recent {MAX_BATCHES} batches</div>",
+    ]
+
+    if not batches:
+        parts.append('    <div class="empty">No candidates discovered yet.</div>')
+    else:
+        for batch in batches:
+            batch_id = escape(batch.get("batch_id", "unknown"))
+            batch_generated_at = escape(batch.get("generated_at", "unknown"))
+            parts.extend(
+                [
+                    '    <section class="batch">',
+                    '      <div class="batch-header">',
+                    f"        <h2>Batch · {batch_generated_at}</h2>",
+                    f"        <div class=\"meta\">ID: {batch_id} · {len(batch.get('items', []))} items</div>",
+                    "      </div>",
+                ]
+            )
+
+            grouped: dict[str, list[dict]] = {}
+            for item in batch.get("items", []):
+                grouped.setdefault(item.get("category", "other"), []).append(item)
+
+            for category, items in sorted(grouped.items(), key=lambda pair: category_label(pair[0])):
+                items.sort(key=lambda item: item.get("published_at", ""), reverse=True)
+                parts.extend(
+                    [
+                        '      <div class="category">',
+                        f"        <h3>{escape(category_label(category))}</h3>",
+                        '        <div class="cards">',
+                    ]
+                )
+                for item in items:
+                    tags_html = "".join(
+                        f'<span class="tag">{escape(tag)}</span>' for tag in item.get("tags", []) if tag
+                    )
+                    meta = " · ".join(
+                        [
+                            escape(item.get("source", "Unknown source")),
+                            escape(item.get("category", "unknown")),
+                            escape(item.get("published_at", "unknown")[:10]),
+                        ]
+                    )
+                    parts.extend(
+                        [
+                            '          <article class="card">',
+                            f'            <a class="card-title" href="{escape(item.get("url", "#"), quote=True)}" target="_blank" rel="noreferrer">{escape(item.get("title", "Untitled"))}</a>',
+                            f'            <div class="card-meta">{meta}</div>',
+                        ]
+                    )
+                    if tags_html:
+                        parts.append(f'            <div class="tags">{tags_html}</div>')
+                    parts.append(f'            <div class="summary">{escape(preview_summary(item.get("summary", "")))}</div>')
+                    parts.append(
+                        f'            <a class="original-link" href="{escape(item.get("url", "#"), quote=True)}" target="_blank" rel="noreferrer">Read original</a>'
+                    )
+                    parts.append("          </article>")
+                parts.extend(["        </div>", "      </div>"])
+
+            parts.append("    </section>")
+
+    parts.extend(["  </div>", "</body>", "</html>"])
+    return "\n".join(parts) + "\n"
+
+
+def save_html(candidates: dict) -> None:
+    DOCS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DOCS_PATH.write_text(build_html(candidates), encoding="utf-8")
 
 
 def main() -> None:
-    log.info("RssWiki fetch pipeline starting")
+    log.info("RssWiki metadata pipeline starting")
 
     feeds = load_feeds(FEEDS_PATH)
     if not feeds:
         log.error("No valid feeds found in %s", FEEDS_PATH)
         sys.exit(1)
 
-    # Load state
-    state = load_state(STATE_PATH)
+    discovered_urls = load_discovered_urls()
+    candidates = load_candidates()
 
-    feeds_succeeded = 0
-    feeds_failed = 0
+    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    batch_items: list[dict] = []
 
     for feed_config in feeds:
         summary.feeds_processed += 1
-        result = process_feed(feed_config, state)
-        if result >= 0:
-            feeds_succeeded += 1
-        else:
-            feeds_failed += 1
+        process_feed(feed_config, discovered_urls, batch_items, generated_at)
 
-    save_state(STATE_PATH, state)
+    if batch_items:
+        candidates["batches"].insert(
+            0,
+            {
+                "batch_id": generated_at,
+                "generated_at": generated_at,
+                "items": batch_items,
+            },
+        )
+        trim_batches(candidates)
+
+    candidates["generated_at"] = generated_at
+
+    save_discovered_urls(discovered_urls)
+    save_candidates(candidates)
+    save_html(candidates)
 
     summary.print_summary()
 
-    if feeds_succeeded == 0 and feeds_failed > 0:
+    if summary.feeds_failed == summary.feeds_processed and summary.feeds_processed > 0:
         log.error("All feeds failed — exiting with error")
         sys.exit(1)
 
-    log.info("Pipeline complete")
+    log.info("Metadata pipeline complete")
     sys.exit(0)
 
 
