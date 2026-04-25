@@ -11,7 +11,7 @@ import logging
 import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import feedparser
@@ -26,6 +26,8 @@ ARTICLES_DIR = ROOT_DIR / "articles"
 FEED_RETRIES = 2
 EXTRACT_RETRIES = 1
 MIN_CONTENT_LENGTH = 50
+RECENT_DAYS = 7
+MAX_ENTRIES_PER_FEED = 20
 
 logging.basicConfig(
     level=logging.INFO,
@@ -222,20 +224,15 @@ def write_article(filepath: Path, markdown: str) -> None:
         f.write(markdown)
 
 
-def parse_entry_date(entry: dict) -> str:
-    """Extract a date string (YYYY-MM-DD) from a feedparser entry.
-
-    Tries published_parsed, then updated_parsed, falls back to today.
-    """
+def parse_entry_datetime(entry: dict) -> datetime | None:
     for date_field in ("published_parsed", "updated_parsed"):
         parsed = entry.get(date_field)
         if parsed:
             try:
-                dt = datetime(*parsed[:6], tzinfo=timezone.utc)
-                return dt.strftime("%Y-%m-%d")
+                return datetime(*parsed[:6], tzinfo=timezone.utc)
             except (TypeError, ValueError):
                 continue
-    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return None
 
 
 def parse_entry_tags(entry: dict) -> list[str]:
@@ -265,11 +262,23 @@ def process_feed(feed_config: dict, state: dict) -> int:
 
     seen_urls = set(state["seen_urls"])
     new_count = 0
+    cutoff = datetime.now(timezone.utc) - timedelta(days=RECENT_DAYS)
+    processed_recent_entries = 0
 
     for entry in entries:
+        if processed_recent_entries >= MAX_ENTRIES_PER_FEED:
+            break
+
         entry_url = entry.get("link")
         if not entry_url:
             continue
+
+        entry_datetime = parse_entry_datetime(entry)
+        if entry_datetime is None or entry_datetime < cutoff:
+            summary.articles_skipped += 1
+            continue
+
+        processed_recent_entries += 1
 
         if entry_url in seen_urls:
             summary.articles_skipped += 1
@@ -283,7 +292,7 @@ def process_feed(feed_config: dict, state: dict) -> int:
             summary.articles_failed += 1
             continue
 
-        date_str = parse_entry_date(entry)
+        date_str = entry_datetime.strftime("%Y-%m-%d")
         filepath = build_filepath(category, date_str, title, seen_urls)
 
         tags = parse_entry_tags(entry)
