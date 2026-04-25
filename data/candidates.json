@@ -1,6 +1,29 @@
 {
-  "generated_at": "2026-04-25T07:22:52Z",
+  "generated_at": "2026-04-25T13:12:01Z",
   "batches": [
+    {
+      "batch_id": "2026-04-25T13:12:01Z",
+      "generated_at": "2026-04-25T13:12:01Z",
+      "items": [
+        {
+          "id": "1cd8419ab3ee",
+          "title": "Quoting Romain Huet",
+          "url": "https://simonwillison.net/2026/Apr/25/romain-huet/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-25T12:06:55Z",
+          "summary": "Since GPT-5.4, we’ve unified Codex and the main model into a single system, so there’s no separate coding line anymore. GPT-5.5 takes this further, with strong gains in agentic coding, computer use, and any task on a computer. &mdash; Romain Huet , confirming OpenAI won't release a GPT-5.5-Codex model Tags: generative-ai , gpt , openai , ai , llms",
+          "tags": [
+            "generative-ai",
+            "gpt",
+            "openai",
+            "ai",
+            "llms"
+          ],
+          "discovered_at": "2026-04-25T13:12:01Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-04-25T07:22:52Z",
       "generated_at": "2026-04-25T07:22:52Z",
