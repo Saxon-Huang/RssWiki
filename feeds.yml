@@ -3,6 +3,30 @@ feeds:
     url: https://simonwillison.net/atom/everything/
     category: tech-blog
 
+  - name: Eli Bendersky
+    url: https://eli.thegreenplace.net/feeds/all.atom.xml
+    category: tech-blog
+
+  - name: matklad
+    url: https://matklad.github.io/feed.xml
+    category: tech-blog
+
+  - name: Armin Ronacher
+    url: https://lucumr.pocoo.org/feed.atom
+    category: tech-blog
+
+  - name: Jim Nielsen
+    url: https://blog.jim-nielsen.com/feed.xml
+    category: tech-blog
+
+  - name: Max Woolf
+    url: https://minimaxir.com/index.xml
+    category: ai-news
+
+  - name: antirez
+    url: http://antirez.com/rss
+    category: tech-blog
+
   - name: OpenAI News
     url: https://openai.com/news/rss.xml
     category: ai-news

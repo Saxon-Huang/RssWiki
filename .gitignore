@@ -25,3 +25,5 @@ postgres-data/
 
 # Ai
 .opencode
+openspec/
+session-*.md
