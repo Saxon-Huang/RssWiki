@@ -1,4 +1,659 @@
 {
-  "generated_at": null,
-  "batches": []
+  "generated_at": "2026-04-25T03:54:52Z",
+  "batches": [
+    {
+      "batch_id": "2026-04-25T03:54:52Z",
+      "generated_at": "2026-04-25T03:54:52Z",
+      "items": [
+        {
+          "id": "6446468f26ba",
+          "title": "llm 0.31",
+          "url": "https://simonwillison.net/2026/Apr/24/llm/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-24T23:35:07Z",
+          "summary": "Release: llm 0.31 New GPT-5.5 OpenAI model: llm -m gpt-5.5 . #1418 New option to set the text verbosity level for GPT-5+ OpenAI models: -o verbosity low . Values are low , medium , high . New option for setting the image detail level used for image attachments to OpenAI models: -o image_detail low - values are low , high and auto , and GPT-5.4 and 5.5 also accept original . Models listed in extra-openai-models.yaml are now also registered as asynchronous. #1395 Tags: gpt , openai , llm",
+          "tags": [
+            "gpt",
+            "openai",
+            "llm"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "035dc6faa2d5",
+          "title": "The people do not yearn for automation",
+          "url": "https://simonwillison.net/2026/Apr/24/the-people-do-not-yearn-for-automation/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-24T22:38:49Z",
+          "summary": "The people do not yearn for automation This written and video essay by Nilay Patel explores why AI is unpopular with the general public even as usage numbers for ChatGPT continue to skyrocket. It’s a superb piece of commentary, and something I expect I’ll be thinking about for a long time to come. Nilay’s core idea is that people afflicted with “software brain” - who see the world as something to be automated as much as possible, and attempt to model everything in terms of information flows and data - are becoming detached from everyone else. […] software brain has ruled the business world for a long time. AI has just made it easier than ever for more people to make more software than ever before — for every kind of business to automate big chunks of itself with software. It’s everywhere: the absolute cutting edge of advertising and marketing is automation with AI. It’s not being a creative. But: not everything is a business. Not everything is a loop! The entire human experience cannot be captured in a database. That’s the limit of software brain. That’s why people hate AI. It flattens them. Regular people don’t see the opportunity to write code as an opportunity at all . The people do not yearn for automation. I’m a full-on smart home sicko; the lights and shades and climate controls of my house are automated in dozens of ways. But huge companies like Apple, Google and Amazon have struggled for over a decade now to make regular people care about smart home automation at all. And they just don’t. Via John Gruber Tags: ai , generative-ai , llms , nilay-patel , ai-ethics",
+          "tags": [
+            "ai",
+            "generative-ai",
+            "llms",
+            "nilay-patel",
+            "ai-ethics"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "29df7a2987bc",
+          "title": "DeepSeek V4 - almost on the frontier, a fraction of the price",
+          "url": "https://simonwillison.net/2026/Apr/24/deepseek-v4/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-24T06:01:04Z",
+          "summary": "Chinese AI lab DeepSeek's last model release was V3.2 (and V3.2 Speciale) last December . They just dropped the first of their hotly anticipated V4 series in the shape of two preview models, DeepSeek-V4-Pro and DeepSeek-V4-Flash . Both models are 1 million token context Mixture of Experts. Pro is 1.6T total parameters, 49B active. Flash is 284B total, 13B active. They're using the standard MIT license. I think this makes DeepSeek-V4-Pro the new largest open weights model. It's larger than Kimi K2.6 (1.1T) and GLM-5.1 (754B) and more than twice the size of DeepSeek V3.2 (685B). Pro is 865GB on Hugging Face, Flash is 160GB. I'm hoping that a lightly quantized Flash will run on my 128GB M5 MacBook Pro. It's possible the Pro model may run on it if I can stream just the necessary active experts from disk. For the moment I tried the models out via OpenRouter , using llm-openrouter : llm install llm-openrouter llm openrouter refresh llm -m openrouter/deepseek/deepseek-v4-pro 'Generate an SVG of a pelican riding a bicycle' Here's the pelican for DeepSeek-V4-Flash : And for DeepSeek-V4-Pro : For comparison, take a look at the pelicans I got from DeepSeek V3.2 in December , V3.1 in August , and V3-0324 in March 2025 . So the pelicans are pretty good, but what's really notable here is the cost . DeepSeek V4 is a very, very inexpensive model. This is DeepSeek's pricing page . They're charging $0.14/million tokens input and $0.28/million tokens output for Flash, and $1.74/million input and $3.48/million output for Pro. Here's a comparison table with the frontier models from Gemini, OpenAI and Anthropic: Model Input ($/M) Output ($/M) DeepSeek V4 Flash $0.14 $0.28 GPT-5.4 Nano $0.20 $1.25 Gemini 3.1 Flash-Lite $0.25 $1.50 Gemini 3 Flash Preview $0.50 $3 GPT-5.4 Mini $0.75 $4.50 Claude Haiku 4.5 $1 $5 DeepSeek V4 Pro $1.74 $3.48 Gemini 3.1 Pro $2 $12 GPT-5.4 $2.50 $15 Claude Sonnet 4.6 $3 $15 Claude Opus 4.7 $5 $25 GPT-5.5 $5 $30 DeepSeek-V4-Flash is the cheapest of the small models, beating even OpenAI's GPT-5.4 Nano. DeepSeek-V4-Pro is the cheapest of the larger frontier models. This note from the DeepSeek paper helps explain why they can price these models so low - they've focused a great deal on efficiency with this release, especially for longer context prompts: In the scenario of 1M-token context, even DeepSeek-V4-Pro, which has a larger number of activated parameters, attains only 27% of the single-token FLOPs (measured in equivalent FP8 FLOPs) and 10% of the KV cache size relative to DeepSeek-V3.2. Furthermore, DeepSeek-V4-Flash, with its smaller number of activated parameters, pushes efficiency even further: in the 1M-token context setting, it achieves only 10% of the single-token FLOPs and 7% of the KV cache size compared with DeepSeek-V3.2. DeepSeek's self-reported benchmarks in their paper show their Pro model competitive with those other frontier models, albeit with this note: Through the expansion of reasoning tokens, DeepSeek-V4-Pro-Max demonstrates superior performance relative to GPT-5.2 and Gemini-3.0-Pro on standard reasoning benchmarks. Nevertheless, its performance falls marginally short of GPT-5.4 and Gemini-3.1-Pro, suggesting a developmental trajectory that trails state-of-the-art frontier models by approximately 3 to 6 months. I'm keeping an eye on huggingface.co/unsloth/models as I expect the Unsloth team will have a set of quantized versions out pretty soon. It's going to be very interesting to see how well that Flash model runs on my own machine. Tags: ai , generative-ai , llms , llm , llm-pricing , pelican-riding-a-bicycle , deepseek , llm-release , openrouter , ai-in-china",
+          "tags": [
+            "ai",
+            "generative-ai",
+            "llms",
+            "llm",
+            "llm-pricing",
+            "pelican-riding-a-bicycle",
+            "deepseek",
+            "llm-release",
+            "openrouter",
+            "ai-in-china"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "ea7a59737f1d",
+          "title": "Millisecond Converter",
+          "url": "https://simonwillison.net/2026/Apr/24/milliseconds/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-24T04:23:11Z",
+          "summary": "Tool: Millisecond Converter LLM reports prompt durations in milliseconds and I got fed up of having to think about how to convert those to seconds and minutes. Tags: tools",
+          "tags": [
+            "tools"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "a22bb9dcbb45",
+          "title": "It's a big one",
+          "url": "https://simonwillison.net/2026/Apr/24/weekly/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-24T04:09:54Z",
+          "summary": "This week's edition of my email newsletter (aka content from this blog delivered to your inbox) features 4 pelicans riding bicycles, 1 possum on an e-scooter, up to 5 raccoons with ham radios hiding in crowds, 5 blog posts, 8 links, 3 quotes and a new chapter of my Agentic Engineering Patterns guide. Tags: newsletter",
+          "tags": [
+            "newsletter"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "a4eee61af915",
+          "title": "russellromney/honker",
+          "url": "https://simonwillison.net/2026/Apr/24/honker/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-24T01:50:07Z",
+          "summary": "russellromney/honker \"Postgres NOTIFY/LISTEN semantics\" for SQLite, implemented as a Rust SQLite extension and various language bindings to help make use of it. The design of this looks very solid. It lets you write Python code for queues that looks like this: import honker db = honker . open ( \"app.db\" ) emails = db . queue ( \"emails\" ) emails . enqueue ({ \"to\" : \"alice@example.com\" }) # Consume (in a worker process) async for job in emails . claim ( \"worker-1\" ): send ( job . payload ) job . ack () And Kafka-style durable streams like this: stream = db . stream ( \"user-events\" ) with db . transaction () as tx : tx . execute ( \"UPDATE users SET name=? WHERE id=?\" , [ name , uid ]) stream . publish ({ \"user_id\" : uid , \"change\" : \"name\" }, tx = tx ) async for event in stream . subscribe ( consumer = \"dashboard\" ): await push_to_browser ( event ) It also adds 20+ custom SQL functions including these two: SELECT notify( ' orders ' , ' {\"id\":42} ' ); SELECT honker_stream_read_since( ' orders ' , 0 , 1000 ); The extension requires WAL mode, and workers can poll the .db-wal file with a stat call every 1ms to get as close to real-time as possible without the expense of running a full SQL query. honker implements the transactional outbox pattern , which ensures items are only queued if a transaction successfully commits. My favorite explanation of that pattern remains Transactionally Staged Job Drains in Postgres by Brandur Leach. It's great to see a new implementation of that pattern for SQLite. Via Show HN Tags: databases , postgresql , sqlite , rust",
+          "tags": [
+            "databases",
+            "postgresql",
+            "sqlite",
+            "rust"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "f51e5938d15e",
+          "title": "An update on recent Claude Code quality reports",
+          "url": "https://simonwillison.net/2026/Apr/24/recent-claude-code-quality-reports/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-24T01:31:25Z",
+          "summary": "An update on recent Claude Code quality reports It turns out the high volume of complaints that Claude Code was providing worse quality results over the past two months was grounded in real problems. The models themselves were not to blame, but three separate issues in the Claude Code harness caused complex but material problems which directly affected users. Anthropic's postmortem describes these in detail. This one in particular stood out to me: On March 26, we shipped a change to clear Claude's older thinking from sessions that had been idle for over an hour, to reduce latency when users resumed those sessions. A bug caused this to keep happening every turn for the rest of the session instead of just once, which made Claude seem forgetful and repetitive. I frequently have Claude Code sessions which I leave for an hour (or often a day or longer) before returning to them. Right now I have 11 of those (according to ps aux | grep 'claude ' ) and that's after closing down dozens more the other day. I estimate I spend more time prompting in these \"stale\" sessions than sessions that I've recently started! If you're building agentic systems it's worth reading this article in detail - the kinds of bugs that affect harnesses are deeply complicated, even if you put aside the inherent non-deterministic nature of the models themselves. Via Hacker News Tags: ai , prompt-engineering , generative-ai , llms , anthropic , coding-agents , claude-code",
+          "tags": [
+            "ai",
+            "prompt-engineering",
+            "generative-ai",
+            "llms",
+            "anthropic",
+            "coding-agents",
+            "claude-code"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "a911ebba0ff0",
+          "title": "Serving the For You feed",
+          "url": "https://simonwillison.net/2026/Apr/24/serving-the-for-you-feed/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-24T01:08:17Z",
+          "summary": "Serving the For You feed One of Bluesky's most interesting features is that anyone can run their own custom \"feed\" implementation and make it available to other users - effectively enabling custom algorithms that can use any mechanism they like to recommend posts. spacecowboy runs the For You Feed , used by around 72,000 people. This guest post on the AT Protocol blog explains how it works. The architecture is fascinating . The feed is served by a single Go process using SQLite on a \"gaming\" PC in spacecowboy's living room - 16 cores, 96GB of RAM and 4TB of attached NVMe storage. Recommendations are based on likes: what else are the people who like the same things as you liking on the platform? That Go server consumes the Bluesky firehose and stores the relevant details in SQLite, keeping the last 90 days of relevant data, which currently uses around 419GB of SQLite storage. Public internet traffic is handled by a $7/month VPS on OVH, which talks to the living room server via Tailscale. Total cost is now $30/month: $20 in electricity, $7 in VPS and $3 for the two domain names. spacecowboy estimates that the existing system could handle all ~1 million daily active Bluesky users if they were to switch to the cheapest algorithm they have found to work. Tags: go , scaling , sqlite , software-architecture , tailscale , bluesky",
+          "tags": [
+            "go",
+            "scaling",
+            "sqlite",
+            "software-architecture",
+            "tailscale",
+            "bluesky"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "39418c4571e0",
+          "title": "Extract PDF text in your browser with LiteParse for the web",
+          "url": "https://simonwillison.net/2026/Apr/23/liteparse-for-the-web/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-23T21:54:24Z",
+          "summary": "LlamaIndex have a most excellent open source project called LiteParse , which provides a Node.js CLI tool for extracting text from PDFs. I got a version of LiteParse working entirely in the browser, using most of the same libraries that LiteParse uses to run in Node.js. Spatial text parsing Refreshingly, LiteParse doesn't use AI models to do what it does: it's good old-fashioned PDF parsing, falling back to Tesseract OCR (or other pluggable OCR engines) for PDFs that contain images of text rather than the text itself. The hard problem that LiteParse solves is extracting text in a sensible order despite the infuriating vagaries of PDF layouts. They describe this as \"spatial text parsing\" - they use some very clever heuristics to detect things like multi-column layouts and group and return the text in a sensible linear flow. The LiteParse documentation describes a pattern for implementing Visual Citations with Bounding Boxes . I really like this idea: being able to answer questions from a PDF and accompany those answers with cropped, highlighted images feels like a great way of increasing the credibility of answers from RAG-style Q&amp;A. LiteParse is provided as a pure CLI tool, designed to be used by agents. You run it like this: npm i -g @llamaindex/liteparse lit parse document.pdf I explored its capabilities with Claude and quickly determined that there was no real reason it had to stay a CLI app: it's built on top of PDF.js and Tesseract.js, two libraries I've used for something similar in a browser in the past . The only reason LiteParse didn't have a pure browser-based version is that nobody had built one yet... Introducing LiteParse for the web Visit https://simonw.github.io/liteparse/ to try out LiteParse against any PDF file, running entirely in your browser. Here's what that looks like: The tool can work with or without running OCR, and can optionally display images for every page in the PDF further down the page. Building it with Claude Code and Opus 4.7 The process of building this started in the regular Claude app on my iPhone. I wanted to try out LiteParse myself, so I started by uploading a random PDF I happened to have on my phone along with this prompt: Clone https://github.com/run-llama/liteparse and try it against this file Regular Claude chat can clone directly from GitHub these days, and while by default it can't access most of the internet from its container it can also install packages from PyPI and npm. I often use this to try out new pieces of open source software on my phone - it's a quick way to exercise something without having to sit down with my laptop. You can follow my full conversation in this shared Claude transcript . I asked a few follow-up questions about how it worked, and then asked: Does this library run in a browser? Could it? This gave me a thorough enough answer that I was convinced it was worth trying getting that to work for real. I opened up my laptop and switched to Claude Code. I forked the original repo on GitHub, cloned a local copy, started a new web branch and pasted that last reply from Claude into a new file called notes.md . Then I told Claude Code: Get this working as a web app. index.html, when loaded, should render an app that lets users open a PDF in their browser and select OCR or non-OCR mode and have this run. Read notes.md for initial research on this problem, then write out plan.md with your detailed implementation plan I always like to start with a plan for this kind of project. Sometimes I'll use Claude's \"planning mode\", but in this case I knew I'd want the plan as an artifact in the repository so I told it to write plan.md directly. This also means I can iterate on the plan with Claude. I noticed that Claude had decided to punt on generating screenshots of images in the PDF, and suggested we defer a \"canvas-encode swap\" to v2. I fixed that by prompting: Update the plan to say we WILL do the canvas-encode swap so the screenshots thing works After a few short follow-up prompts, here's the plan.md I thought was strong enough to implement. I prompted: build it. And then mostly left Claude Code to its own devices, tinkered with some other projects, caught up on Duolingo and occasionally checked in to see how it was doing. I added a few prompts to the queue as I was working. Those don't yet show up in my exported transcript, but it turns out running rg queue-operation --no-filename | grep enqueue | jq -r '.content' in the relevant ~/.claude/projects/ folder extracts them. Here are the key follow-up prompts with some notes: When you implement this use playwright and red/green TDD, plan that too - I've written more about red/green TDD here . let's use PDF.js's own renderer (it was messing around with pdfium) The final UI should include both the text and the pretty-printed JSON output, both of those in textareas and both with copy-to-clipboard buttons - it should also be mobile friendly - I had a new idea for how the UI should work small commits along the way - see below Make sure the index.html page includes a link back to https://github.com/run-llama/liteparse near the top of the page - it's important to credit your dependencies in a project like this! View on GitHub → is bad copy because that's not the repo with this web app in, it's the web app for the underlying LiteParse library Run OCR should be unchecked by default When I try to parse a PDF in my browser I see 'Parse failed: undefined is not a function (near '...value of readableStream...') - it was testing with Playwright in Chrome, turned out there was a bug in Safari ... oh that is in safari but it works in chrome When \"Copy\" is clicked the text should change to \"Copied!\" for 1.5s [Image #1] Style the file input so that long filenames don't break things on Firefox like this - in fact add one of those drag-drop zone UIs which you can also click to select a file - dropping screenshots in of small UI glitches works surprisingly well Tweak the drop zone such that the text is vertically centered, right now it is a bit closer to the top it breaks in Safari on macOS, works in both Chrome and Firefox. On Safari I see \"Parse failed: undefined is not a function (near '...value of readableStream...')\" after I click the Parse button, when OCR is not checked - it still wasn't working in Safari... works in safari now - but it fixed it pretty quickly once I pointed that out and it got Playwright working with that browser I've started habitually asking for \"small commits along the way\" because it makes for code that's easier to understand or review later on, and I have an unproven hunch that it helps the agent work more effectively too - it's yet another encouragement towards planning and taking on one problem at a time. While it was working I decided it would be nice to be able to interact with an in-progress version. I asked a separate Claude Code session against the same directory for tips on how to run it, and it told me to use npx vite . Running that started a development server with live-reloading, which meant I could instantly see the effect of each change it made on disk - and prompt with further requests for tweaks and fixes. Towards the end I decided it was going to be good enough to publish. I started a fresh Claude Code instance and told it: Look at the web/ folder - set up GitHub actions for this repo such that any push runs the tests, and if the tests pass it then does a GitHub Pages deploy of the built vite app such that the web/index.html page is the index.html page for the thing that is deployed and it works on GitHub Pages After a bit more iteration here's the GitHub Actions workflow that builds the app using Vite and deploys the result to https://simonw.github.io/liteparse/ . I love GitHub Pages for this kind of thing because it can be quickly configured (by Claude, in this case) to turn any repository into a deployed web-app, at zero cost and with whatever build step is necessary. It even works against private repos, if you don't mind your only security being a secret URL. With this kind of project there's always a major risk that the model might \"cheat\" - mark key features as \"TODO\" and fake them, or take shortcuts that ignore the initial requirements. The responsible way to prevent this is to review all of the code... but this wasn't intended as that kind of project, so instead I fired up OpenAI Codex with GPT-5.5 (I had preview access) and told it: Describe the difference between how the node.js CLI tool runs and how the web/ version runs The answer I got back was enough to give me confidence that Claude hadn't taken any project-threatening shortcuts. ... and that was about it. Total time in Claude Code for that \"build it\" step was 59 minutes. I used my claude-code-transcripts tool to export a readable version of the full transcript which you can view here , albeit without those additional queued prompts (here's my issue to fix that ). Is this even vibe coding any more? I'm a pedantic stickler when it comes to the original definition of vibe coding - vibe coding does not mean any time you use AI to help you write code, it's when you use AI without reviewing or caring about the code that's written at all. By my own definition, this LiteParse for the web project is about as pure vibe coding as you can get! I have not looked at a single line of the HTML and TypeScript written for this project - in fact while writing this sentence I had to go and check if it had used JavaScript or TypeScript. Yet somehow this one doesn't feel as vibe coded to me as many of my other vibe coded projects: As a static in-browser web application hosted on GitHub Pages the blast radius for any bugs is almost non-existent: it either works for your PDF or doesn't. No private data is transferred anywhere - all processing happens in your browser - so a security audit is unnecessary. I've glanced once at the network panel while it's running and no additional requests are made when a PDF is being parsed. There was still a whole lot of engineering experience and knowledge required to use the models in this way. Identifying that porting LiteParse to run directly in a browser was critical to the rest of the project. Most importantly, I'm happy to attach my reputation to this project and recommend that other people try it out. Unlike most of my vibe coded tools I'm not convinced that spending significant additional engineering time on this would have resulted in a meaningfully better initial release. It's fine as it is! I haven't opened a PR against the origin repository because I've not discussed it with the LiteParse team. I've opened an issue , and if they want my vibe coded implementation as a starting point for something more official they're welcome to take it. Tags: javascript , ocr , pdf , projects , ai , generative-ai , llms , vibe-coding , coding-agents , claude-code , agentic-engineering",
+          "tags": [
+            "javascript",
+            "ocr",
+            "pdf",
+            "projects",
+            "ai",
+            "generative-ai",
+            "llms",
+            "vibe-coding",
+            "coding-agents",
+            "claude-code",
+            "agentic-engineering"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "dc064711c8f1",
+          "title": "A pelican for GPT-5.5 via the semi-official Codex backdoor API",
+          "url": "https://simonwillison.net/2026/Apr/23/gpt-5-5/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-23T19:59:47Z",
+          "summary": "GPT-5.5 is out . It's available in OpenAI Codex and is rolling out to paid ChatGPT subscribers. I've had some preview access and found it to be a fast, effective and highly capable model. As is usually the case these days, it's hard to put into words what's good about it - I ask it to build things and it builds exactly what I ask for! There's one notable omission from today's release - the API: API deployments require different safeguards and we are working closely with partners and customers on the safety and security requirements for serving it at scale. We'll bring GPT‑5.5 and GPT‑5.5 Pro to the API very soon. When I run my pelican benchmark I always prefer to use an API, to avoid hidden system prompts in ChatGPT or other agent harnesses from impacting the results. The OpenClaw backdoor One of the ongoing tension points in the AI world over the past few months has concerned how agent harnesses like OpenClaw and Pi interact with the APIs provided by the big providers. Both OpenAI and Anthropic offer popular monthly subscriptions which provide access to their models at a significant discount to their raw API. OpenClaw integrated directly with this mechanism, and was then blocked from doing so by Anthropic. This kicked off a whole thing. OpenAI - who recently hired OpenClaw creator Peter Steinberger - saw an opportunity for an easy karma win and announced that OpenClaw was welcome to continue integrating with OpenAI's subscriptions via the same mechanism used by their (open source) Codex CLI tool. Does this mean anyone can write code that integrates with OpenAI's Codex-specific APIs to hook into those existing subscriptions? The other day Jeremy Howard asked : Anyone know whether OpenAI officially supports the use of the /backend-api/codex/responses endpoint that Pi and Opencode (IIUC) uses? It turned out that on March 30th OpenAI's Romain Huet had tweeted : We want people to be able to use Codex, and their ChatGPT subscription, wherever they like! That means in the app, in the terminal, but also in JetBrains, Xcode, OpenCode, Pi, and now Claude Code. That’s why Codex CLI and Codex app server are open source too! 🙂 And Peter Steinberger replied to Jeremy that: OpenAI sub is officially supported. llm-openai-via-codex So... I had Claude Code reverse-engineer the openai/codex repo, figure out how authentication tokens were stored and build me llm-openai-via-codex , a new plugin for LLM which picks up your existing Codex subscription and uses it to run prompts! (With hindsight I wish I'd used GPT-5.4 or the GPT-5.5 preview, it would have been funnier. I genuinely considered rewriting the project from scratch using Codex and GPT-5.5 for the sake of the joke, but decided not to spend any more time on this!) Here's how to use it: Install Codex CLI, buy an OpenAI plan, login to Codex Install LLM: uv tool install llm Install the new plugin: llm install llm-openai-via-codex Start prompting: llm -m openai-codex/gpt-5.5 'Your prompt goes here' All existing LLM features should also work - use -a filepath.jpg/URL to attach an image, llm chat -m openai-codex/gpt-5.5 to start an ongoing chat, llm logs to view logged conversations and llm --tool ... to try it out with tool support . And some pelicans Let's generate a pelican! llm install llm-openai-via-codex llm -m openai-codex/gpt-5.5 ' Generate an SVG of a pelican riding a bicycle ' Here's what I got back : I've seen better from GPT-5.4 , so I tagged on -o reasoning_effort xhigh and tried again : That one took almost four minutes to generate, but I think it's a much better effort. If you compare the SVG code ( default , xhigh ) the xhigh one took a very different approach, which is much more CSS-heavy - as demonstrated by those gradients. xhigh used 9,322 reasoning tokens where the default used just 39. A few more notes on GPT-5.5 One of the most notable things about GPT-5.5 is the pricing. Once it goes live in the API it's going to be priced at twice the cost of GPT-5.4 - $5 per 1M input tokens and $30 per 1M output tokens, where 5.4 is $2.5 and $15. GPT-5.5 Pro will be even more: $30 per 1M input tokens and $180 per 1M output tokens. GPT-5.4 will remain available. At half the price of 5.5 this feels like 5.4 is to 5.5 as Claude Sonnet is to Claude Opus. Ethan Mollick has a detailed review of GPT-5.5 where he put it (and GPT-5.5 Pro) through an array of interesting challenges. His verdict: the jagged frontier continues to hold, with GPT-5.5 excellent at some things and challenged by others in a way that remains difficult to predict. Tags: ai , openai , generative-ai , chatgpt , llms , llm , llm-pricing , pelican-riding-a-bicycle , llm-reasoning , llm-release , codex-cli , gpt",
+          "tags": [
+            "ai",
+            "openai",
+            "generative-ai",
+            "chatgpt",
+            "llms",
+            "llm",
+            "llm-pricing",
+            "pelican-riding-a-bicycle",
+            "llm-reasoning",
+            "llm-release",
+            "codex-cli",
+            "gpt"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "3353ad3d74ef",
+          "title": "llm-openai-via-codex 0.1a0",
+          "url": "https://simonwillison.net/2026/Apr/23/llm-openai-via-codex/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-23T19:22:29Z",
+          "summary": "Release: llm-openai-via-codex 0.1a0 Hijacks your Codex CLI credentials to make API calls with LLM, as described in my post about GPT-5.5 . Tags: openai , llm , codex-cli",
+          "tags": [
+            "openai",
+            "llm",
+            "codex-cli"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "938cbb02cd08",
+          "title": "Quoting Maggie Appleton",
+          "url": "https://simonwillison.net/2026/Apr/23/maggie-appleton/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-23T13:35:37Z",
+          "summary": "[...] if you ever needed another reason to learn in public by digital gardening or podcasting or streaming or whathaveyou, add on that people will assume you’re more competent than you are. This will get you invites to very cool exclusive events filled with high-achieving, interesting people, even though you have no right to be there. A+ side benefit. &mdash; Maggie Appleton , Gathering Structures ( via ) Tags: blogging , maggie-appleton",
+          "tags": [
+            "blogging",
+            "maggie-appleton"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "d1f8324a5fa3",
+          "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+          "url": "https://simonwillison.net/2026/Apr/22/qwen36-27b/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-22T16:45:23Z",
+          "summary": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model Big claims from Qwen about their latest open weight model: Qwen3.6-27B delivers flagship-level agentic coding performance, surpassing the previous-generation open-source flagship Qwen3.5-397B-A17B (397B total / 17B active MoE) across all major coding benchmarks. On Hugging Face Qwen3.5-397B-A17B is 807GB, this new Qwen3.6-27B is 55.6GB. I tried it out with the 16.8GB Unsloth Qwen3.6-27B-GGUF:Q4_K_M quantized version and llama-server using this recipe by benob on Hacker News , after first installing llama-server using brew install llama.cpp : llama-server \\ -hf unsloth/Qwen3.6-27B-GGUF:Q4_K_M \\ --no-mmproj \\ --fit on \\ -np 1 \\ -c 65536 \\ --cache-ram 4096 -ctxcp 2 \\ --jinja \\ --temp 0.6 \\ --top-p 0.95 \\ --top-k 20 \\ --min-p 0.0 \\ --presence-penalty 0.0 \\ --repeat-penalty 1.0 \\ --reasoning on \\ --chat-template-kwargs '{\"preserve_thinking\": true}' On first run that saved the ~17GB model to ~/.cache/huggingface/hub/models--unsloth--Qwen3.6-27B-GGUF . Here's the transcript for \"Generate an SVG of a pelican riding a bicycle\". This is an outstanding result for a 16.8GB local model: Performance numbers reported by llama-server : Reading: 20 tokens, 0.4s, 54.32 tokens/s Generation: 4,444 tokens, 2min 53s, 25.57 tokens/s For good measure, here's Generate an SVG of a NORTH VIRGINIA OPOSSUM ON AN E-SCOOTER (run previously with GLM-5.1 ): That one took 6,575 tokens, 4min 25s, 24.74 t/s. Via Hacker News Tags: ai , generative-ai , local-llms , llms , qwen , pelican-riding-a-bicycle , llama-cpp , llm-release , ai-in-china",
+          "tags": [
+            "ai",
+            "generative-ai",
+            "local-llms",
+            "llms",
+            "qwen",
+            "pelican-riding-a-bicycle",
+            "llama-cpp",
+            "llm-release",
+            "ai-in-china"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "d5920097c11b",
+          "title": "Quoting Bobby Holley",
+          "url": "https://simonwillison.net/2026/Apr/22/bobby-holley/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-22T05:40:56Z",
+          "summary": "As part of our continued collaboration with Anthropic, we had the opportunity to apply an early version of Claude Mythos Preview to Firefox. This week’s release of Firefox 150 includes fixes for 271 vulnerabilities identified during this initial evaluation. [...] Our experience is a hopeful one for teams who shake off the vertigo and get to work. You may need to reprioritize everything else to bring relentless and single-minded focus to the task, but there is light at the end of the tunnel. We are extremely proud of how our team rose to meet this challenge, and others will too. Our work isn’t finished, but we’ve turned the corner and can glimpse a future much better than just keeping up. Defenders finally have a chance to win, decisively . &mdash; Bobby Holley , CTO, Firefox Tags: anthropic , claude , ai , firefox , llms , mozilla , security , generative-ai , ai-security-research",
+          "tags": [
+            "anthropic",
+            "claude",
+            "ai",
+            "firefox",
+            "llms",
+            "mozilla",
+            "security",
+            "generative-ai",
+            "ai-security-research"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "94c66990736b",
+          "title": "Changes to GitHub Copilot Individual plans",
+          "url": "https://simonwillison.net/2026/Apr/22/changes-to-github-copilot/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-22T03:30:02Z",
+          "summary": "Changes to GitHub Copilot Individual plans On the same day as Claude Code's temporary will-they-won't-they $100/month kerfuffle (for the moment, they won't ), here's the latest on GitHub Copilot pricing. Unlike Anthropic, GitHub put up an official announcement about their changes, which include tightening usage limits, pausing signups for individual plans (!), restricting Claude Opus 4.7 to the more expensive $39/month \"Pro+\" plan, and dropping the previous Opus models entirely. The key paragraph: Agentic workflows have fundamentally changed Copilot’s compute demands. Long-running, parallelized sessions now regularly consume far more resources than the original plan structure was built to support. As Copilot’s agentic capabilities have expanded rapidly, agents are doing more work, and more customers are hitting usage limits designed to maintain service reliability. It's easy to forget that just six months ago heavy LLM users were burning an order of magnitude less tokens. Coding agents consume a lot of compute. Copilot was also unique (I believe) among agents in charging per-request, not per-token. ( Correction: Windsurf also operated a credit system like this which they abandoned last month .) This means that single agentic requests which burn more tokens cut directly into their margins. The most recent pricing scheme addresses that with token-based usage limits on a per-session and weekly basis. My one problem with this announcement is that it doesn't clearly clarify which product called \"GitHub Copilot\" is affected by these changes. Last month in How many products does Microsoft have named 'Copilot'? I mapped every one Tey Bannerman identified 75 products that share the Copilot brand, 15 of which have \"GitHub Copilot\" in the title. Judging by the linked GitHub Copilot plans page this covers Copilot CLI, Copilot cloud agent and code review (features on GitHub.com itself), and the Copilot IDE features available in VS Code, Zed, JetBrains and more. Via Hacker News Tags: github , microsoft , ai , generative-ai , github-copilot , llms , llm-pricing , coding-agents",
+          "tags": [
+            "github",
+            "microsoft",
+            "ai",
+            "generative-ai",
+            "github-copilot",
+            "llms",
+            "llm-pricing",
+            "coding-agents"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "0ffdd40f3091",
+          "title": "Is Claude Code going to cost $100/month? Probably not - it's all very confusing",
+          "url": "https://simonwillison.net/2026/Apr/22/claude-code-confusion/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-22T02:07:34Z",
+          "summary": "Anthropic today quietly (as in silently , no announcement anywhere at all) updated their claude.com/pricing page (but not their Choosing a Claude plan page , which shows up first for me on Google) to add this tiny but significant detail (arrow is mine, and it's already reverted ): The Internet Archive copy from yesterday shows a checkbox there. Claude Code used to be a feature of the $20/month Pro plan, but according to the new pricing page it is now exclusive to the $100/month or $200/month Max plans. Update : don't miss the update to this post , they've already changed course a few hours after this change went live. So what the heck is going on? Unsurprisingly, Reddit and Hacker News and Twitter all caught fire. I didn't believe the screenshots myself when I first saw them - aside from the pricing grid I could find no announcement from Anthropic anywhere. Then Amol Avasare, Anthropic's Head of Growth, tweeted : For clarity, we're running a small test on ~2% of new prosumer signups. Existing Pro and Max subscribers aren't affected. And that appears to be the closest we have had to official messaging from Anthropic. I don't buy the \"~2% of new prosumer signups\" thing, since everyone I've talked to is seeing the new pricing grid and the Internet Archive has already snapped a copy . Maybe he means that they'll only be running this version of the pricing grid for a limited time which somehow adds up to \"2%\" of signups? I'm also amused to see Claude Cowork remain available on the $20/month plan, because Claude Cowork is effectively a rebranded version of Claude Code wearing a less threatening hat! There are a whole bunch of things that are bad about this. If we assume this is indeed a test, and that test comes up negative and they decide not to go ahead with it, the damage has still been extensive: A whole lot of people got scared or angry or both that a service they relied on was about to be rug-pulled. There really is a significant difference between $20/month and $100/month for most people, especially outside of higher salary countries. The uncertainty is really bad! A tweet from an employee is not the way to make an announcement like this. I wasted a solid hour of my afternoon trying to figure out what had happened here. My trust in Anthropic's transparency around pricing - a crucial factor in how I understand their products - has been shaken. Strategically, should I be taking a bet on Claude Code if I know that they might 5x the minimum price of the product? More of a personal issue, but one I care deeply about myself: I invest a great deal of effort (that's 105 posts and counting) in teaching people how to use Claude Code. I don't want to invest that effort in a product that most people cannot afford to use. Last month I ran a tutorial for journalists on \"Coding agents for data analysis\" at the annual NICAR data journalism conference. I'm not going to be teaching that audience a course that depends on a $100/month subscription! This also doesn't make sense to me as a strategy for Anthropic. Claude Code defined the category of coding agents. It's responsible for billions of dollars in annual revenue for Anthropic already. It has a stellar reputation, but I'm not convinced that reputation is strong enough for it to lose the $20/month trial and jump people directly to a $100/month subscription. OpenAI have been investing heavily in catching up to Claude Code with their Codex products. Anthropic just handed them this marketing opportunity on a plate - here's Codex engineering lead Thibault Sottiaux : I don't know what they are doing over there, but Codex will continue to be available both in the FREE and PLUS ($20) plans. We have the compute and efficient models to support it. For important changes, we will engage with the community well ahead of making them. Transparency and trust are two principles we will not break, even if it means momentarily earning less. A reminder that you vote with your subscription for the values you want to see in this world. I should note that I pay $200/month for Claude Max and I consider it well worth the money. I've had periods of free access in the past courtesy of Anthropic but I'm currently paying full price, and happy to do so. But I care about the accessibility of the tools that I work with and teach. If Codex has a free tier while Claude Code starts at $100/month I should obviously switch to Codex, because that way I can use the same tool as the people I want to teach how to use coding agents. Here's what I think happened. I think Anthropic are trying to optimize revenue growth - obviously - and someone pitched making Claude Code only available for Max and higher. That's clearly a bad idea, but \"testing\" culture says that it's worth putting even bad ideas out to test just in case they surprise you. So they started a test, without taking into account the wailing and gnashing of teeth that would result when their test was noticed - or accounting for the longer-term brand damage that would be caused. Or maybe they did account for that, and decided it was worth the risk. I don't think that calculation was worthwhile. They're going to have to make a very firm commitment along the lines of \"we heard your feedback and we commit to keeping Claude Code available on our $20/month plan going forward\" to regain my trust. As it stands, Codex is looking like a much safer bet for me to invest my time in learning and building educational materials around. Update: they've reversed it already In the time I was typing this blog entry Anthropic appear to have reversed course - the claude.com/pricing page now has a checkbox back in the Pro column for Claude Code. I can't find any official communication about it though. Let's see if they can come up with an explanation/apology that's convincing enough to offset the trust bonfire from this afternoon! Update 2: it may still affect 2% of signups? Amol on Twitter : was a mistake that the logged-out landing page and docs were updated for this test [ embedded self-tweet ] Getting lots of questions on why the landing page / docs were updated if only 2% of new signups were affected. This was understandably confusing for the 98% of folks not part of the experiment, and we've reverted both the landing page and docs changes. So the experiment is still running, just not visible to the rest of the world? Tags: ai , generative-ai , llms , anthropic , llm-pricing , ai-ethics , coding-agents , claude-code , codex-cli",
+          "tags": [
+            "ai",
+            "generative-ai",
+            "llms",
+            "anthropic",
+            "llm-pricing",
+            "ai-ethics",
+            "coding-agents",
+            "claude-code",
+            "codex-cli"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "e719285f78a7",
+          "title": "Where's the raccoon with the ham radio? (ChatGPT Images 2.0)",
+          "url": "https://simonwillison.net/2026/Apr/21/gpt-image-2/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-21T20:32:24Z",
+          "summary": "OpenAI released ChatGPT Images 2.0 today , their latest image generation model. On the livestream Sam Altman said that the leap from gpt-image-1 to gpt-image-2 was equivalent to jumping from GPT-3 to GPT-5. Here's how I put it to the test. My prompt: Do a where's Waldo style image but it's where is the raccoon holding a ham radio gpt-image-1 First as a baseline here's what I got from the older gpt-image-1 using ChatGPT directly: I wasn't able to spot the raccoon - I quickly realized that testing image generation models on Where's Waldo style images (Where's Wally in the UK) can be pretty frustrating! I tried getting Claude Opus 4.7 with its new higher resolution inputs to solve it but it was convinced there was a raccoon it couldn't find thanks to the instruction card at the top left of the image: Yes — there's at least one raccoon in the picture, but it's very well hidden . In my careful sweep through zoomed-in sections, honestly, I couldn't definitively spot a raccoon holding a ham radio. [...] Nano Banana 2 and Pro Next I tried Google's Nano Banana 2, via Gemini : That one was pretty obvious, the raccoon is in the \"Amateur Radio Club\" booth in the center of the image! Claude said: Honestly, this one wasn't really hiding — he's the star of the booth. Feels like the illustrator took pity on us after that last impossible scene. The little \"W6HAM\" callsign pun on the booth sign is a nice touch too. I also tried Nano Banana Pro in AI Studio and got this, by far the worst result from any model. Not sure what went wrong here! gpt-image-2 With the baseline established, let's try out the new model. I used an updated version of my openai_image.py script, which is a thin wrapper around the OpenAI Python client library. Their client library hasn't yet been updated to include gpt-image-2 but thankfully it doesn't validate the model ID so you can use it anyway. Here's how I ran that: OPENAI_API_KEY= \" $( llm keys get openai ) \" \\ uv run https://tools.simonwillison.net/python/openai_image.py \\ -m gpt-image-2 \\ \" Do a where's Waldo style image but it's where is the raccoon holding a ham radio \" Here's what I got back. I don't think there's a raccoon in there - I couldn't spot one, and neither could Claude. The OpenAI image generation cookbook has been updated with notes on gpt-image-2 , including the outputQuality setting and available sizes. I tried setting outputQuality to high and the dimensions to 3840x2160 - I believe that's the maximum - and got this - a 17MB PNG which I converted to a 5MB WEBP: OPENAI_API_KEY= \" $( llm keys get openai ) \" \\ uv run ' https://raw.githubusercontent.com/simonw/tools/refs/heads/main/python/openai_image.py ' \\ -m gpt-image-2 \" Do a where's Waldo style image but it's where is the raccoon holding a ham radio \" \\ --quality high --size 3840x2160 That's pretty great! There's a raccoon with a ham radio in there (bottom left, quite easy to spot). The image used 13,342 output tokens, which are charged at $30/million so a total cost of around 40 cents . Takeaways I think this new ChatGPT image generation model takes the crown from Gemini, at least for the moment. Where's Waldo style images are an infuriating and somewhat foolish way to test these models, but they do help illustrate how good they are getting at complex illustrations combining both text and details. Update: asking models to solve this is risky rizaco on Hacker News asked ChatGPT to draw a red circle around the raccoon in one of the images in which I had failed to find one. Here's an animated mix of their result and the original image: Looks like we definitely can't trust these models to usefully solve their own puzzles! Tags: ai , openai , generative-ai , chatgpt , llms , text-to-image , llm-release , nano-banana",
+          "tags": [
+            "ai",
+            "openai",
+            "generative-ai",
+            "chatgpt",
+            "llms",
+            "text-to-image",
+            "llm-release",
+            "nano-banana"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "88d503f3824a",
+          "title": "Quoting Andreas Påhlsson-Notini",
+          "url": "https://simonwillison.net/2026/Apr/21/andreas-pahlsson-notini/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-21T16:39:33Z",
+          "summary": "AI agents are already too human. Not in the romantic sense, not because they love or fear or dream, but in the more banal and frustrating one. The current implementations keep showing their human origin again and again: lack of stringency, lack of patience, lack of focus. Faced with an awkward task, they drift towards the familiar. Faced with hard constraints, they start negotiating with reality. &mdash; Andreas Påhlsson-Notini , Less human AI agents, please. Tags: ai-agents , coding-agents , ai",
+          "tags": [
+            "ai-agents",
+            "coding-agents",
+            "ai"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "bcf73f730e55",
+          "title": "scosman/pelicans_riding_bicycles",
+          "url": "https://simonwillison.net/2026/Apr/21/scosman/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-21T15:54:43Z",
+          "summary": "scosman/pelicans_riding_bicycles I firmly approve of Steve Cosman's efforts to pollute the training set of pelicans riding bicycles. (To be fair, most of the examples I've published count as poisoning too.) Via Hacker News comment Tags: ai , generative-ai , llms , training-data , pelican-riding-a-bicycle",
+          "tags": [
+            "ai",
+            "generative-ai",
+            "llms",
+            "training-data",
+            "pelican-riding-a-bicycle"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "7c2ce92887d1",
+          "title": "llm-openrouter 0.6",
+          "url": "https://simonwillison.net/2026/Apr/20/llm-openrouter/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-04-20T18:00:26Z",
+          "summary": "Release: llm-openrouter 0.6 llm openrouter refresh command for refreshing the list of available models without waiting for the cache to expire. I added this feature so I could try Kimi 2.6 on OpenRouter as soon as it became available there . Here's its pelican - this time as an HTML page because Kimi chose to include an HTML and JavaScript UI to control the animation. Transcript here . Tags: openrouter , llm , llm-release , pelican-riding-a-bicycle , kimi , ai-in-china , llms , ai , generative-ai",
+          "tags": [
+            "openrouter",
+            "llm",
+            "llm-release",
+            "pelican-riding-a-bicycle",
+            "kimi",
+            "ai-in-china",
+            "llms",
+            "ai",
+            "generative-ai"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "523a4945cfb7",
+          "title": "Debugging WASM in Chrome DevTools",
+          "url": "https://eli.thegreenplace.net/2026/debugging-wasm-in-chrome-devtools/",
+          "source": "Eli Bendersky",
+          "category": "tech-blog",
+          "published_at": "2026-04-23T02:23:00Z",
+          "summary": "When I was working on the WASM backend for my Scheme compiler , I ran into several tricky situations with debugging generated WASM code. It turned out that Chrome has a very capable WASM debugger in its DevTools, so in this brief post I want to share how it can be …",
+          "tags": [
+            "misc",
+            "WebAssembly",
+            "Debuggers",
+            "JavaScript"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "2bbf735eb13f",
+          "title": "256 Lines or Less: Test Case Minimization",
+          "url": "https://matklad.github.io/2026/04/20/test-case-minimization.html",
+          "source": "matklad",
+          "category": "tech-blog",
+          "published_at": "2026-04-20T00:00:00Z",
+          "summary": "Property Based Testing and fuzzing are a deep and science-intensive topic. There are enough advanced techniques there for a couple of PhDs, a PBT daemon, and a client-server architecture. But I have this weird parlor-trick PBT library, implementable in a couple of hundred lines of code in one sitting.",
+          "tags": [],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "2d9bd6e76703",
+          "title": "Equity for Europeans",
+          "url": "https://lucumr.pocoo.org/2026/4/23/equity-for-europeans/",
+          "source": "Armin Ronacher",
+          "category": "tech-blog",
+          "published_at": "2026-04-23T00:00:00Z",
+          "summary": "If you spend enough time in US business or finance conversations, one word keeps showing up: equity . Coming from a German-speaking, central European background, I found it surprisingly hard to fully internalize what that word means. More than that, I find it very hard to talk with other Europeans about it. Worst of all it&#8217;s almost impossible to explain it in German without either sounding overly technical or losing an important part of the meaning. This post is in English, but it is written mostly for readers in Germany, Austria, and Switzerland, and more broadly for people from continental Europe. I move between “German-speaking” and “continental European” a bit. They are not the same thing, of course, but many continental European countries share a civil-law background that differs sharply from the English common-law and equity tradition. The words differ by language and jurisdiction, but the conceptual gap I am interested in shows up in similar ways. In US usage, the word &#8220;equity&#8221; appears everywhere: real estate: &#8220;build equity in your home&#8221; startups: &#8220;employees get equity&#8221; public markets: &#8220;equity investors&#8221; private deals: &#8220;take an equity stake&#8221; personal finance: &#8220;negative equity in a car&#8221; social policy: &#8220;diversity, equity, and inclusion&#8221; If you try to translate this into German, you have to choose words. Of course we can say Eigenkapital , Beteiligung , Anteil , Vermögen , Nettovermögen , or sometimes Substanzwert . In narrow contexts, each can be correct, but none of them carries the full concept. I find that gap interesting, because language affects default behavior and how we think about things. One Word, Shared Meanings In the English language, &#8220;equity&#8221; often carries multiple things at once. I believe the following ones to be the most important ones: A legal-fairness dimension: historically tied to equity in law A financial-accounting dimension: residual value after debt A cultural dimension: ownership as a path to wealth and agency If you open Wikipedia, you will find many more distinct meanings of equity, but they all relate to much the same concept, just from different angles. German, on the other hand, can express each of these layers precisely, including the subtleties within each, but it uses different words and there is no common, everyday umbrella word that naturally bundles all three. When a concept has one short, reusable, positive word, people can move it across contexts very easily. When the concept is split into technical fragments, it tends to stay technical, and people do not necessarily think of these things as related at all in a continental European context. How Equity Got Here What is hard for Europeans to understand is how the financial meaning of equity appeared, because it did not appear out of nowhere. The word&#8217;s original meaning comes from fairness or impartiality, and it made it to modern English via Old French and Latin ( equité / aequitas ). Historically, English law had separate traditions: common law courts and courts of equity (especially the Court of Chancery ). Equity in law was about fairness, conscience, and remedies where strict common law rules were too rigid. Take mortgages for instance: in older English practice, a mortgage could transfer title as security. Under strict common law, missing a deadline could mean losing the property entirely. Courts of equity developed the &#8220; equity of redemption &#8221;: a borrower could still redeem by paying what was owed. That equitable interest became foundational for how ownership and claims were understood. In finance, equity came to mean not just a number, but a claim: the residual owner&#8217;s stake after prior claims are satisfied. The European Split German and continental European legal development took a different path. Civil law systems did not build the same separate institutional track of &#8220;equity courts&#8221; versus common law courts. Fairness principles absolutely exist, but inside the codified system, not as a parallel jurisdiction with its own language and mythology. As a result, German vocabulary has many different words, and they are highly domain-specific. There are equivalents in other languages, and to some degree they exist in English too: company balance sheet: Eigenkapital ownership share: Beteiligung , Anteil unrealized asset value: stille Reserven household wealth: Vermögen , Nettovermögen investment action: Anlage , Investition residual net assets: Reinvermögen This precision is useful for legal drafting and accounting. But it also means we have less of the shared mental package that many Americans get from &#8220;equity&#8221;: own a piece, carry risk, participate in upside, build wealth. Schuld Is Not Just Debt There is another linguistic oddity worth noting: in German, &#8220;Schuld&#8221; can mean both debt/liability and guilt, and I think that too has changed how we think about equity. &#8220;Schuld&#8221; in everyday language makes debt feel more morally charged than it does in the US. Indebtedness is often framed as a burden, and it is not thought of as a tool at all. US financial language, by contrast, often frames debt more instrumentally and pairs it with an explicit positive counterpart: equity. Equity is what is yours after debt, what can appreciate, what can be transferred, and what can give you control. In American financial language, debt is not as morally burdened, and equity is more than the absence of debt: it is the positive claim on the balance sheet — ownership, optionality, control, and upside. Practical Matters If you grew up with German-speaking framing, many US statements around equity can sound ideological or naive. From a continental European lens, they can sound like imported jargon or hollow. But if we ignore the concept, we lose something practical: We discuss salaries in cash terms but under-discuss ownership. We treat employee participation as exotic instead of normal. We under-explain compounding and intergenerational transfer. We miss a language for talking about agency through ownership. I am not saying German-speaking Europeans are incapable of this mindset. Obviously we are not. But we clearly tend to think about these things differently. Normalize Equity When you hear “equity,” it helps to think of it as a rightful stake. Historically, it is connected to fairness and the recognition of a claim where strict rules would be too rigid. Financially, it is the part that remains after prior obligations. Culturally, it is something that can grow into control, agency, and upside. That is not a perfect definition, but it captures why the term is so sticky in American discourse. It combines a present claim with a future possibility. It is not just what remains after debt; it is the part that can grow, compound, and give you agency. If Europeans want to talk more seriously about entrepreneurship, retirement, housing, and wealth building, we would benefit from a stronger everyday vocabulary for exactly this idea. We need a longing for equity so that ownership does not remain something for founders, lawyers, accountants, and wealthy families, but becomes a normal part of how people think about work, risk, and their future. Not because we should imitate America, but because this mental model helps people make clearer decisions about ownership, incentives, and long-term agency. For Europe, that shift feels long overdue .",
+          "tags": [],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "18717a1bfbb2",
+          "title": "Hook It Up to the Machine",
+          "url": "https://blog.jim-nielsen.com/2026/hook-it-up-to-the-machine/",
+          "source": "Jim Nielsen",
+          "category": "tech-blog",
+          "published_at": "2026-04-19T19:00:00Z",
+          "summary": "In the early 2000’s, my parents took us on a road trip to Glacier National Park in Montana. We made the journey in our new (used) family van: a green Dodge Caravan whose reputation was soon to become “a lemon”. I was a teenager and didn’t pay a lot of attention to the details of what was happening around me, but I do remember how the van kept overheating. It ran fine on the interstate, but anything under 40MPH had the car’s temperature gauge rising into unsafe zones. I remember stopping in some small town in Montana to get it checked out by a mechanic. He checked it out, took it for a test drive, etc., and told my Dad the reason the car was overheating was because the idling fan wasn’t turning on. At higher speeds, like on the interstate, that was fine because there was enough airflow to keep the engine cool but at lower speeds the car would overheat. The mechanic said he didn’t know why the fan wasn’t turning on. There was nothing wrong mechanically from what he could see. But he couldn't fix it. He told my Dad that this was one of those increasingly common “computerized” cars that you have to hook up to another computer to diagnose the source of the issue. And he didn’t have one of those computers. So we continued on our way. The rest of the trip required my Dad taking “the long way around”, like back roads where he could keep up his speed in order to avoid the car overheating. It was all very amusing to us as kids, almost thrilling because Dad had a legitimate excuse to drive fast (suffice it to say, Mom did not like this). Once the trip was over and we returned home, my Dad was able to get the car in to a dealer where they hooked up the car’s computer to another computer to diagnose and fix the issue. I don’t really remember the specifics, but the issue was seemingly some failed digital sensor that prevented the idling fan from turning on. Once the sensor was replaced, things worked again. Computers talking to computers. Growing up in an era that shifted so many things from analog to digital, mechanical to electronic , I’ve thought about this trip a lot. And I’m thinking about it again in this new era of building software with LLMs. I think about that mechanic. This guy who grew up around mechanical cars that could be physically inspected, diagnosed, and repaired. So much of his experience and knowledge unusable in the face of a computerized car. You can tell when a mechanical switch has failed with your eyes, but not a digital one. You need a computer to help you understand the computer. Will this be my future? If a codebase was made with the assistance of an LLM, will its complexity and bugs only be inspectable, understandable, diagnosable, and fixable with an LLM? “Hey, can you help me, there’s a problem with my codebase?” “Ok, I can confirm the issue, but I can’t fix it without hooking your codebase up to an LLM.” Reply via: Email · Mastodon · Bluesky",
+          "tags": [],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "6e6cdaf0d601",
+          "title": "Introducing GPT-5.5",
+          "url": "https://openai.com/index/introducing-gpt-5-5",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T11:00:00Z",
+          "summary": "Introducing GPT-5.5, our smartest model yet—faster, more capable, and built for complex tasks like coding, research, and data analysis across tools.",
+          "tags": [
+            "Product"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "cfbb97f4e142",
+          "title": "GPT-5.5 System Card",
+          "url": "https://openai.com/index/gpt-5-5-system-card",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T11:00:00Z",
+          "summary": "No summary available.",
+          "tags": [
+            "Safety"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "b2acc3c294f3",
+          "title": "Automations",
+          "url": "https://openai.com/academy/codex-automations",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T10:00:00Z",
+          "summary": "Learn how to automate tasks in Codex using schedules and triggers to create reports, summaries, and recurring workflows without manual effort.",
+          "tags": [
+            "OpenAI Academy"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "3533fea5413f",
+          "title": "Top 10 uses for Codex at work",
+          "url": "https://openai.com/academy/top-10-use-cases-codex-for-work",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T10:00:00Z",
+          "summary": "Explore 10 practical Codex use cases to automate tasks, create deliverables, and turn real inputs into outputs across tools, files, and workflows.",
+          "tags": [
+            "OpenAI Academy"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "bb94101d8671",
+          "title": "Plugins and skills",
+          "url": "https://openai.com/academy/codex-plugins-and-skills",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T10:00:00Z",
+          "summary": "Learn how to use Codex plugins and skills to connect tools, access data, and follow repeatable workflows to automate tasks and improve results.",
+          "tags": [
+            "OpenAI Academy"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "7fbf7b2c45e9",
+          "title": "Working with Codex",
+          "url": "https://openai.com/academy/working-with-codex",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T10:00:00Z",
+          "summary": "Learn how to set up your Codex workspace, create threads and projects, manage files, and start completing tasks with step-by-step guidance.",
+          "tags": [
+            "OpenAI Academy"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "99a0fa5d4a49",
+          "title": "Codex settings",
+          "url": "https://openai.com/academy/codex-settings",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T10:00:00Z",
+          "summary": "Learn how to configure Codex settings, including personalization, detail level, and permissions, to run tasks smoothly and customize your workflow.",
+          "tags": [
+            "OpenAI Academy"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "8a79aaeb639a",
+          "title": "What is Codex?",
+          "url": "https://openai.com/academy/what-is-codex",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T10:00:00Z",
+          "summary": "Learn how Codex helps you go beyond chat by automating tasks, connecting tools, and producing real outputs like docs and dashboards.",
+          "tags": [
+            "OpenAI Academy"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "eff960ba78f2",
+          "title": "How to get started with Codex",
+          "url": "https://openai.com/academy/codex-how-to-start",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T10:00:00Z",
+          "summary": "Learn how to get started with Codex by setting up projects, creating threads, and completing your first tasks with step-by-step guidance.",
+          "tags": [
+            "OpenAI Academy"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "c366c2c39bd5",
+          "title": "GPT-5.5 Bio Bug Bounty",
+          "url": "https://openai.com/index/gpt-5-5-bio-bug-bounty",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-23T00:00:00Z",
+          "summary": "Explore the GPT-5.5 Bio Bug Bounty: a red-teaming challenge to find universal jailbreaks for bio safety risks, with rewards up to $25,000.",
+          "tags": [
+            "Safety"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "b9cfd90c4451",
+          "title": "Making ChatGPT better for clinicians",
+          "url": "https://openai.com/index/making-chatgpt-better-for-clinicians",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-22T15:00:00Z",
+          "summary": "OpenAI makes ChatGPT for Clinicians free for verified U.S. physicians, nurse practitioners, and pharmacists, supporting clinical care, documentation, and research.",
+          "tags": [
+            "Product"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "1b162ea8d4aa",
+          "title": "Workspace agents",
+          "url": "https://openai.com/academy/workspace-agents",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-22T10:00:00Z",
+          "summary": "Learn how to build, use, and scale workspace agents in ChatGPT to automate repeatable workflows, connect tools, and streamline team operations.",
+          "tags": [
+            "OpenAI Academy"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "5278705df0e5",
+          "title": "Speeding up agentic workflows with WebSockets in the Responses API",
+          "url": "https://openai.com/index/speeding-up-agentic-workflows-with-websockets",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-22T10:00:00Z",
+          "summary": "A deep dive into the Codex agent loop, showing how WebSockets and connection-scoped caching reduced API overhead and improved model latency.",
+          "tags": [
+            "Engineering"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "c30ec7b01482",
+          "title": "Introducing workspace agents in ChatGPT",
+          "url": "https://openai.com/index/introducing-workspace-agents-in-chatgpt",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-22T10:00:00Z",
+          "summary": "Workspace agents in ChatGPT are Codex-powered agents that automate complex workflows, run in the cloud, and help teams scale work across tools securely.",
+          "tags": [
+            "Product"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "e2bf2733d05a",
+          "title": "Introducing OpenAI Privacy Filter",
+          "url": "https://openai.com/index/introducing-openai-privacy-filter",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-22T00:00:00Z",
+          "summary": "OpenAI Privacy Filter is an open-weight model for detecting and redacting personally identifiable information (PII) in text with state-of-the-art accuracy",
+          "tags": [
+            "Research"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "84d8ed5de18a",
+          "title": "Introducing ChatGPT Images 2.0",
+          "url": "https://openai.com/index/introducing-chatgpt-images-2-0",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-21T12:00:00Z",
+          "summary": "ChatGPT Images 2.0 introduces a state-of-the-art image generation model with improved text rendering, multilingual support, and advanced visual reasoning.",
+          "tags": [
+            "Product"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "d9639e2fcb88",
+          "title": "Scaling Codex to enterprises worldwide",
+          "url": "https://openai.com/index/scaling-codex-to-enterprises-worldwide",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-21T00:00:00Z",
+          "summary": "OpenAI launches Codex Labs, partners with with Accenture, PwC, Infosys, and others to help enterprises deploy and scale Codex across the software development lifecycle, and hits 4M Codex WAU.",
+          "tags": [
+            "Company"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        },
+        {
+          "id": "5e9e3b875406",
+          "title": "OpenAI helps Hyatt advance AI among colleagues",
+          "url": "https://openai.com/index/hyatt-advances-ai-with-chatgpt-enterprise",
+          "source": "OpenAI News",
+          "category": "ai-news",
+          "published_at": "2026-04-20T00:00:00Z",
+          "summary": "Hyatt deploys ChatGPT Enterprise across its global workforce, using GPT-5.4 and Codex to improve productivity, operations, and guest experiences.",
+          "tags": [
+            "Global Affairs"
+          ],
+          "discovered_at": "2026-04-25T03:54:52Z"
+        }
+      ]
+    }
+  ]
 }
