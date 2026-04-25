@@ -9,6 +9,9 @@ venv/
 # Environment
 .env
 .env.local
+config/local_settings.json
+data/local_review_state.json
+sandbox/knowledge-base/
 
 # IDE
 .vscode/

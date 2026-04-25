@@ -1,0 +1,4 @@
+{
+  "knowledge_base_repo_path": "/absolute/path/to/your-knowledge-base-repo",
+  "knowledge_base_articles_dir": "rss-imports"
+}

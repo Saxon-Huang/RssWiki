@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RssWiki 本地筛选台</title>
+  <style>
+    :root { color-scheme: light; --bg: #f5f7fb; --surface: #fff; --surface-soft: #eef3fb; --border: #dbe4ee; --text: #122033; --muted: #617286; --accent: #2563eb; --danger: #c2410c; --success: #15803d; --warning: #b45309; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background: linear-gradient(180deg,#fbfcfe 0%,#f3f6fb 100%); color: var(--text); }
+    .container { max-width: 1080px; margin: 0 auto; padding: 32px 20px 72px; }
+    .hero, .panel { background: rgba(255,255,255,0.92); border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 18px 50px rgba(15,23,42,0.06); }
+    .hero { padding: 24px; }
+    .hero h1 { margin: 0; font-size: 2rem; }
+    .meta { color: var(--muted); line-height: 1.6; margin-top: 8px; }
+    .config-warning { margin-top: 16px; padding: 14px 16px; border-radius: 14px; background: #fff7ed; color: #9a3412; border: 1px solid #fdba74; }
+    .summary-bar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+    .stat { background: var(--surface-soft); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; }
+    .stat strong { display: block; font-size: 1.3rem; }
+    .panel { margin-top: 24px; overflow: hidden; }
+    .panel-header { padding: 18px 20px; border-bottom: 1px solid var(--border); }
+    .panel-header h2 { margin: 0; font-size: 1.15rem; }
+    .panel-header p { margin: 6px 0 0; color: var(--muted); }
+    .batch { padding: 20px; border-top: 1px solid #edf2f7; }
+    .batch:first-child { border-top: 0; }
+    .batch-title { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 14px; }
+    .batch-title h3 { margin: 0; }
+    .category { margin-top: 18px; }
+    .cards { display: grid; gap: 16px; margin-top: 12px; }
+    .card { background: linear-gradient(180deg,#ffffff 0%,#fbfdff 100%); border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; }
+    .card h4 { margin: 0; font-size: 1.02rem; }
+    .card h4 a { color: var(--text); text-decoration: none; }
+    .card h4 a:hover { color: var(--accent); }
+    .card-meta { margin-top: 8px; color: var(--muted); font-size: 0.92rem; }
+    .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-size: 0.76rem; padding: 2px 8px; border-radius: 999px; background: #eef4ff; color: #315ea8; }
+    .summary { margin-top: 12px; line-height: 1.7; color: #334155; white-space: pre-wrap; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    button, .secondary-link { border: 0; border-radius: 12px; padding: 10px 14px; font: inherit; cursor: pointer; }
+    .primary { background: var(--accent); color: #fff; }
+    .danger { background: #fff7ed; color: var(--danger); border: 1px solid #fdba74; }
+    .secondary-link { display: inline-block; background: #eff6ff; color: var(--accent); text-decoration: none; }
+    .status { margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .status.success { color: var(--success); }
+    .status.warning { color: var(--warning); }
+    .status.ignored { color: #7c3aed; }
+    details.processed { margin-top: 24px; }
+    details.processed > summary { cursor: pointer; list-style: none; padding: 18px 20px; background: var(--surface); }
+    details.processed > summary::-webkit-details-marker { display: none; }
+    .processed-body { padding: 0 20px 20px; }
+    .processed-group { margin-top: 18px; }
+    .empty { color: var(--muted); padding: 20px; }
+    @media (max-width: 760px) { .summary-bar { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <h1>RssWiki 本地筛选台</h1>
+      <div class="meta" id="hero-meta">正在读取候选内容…</div>
+      <div class="config-warning" id="config-warning" hidden></div>
+      <div class="summary-bar">
+        <div class="stat"><span>待处理</span><strong id="pending-count">0</strong></div>
+        <div class="stat"><span>已下载</span><strong id="downloaded-count">0</strong></div>
+        <div class="stat"><span>已忽略</span><strong id="ignored-count">0</strong></div>
+        <div class="stat"><span>下载失败</span><strong id="failed-count">0</strong></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>待处理候选</h2>
+        <p>内容集合与 docs/index 保持一致，只是已处理项会沉到底部。</p>
+      </div>
+      <div id="pending-root"></div>
+    </section>
+
+    <details class="panel processed">
+      <summary>
+        <strong>已处理候选</strong>
+        <div class="meta">默认折叠，展开可查看已下载 / 已忽略 / 下载失败项目。</div>
+      </summary>
+      <div class="processed-body" id="processed-root"></div>
+    </details>
+  </div>
+
+  <script>
+    const state = {
+      candidates: null,
+      reviewState: null,
+      config: null,
+    };
+
+    const categoryLabels = {
+      "tech-blog": "Tech Blog",
+      "ai-news": "AI / LLM",
+      "tech-news": "Tech News",
+      "paper": "Paper",
+    };
+
+    function formatUtc8(value, withTime = true) {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value || "unknown";
+      const utc8 = new Date(date.getTime() + 8 * 60 * 60 * 1000);
+      const iso = utc8.toISOString().replace('T', ' ');
+      return withTime ? `${iso.slice(0, 16)} UTC+8` : iso.slice(0, 10);
+    }
+
+    function categoryLabel(category) {
+      return categoryLabels[category] || category;
+    }
+
+    function preview(text, max = 280) {
+      if (!text || text.length <= max) return text || "No summary available.";
+      return text.slice(0, max - 1).trimEnd() + "…";
+    }
+
+    function statusForUrl(url) {
+      if (state.reviewState.downloaded_urls.includes(url)) return "downloaded";
+      if (state.reviewState.ignored_urls.includes(url)) return "ignored";
+      if (state.reviewState.failed_downloads[url]) return "failed";
+      return "pending";
+    }
+
+    function flattenItems() {
+      const items = [];
+      for (const batch of state.candidates.batches || []) {
+        for (const item of batch.items || []) {
+          items.push({ ...item, batch_id: batch.batch_id, batch_generated_at: batch.generated_at });
+        }
+      }
+      return items;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function renderCard(item, processed = false) {
+      const status = statusForUrl(item.url);
+      const tags = (item.tags || []).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
+      const statusText = status === 'downloaded'
+        ? '已下载到知识库'
+        : status === 'ignored'
+          ? '已忽略'
+          : status === 'failed'
+            ? `下载失败：${escapeHtml(state.reviewState.failed_downloads[item.url])}`
+            : '待处理';
+      const statusClass = status === 'downloaded' ? 'success' : status === 'ignored' ? 'ignored' : status === 'failed' ? 'warning' : '';
+      const actions = processed ? '' : `
+        <div class="actions">
+          <a class="secondary-link" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">打开原文</a>
+          <button class="primary" data-action="download" data-url="${escapeHtml(item.url)}">下载到知识库</button>
+          <button class="danger" data-action="ignore" data-url="${escapeHtml(item.url)}">忽略</button>
+        </div>`;
+      return `
+        <article class="card">
+          <h4><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a></h4>
+          <div class="card-meta">${escapeHtml(item.source)} · ${escapeHtml(categoryLabel(item.category))} · ${escapeHtml(formatUtc8(item.published_at, false))}</div>
+          ${tags ? `<div class="tags">${tags}</div>` : ''}
+          <div class="summary">${escapeHtml(preview(item.summary))}</div>
+          ${actions}
+          <div class="status ${statusClass}">${statusText}</div>
+        </article>`;
+    }
+
+    function groupPendingByBatchAndCategory(items) {
+      const grouped = new Map();
+      for (const item of items) {
+        if (statusForUrl(item.url) !== 'pending') continue;
+        if (!grouped.has(item.batch_id)) {
+          grouped.set(item.batch_id, { generated_at: item.batch_generated_at, categories: new Map() });
+        }
+        const batch = grouped.get(item.batch_id);
+        if (!batch.categories.has(item.category)) {
+          batch.categories.set(item.category, []);
+        }
+        batch.categories.get(item.category).push(item);
+      }
+      return grouped;
+    }
+
+    function renderPending(items) {
+      const root = document.getElementById('pending-root');
+      const grouped = groupPendingByBatchAndCategory(items);
+      if (grouped.size === 0) {
+        root.innerHTML = '<div class="empty">当前没有待处理候选。</div>';
+        return;
+      }
+
+      const html = [];
+      for (const [batchId, batch] of grouped.entries()) {
+        html.push(`<section class="batch"><div class="batch-title"><h3>Batch · ${escapeHtml(formatUtc8(batch.generated_at))}</h3><div class="meta">${Array.from(batch.categories.values()).reduce((n, arr) => n + arr.length, 0)} items</div></div>`);
+        const categoryNames = Array.from(batch.categories.keys()).sort((a, b) => categoryLabel(a).localeCompare(categoryLabel(b)));
+        for (const category of categoryNames) {
+          const cards = batch.categories.get(category)
+            .sort((a, b) => (b.published_at || '').localeCompare(a.published_at || ''))
+            .map(item => renderCard(item, false))
+            .join('');
+          html.push(`<div class="category"><h4>${escapeHtml(categoryLabel(category))}</h4><div class="cards">${cards}</div></div>`);
+        }
+        html.push('</section>');
+      }
+      root.innerHTML = html.join('');
+    }
+
+    function renderProcessed(items) {
+      const root = document.getElementById('processed-root');
+      const groups = {
+        downloaded: [],
+        ignored: [],
+        failed: [],
+      };
+      for (const item of items) {
+        const status = statusForUrl(item.url);
+        if (status === 'downloaded') groups.downloaded.push(item);
+        if (status === 'ignored') groups.ignored.push(item);
+        if (status === 'failed') groups.failed.push(item);
+      }
+
+      const sections = [];
+      const labels = {
+        downloaded: '已下载到知识库',
+        ignored: '已忽略',
+        failed: '下载失败',
+      };
+
+      for (const key of ['downloaded', 'ignored', 'failed']) {
+        if (groups[key].length === 0) continue;
+        const cards = groups[key]
+          .sort((a, b) => (b.published_at || '').localeCompare(a.published_at || ''))
+          .map(item => renderCard(item, true))
+          .join('');
+        sections.push(`<section class="processed-group"><h3>${labels[key]} · ${groups[key].length}</h3><div class="cards">${cards}</div></section>`);
+      }
+
+      root.innerHTML = sections.length ? sections.join('') : '<div class="empty">还没有已处理候选。</div>';
+    }
+
+    function updateSummary(items) {
+      const counts = { pending: 0, downloaded: 0, ignored: 0, failed: 0 };
+      for (const item of items) {
+        counts[statusForUrl(item.url)] += 1;
+      }
+      document.getElementById('pending-count').textContent = counts.pending;
+      document.getElementById('downloaded-count').textContent = counts.downloaded;
+      document.getElementById('ignored-count').textContent = counts.ignored;
+      document.getElementById('failed-count').textContent = counts.failed;
+      document.getElementById('hero-meta').textContent = `候选内容与 docs/index 保持一致 · Latest batch ${formatUtc8(state.candidates.batches?.[0]?.generated_at || state.candidates.generated_at)}`;
+      const warning = document.getElementById('config-warning');
+      if (!state.config.configured) {
+        warning.hidden = false;
+        warning.textContent = `尚未配置知识库仓库路径。请创建 ${state.config.config_example.replace('.example', '')}。`; 
+      } else {
+        warning.hidden = true;
+      }
+    }
+
+    async function refresh() {
+      const response = await fetch('/api/bootstrap');
+      const payload = await response.json();
+      state.candidates = payload.candidates;
+      state.reviewState = payload.state;
+      state.config = payload.config;
+      const items = flattenItems();
+      updateSummary(items);
+      renderPending(items);
+      renderProcessed(items);
+    }
+
+    async function postAction(action, url) {
+      const response = await fetch(`/api/${action}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      });
+      const payload = await response.json();
+      if (!payload.ok) {
+        alert(payload.error || '操作失败');
+      }
+      await refresh();
+    }
+
+    document.addEventListener('click', async (event) => {
+      const button = event.target.closest('button[data-action]');
+      if (!button) return;
+      const action = button.dataset.action;
+      const url = button.dataset.url;
+      if (!url) return;
+      button.disabled = true;
+      button.textContent = action === 'download' ? '下载中…' : '处理中…';
+      try {
+        await postAction(action, url);
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    refresh();
+  </script>
+</body>
+</html>
