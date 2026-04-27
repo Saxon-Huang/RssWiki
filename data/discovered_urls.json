@@ -1,5 +1,6 @@
 {
   "discovered_urls": [
+    "https://blog.jim-nielsen.com/2026/collective-speed-isnt-the-sum-of individual-speed/",
     "https://blog.jim-nielsen.com/2026/hook-it-up-to-the-machine/",
     "https://eli.thegreenplace.net/2026/debugging-wasm-in-chrome-devtools/",
     "https://lucumr.pocoo.org/2026/4/23/equity-for-europeans/",
@@ -20,6 +21,7 @@
     "https://openai.com/index/introducing-openai-privacy-filter",
     "https://openai.com/index/introducing-workspace-agents-in-chatgpt",
     "https://openai.com/index/making-chatgpt-better-for-clinicians",
+    "https://openai.com/index/our-principles",
     "https://openai.com/index/scaling-codex-to-enterprises-worldwide",
     "https://openai.com/index/speeding-up-agentic-workflows-with-websockets",
     "https://simonwillison.net/2026/Apr/20/llm-openrouter/#atom-everything",
