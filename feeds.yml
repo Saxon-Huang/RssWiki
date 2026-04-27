@@ -23,13 +23,37 @@ feeds:
     url: https://minimaxir.com/index.xml
     category: ai-news
 
+  - name: Anthropic Engineering
+    url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml
+    category: ai-news
+
+  - name: Anthropic Research
+    url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_research.xml
+    category: ai-news
+
+  - name: Cursor Blog
+    url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cursor.xml
+    category: ai-news
+
+  - name: Vercel Blog
+    url: https://vercel.com/atom
+    category: ai-news
+
+  - name: GitHub Blog
+    url: https://github.blog/feed/
+    category: ai-news
+
+  - name: Ollama Blog
+    url: https://ollama.com/blog/rss.xml
+    category: ai-news
+
+  - name: DeepMind Blog
+    url: https://www.deepmind.com/blog/rss.xml
+    category: ai-news
+
   - name: antirez
     url: http://antirez.com/rss
     category: tech-blog
-
-  - name: OpenAI News
-    url: https://openai.com/news/rss.xml
-    category: ai-news
 
   - name: Hacker News Frontpage
     url: https://rsshub.app/hn/frontpage
