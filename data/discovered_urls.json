@@ -2,7 +2,15 @@
   "discovered_urls": [
     "https://blog.jim-nielsen.com/2026/collective-speed-isnt-the-sum-of individual-speed/",
     "https://blog.jim-nielsen.com/2026/hook-it-up-to-the-machine/",
+    "https://cursor.com/blog/app-stability",
+    "https://cursor.com/blog/nab",
+    "https://cursor.com/blog/spacex-model-training",
+    "https://deepmind.google/blog/announcing-our-partnership-with-the-republic-of-korea/",
+    "https://deepmind.google/blog/decoupled-diloco/",
+    "https://deepmind.google/blog/partnering-with-industry-leaders-to-accelerate-ai-transformation/",
     "https://eli.thegreenplace.net/2026/debugging-wasm-in-chrome-devtools/",
+    "https://github.blog/news-insights/company-news/changes-to-github-copilot-individual-plans/",
+    "https://github.blog/open-source/git/highlights-from-git-2-54/",
     "https://lucumr.pocoo.org/2026/4/23/equity-for-europeans/",
     "https://matklad.github.io/2026/04/20/test-case-minimization.html",
     "https://openai.com/academy/codex-automations",
@@ -46,6 +54,12 @@
     "https://simonwillison.net/2026/Apr/24/weekly/#atom-everything",
     "https://simonwillison.net/2026/Apr/25/gpt-5-5-prompting-guide/#atom-everything",
     "https://simonwillison.net/2026/Apr/25/romain-huet/#atom-everything",
-    "https://simonwillison.net/2026/Apr/25/why-are-you-like-this/#atom-everything"
+    "https://simonwillison.net/2026/Apr/25/why-are-you-like-this/#atom-everything",
+    "https://vercel.com/changelog/deepseek-v4-on-ai-gateway",
+    "https://vercel.com/changelog/gpt-5.5-on-ai-gateway",
+    "https://vercel.com/changelog/gpt-image-2-on-ai-gateway",
+    "https://www.anthropic.com/engineering/april-23-postmortem",
+    "https://www.anthropic.com/research/81k-economics",
+    "https://www.anthropic.com/research/economic-index-survey-announcement"
   ]
 }

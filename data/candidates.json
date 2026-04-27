@@ -1,6 +1,182 @@
 {
-  "generated_at": "2026-04-27T09:16:52Z",
+  "generated_at": "2026-04-27T13:19:36Z",
   "batches": [
+    {
+      "batch_id": "2026-04-27T13:19:36Z",
+      "generated_at": "2026-04-27T13:19:36Z",
+      "items": [
+        {
+          "id": "dea52d951227",
+          "title": "An update on recent Claude Code quality reports",
+          "url": "https://www.anthropic.com/engineering/april-23-postmortem",
+          "source": "Anthropic Engineering",
+          "category": "ai-news",
+          "published_at": "2026-04-23T00:00:00Z",
+          "summary": "We traced recent reports of Claude Code quality issues to three separate changes. Here's what happened and what we're changing.",
+          "tags": [
+            "Engineering"
+          ],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "94d4d2f8af6f",
+          "title": "Apr 22, 2026Economic ResearchWhat 81,000 people told us about the economics of AI",
+          "url": "https://www.anthropic.com/research/81k-economics",
+          "source": "Anthropic Research",
+          "category": "ai-news",
+          "published_at": "2026-04-22T00:00:00Z",
+          "summary": "Apr 22, 2026Economic ResearchWhat 81,000 people told us about the economics of AI",
+          "tags": [
+            "Research"
+          ],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "25bc9a2bfb9c",
+          "title": "Apr 22, 2026Economic ResearchAnnouncing the Anthropic Economic Index Survey",
+          "url": "https://www.anthropic.com/research/economic-index-survey-announcement",
+          "source": "Anthropic Research",
+          "category": "ai-news",
+          "published_at": "2026-04-22T00:00:00Z",
+          "summary": "Apr 22, 2026Economic ResearchAnnouncing the Anthropic Economic Index Survey",
+          "tags": [
+            "Research"
+          ],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "ff4471fc6d98",
+          "title": "National Australia Bank accelerates legacy migrations with Cursor",
+          "url": "https://cursor.com/blog/nab",
+          "source": "Cursor Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-23T12:00:00Z",
+          "summary": "No summary available.",
+          "tags": [],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "fa5ee4cece8a",
+          "title": "Cursor partners with SpaceX on model training",
+          "url": "https://cursor.com/blog/spacex-model-training",
+          "source": "Cursor Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-21T22:17:00Z",
+          "summary": "No summary available.",
+          "tags": [
+            "company"
+          ],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "888da8c6d854",
+          "title": "Keeping the Cursor app stable",
+          "url": "https://cursor.com/blog/app-stability",
+          "source": "Cursor Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-21T12:00:00Z",
+          "summary": "No summary available.",
+          "tags": [
+            "research"
+          ],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "c1c7bf207c1c",
+          "title": "GPT 5.5 on AI Gateway",
+          "url": "https://vercel.com/changelog/gpt-5.5-on-ai-gateway",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-24T07:00:00Z",
+          "summary": "GPT-5.5 is now available on Vercel AI Gateway . There are 2 variants: GPT-5.5 and GPT-5.5 Pro. Both models are tuned for long-running agentic work across coding, computer use, knowledge work, and scientific research, and are more token-efficient than the previous generation. GPT-5.5 is stronger at agentic coding and long-horizon work where the model needs to hold context across a large system and carry changes through the surrounding codebase. Paired with computer-use skills, it can operate real software and turn raw material into documents, spreadsheets, or slide presentations. GPT-5.5 Pro is built for demanding, multi-step work where response quality matters more than latency. Early testing shows gains in business, legal, education, data science, and technical research workflows that involve critiquing work over multiple passes and stress-testing arguments. To use GPT-5.5, set model to openai/gpt-5.5 or openai/gpt-5.5-pro in the AI SDK . AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in custom reporting , observability , Bring Your Own Key support, and intelligent provider routing with automatic retries. Learn more about AI Gateway , view the AI Gateway model leaderboard or try it in our model playground . Read more",
+          "tags": [],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "7991f56eb134",
+          "title": "Deepseek V4 on AI Gateway",
+          "url": "https://vercel.com/changelog/deepseek-v4-on-ai-gateway",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-23T07:00:00Z",
+          "summary": "DeepSeek V4 is now available on Vercel AI Gateway . There are 2 model variants: DeepSeek V4 Pro and DeepSeek V4 Flash. A 1M token context window is the default across both models. DeepSeek V4 Pro focuses on agentic coding, formal mathematical reasoning, and long-horizon workflows. It handles feature development, bug fixing, and refactoring across stacks, with tool use that works across harnesses like MCP workflows and agent frameworks. It also writes clear, well-structured long-form documents. DeepSeek V4 Flash performs close to V4 Pro on reasoning and holds up on simpler agent tasks, with a smaller parameter size for faster responses and lower API cost. It's a good fit for high-volume workloads and latency-sensitive use cases. To use DeepSeek V4, set model to deepseek/deepseek-v4-pro or deepseek/deepseek-v4-flash in the AI SDK . AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in custom reporting , observability , Bring Your Own Key support, and intelligent provider routing with automatic retries. Learn more about AI Gateway , view the AI Gateway model leaderboard or try it in our model playground . Read more",
+          "tags": [],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "29dd5f78675d",
+          "title": "GPT Image 2 on AI Gateway",
+          "url": "https://vercel.com/changelog/gpt-image-2-on-ai-gateway",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-21T07:00:00Z",
+          "summary": "GPT Image 2 is now available on Vercel AI Gateway . OpenAI's newest image model supports detailed instruction following, accurate placement and relationships between objects, and rendering of dense text across multiple aspect ratios. The model can render fine-grained elements including small text, iconography, UI elements, dense compositions, and subtle stylistic constraints, at up to 2K resolution. Non-English text is also supported and reads coherently. GPT Image 2 can produce photos, cinematic stills, pixel art, manga, and other distinct visual styles, with consistency in texture, lighting, composition, and detail. This suits workflows like game prototyping, storyboarding, marketing creative, and medium-specific asset generation. To use GPT Image 2, set model to openai/gpt-image-2 in the AI SDK , or try it directly in our m odel playground . AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in custom reporting , observability , Bring Your Own Key support, and intelligent provider routing with automatic retries. Learn more about AI Gateway , view the AI Gateway model leaderboard or try it in our model playground . Read more",
+          "tags": [],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "cb86405ce573",
+          "title": "Changes to GitHub Copilot Individual plans",
+          "url": "https://github.blog/news-insights/company-news/changes-to-github-copilot-individual-plans/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-20T18:15:28Z",
+          "summary": "We're making these changes to ensure a reliable and predictable experience for existing customers. The post Changes to GitHub Copilot Individual plans appeared first on The GitHub Blog .",
+          "tags": [
+            "Company news",
+            "News & insights"
+          ],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "8f31d0357ee1",
+          "title": "Highlights from Git 2.54",
+          "url": "https://github.blog/open-source/git/highlights-from-git-2-54/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-20T16:43:57Z",
+          "summary": "The open source Git project just released Git 2.54. Here is GitHub’s look at some of the most interesting features and changes introduced since last time. The post Highlights from Git 2.54 appeared first on The GitHub Blog .",
+          "tags": [
+            "Git",
+            "Open Source"
+          ],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "b0e1eac9b8fc",
+          "title": "Announcing our partnership with the Republic of Korea",
+          "url": "https://deepmind.google/blog/announcing-our-partnership-with-the-republic-of-korea/",
+          "source": "DeepMind Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-27T07:00:06Z",
+          "summary": "Google DeepMind and Korea partner to accelerate scientific breakthroughs using frontier AI models",
+          "tags": [],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "bdf480e0ad99",
+          "title": "Decoupled DiLoCo: A new frontier for resilient, distributed AI training",
+          "url": "https://deepmind.google/blog/decoupled-diloco/",
+          "source": "DeepMind Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-22T10:20:03Z",
+          "summary": "No summary available.",
+          "tags": [],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        },
+        {
+          "id": "15929aafa9b3",
+          "title": "Partnering with industry leaders to accelerate AI transformation",
+          "url": "https://deepmind.google/blog/partnering-with-industry-leaders-to-accelerate-ai-transformation/",
+          "source": "DeepMind Blog",
+          "category": "ai-news",
+          "published_at": "2026-04-21T14:54:15Z",
+          "summary": "Google DeepMind partners with global consultancies to bring the power of frontier AI to organizations around the world.",
+          "tags": [],
+          "discovered_at": "2026-04-27T13:19:36Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-04-27T09:16:52Z",
       "generated_at": "2026-04-27T09:16:52Z",
@@ -52,29 +228,6 @@
             "chatgpt"
           ],
           "discovered_at": "2026-04-25T18:58:38Z"
-        }
-      ]
-    },
-    {
-      "batch_id": "2026-04-25T13:12:01Z",
-      "generated_at": "2026-04-25T13:12:01Z",
-      "items": [
-        {
-          "id": "1cd8419ab3ee",
-          "title": "Quoting Romain Huet",
-          "url": "https://simonwillison.net/2026/Apr/25/romain-huet/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-04-25T12:06:55Z",
-          "summary": "Since GPT-5.4, we’ve unified Codex and the main model into a single system, so there’s no separate coding line anymore. GPT-5.5 takes this further, with strong gains in agentic coding, computer use, and any task on a computer. &mdash; Romain Huet , confirming OpenAI won't release a GPT-5.5-Codex model Tags: generative-ai , gpt , openai , ai , llms",
-          "tags": [
-            "generative-ai",
-            "gpt",
-            "openai",
-            "ai",
-            "llms"
-          ],
-          "discovered_at": "2026-04-25T13:12:01Z"
         }
       ]
     }
