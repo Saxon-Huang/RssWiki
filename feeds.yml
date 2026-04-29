@@ -51,6 +51,14 @@ feeds:
     url: https://www.deepmind.com/blog/rss.xml
     category: ai-news
 
+  - name: 阿尔的代码屋
+    url: https://www.cnblogs.com/algieba/rss
+    category: ai-news
+
+  - name: 老金的分享
+    url: https://blog.laojin.dev/feed.xml
+    category: ai-news
+
   - name: antirez
     url: http://antirez.com/rss
     category: tech-blog
