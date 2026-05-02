@@ -1,6 +1,52 @@
 {
-  "generated_at": "2026-05-01T09:00:06Z",
+  "generated_at": "2026-05-02T08:20:44Z",
   "batches": [
+    {
+      "batch_id": "2026-05-02T08:20:44Z",
+      "generated_at": "2026-05-02T08:20:44Z",
+      "items": [
+        {
+          "id": "5c7b0a87b863",
+          "title": "iNaturalist Sightings",
+          "url": "https://simonwillison.net/2026/May/1/inat-sightings/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-01T19:35:41Z",
+          "summary": "Tool: iNaturalist Sightings I wanted to see my iNaturalist observations - across two separate accounts - grouped by when they occurred. I'm camping this weekend so I built this entirely on my phone using Claude Code for web. I started by building an inaturalist-clumper Python CLI for fetching and \"clumping\" observations - by default clumps use observations within 2 hours and 5km of each other. Then I setup simonw/inaturalist-clumps as a Git scraping repository to run that tool and record the result to clumps.json . That JSON file is hosted on GitHub, which means it can be fetched by JavaScript using CORS. Finally I ran this prompt against my simonw/tools repo: Build inat-sightings.html - an app that does a fetch() against https://raw.githubusercontent.com/simonw/inaturalist-clumps/refs/heads/main/clumps.json and then displays all of the observations on one page using the https://static.inaturalist.org/photos/538073008/small.jpg small.jpg URLs for the thumbnails - with loading=lazy - but when a thumbnail is clicked showing the large.jpg in an HTML modal. Both small and large should include the common species names if available Tags: tools , claude-code , inaturalist , generative-ai , ai , llms",
+          "tags": [
+            "tools",
+            "claude-code",
+            "inaturalist",
+            "generative-ai",
+            "ai",
+            "llms"
+          ],
+          "discovered_at": "2026-05-02T08:20:44Z"
+        },
+        {
+          "id": "1fc7b85d3f72",
+          "title": "How GitBook serves 30,000 sites with sub-second content updates",
+          "url": "https://vercel.com/blog/how-gitbook-serves-30000-sites-with-sub-second-content-updates",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-01T04:00:00Z",
+          "summary": "GitBook on Vercel 30,000 documentation sites hosted on a single Vercel deployment 120 million monthly page views served from the edge 40,000 cache invalidations processed daily, each resolved in under 300ms 41% of all traffic now comes from AI crawlers and automated systems GitBook hosts 30,000 documentation sites on Vercel, serving 120 million page views every month. Companies like n8n, Nvidia, and Zoom trust the platform to keep their docs fast and current. For modern engineering teams and coding agents, documentation is as critical as the production code it describes, and GitBook sits at the center of that expectation. GitBook's publishing model mirrors how teams ship software: propose changes, review, and merge. With 30,000 independently managed sites each on its own update cadence, keeping content fast and fresh was a complicated engineering problem. Before migrating to Vercel, site editors would hit merge, visit the published site to validate, and see old version of the content. \"One of our customers planned a large feature release, and on launch day, the docs lagged behind the rest of the product,\" says Steven Hall, Head of Engineering at GitBook. \"That was the moment we really internalized that docs are as important as your code going to production.\" Making merge mean live at multi-tenant scale GitBook's published content frontend runs on Next.js and is open source. When Vercel's use cache directive became available, the team saw a solution to their speed problem: cache individual data-fetching functions rather than full page responses. That meant expensive API calls were deduplicated across requests, and cache behavior became visible directly in code rather than buried in external configuration. The harder problem was invalidation. In a multi-tenant system, a broad cache purge is expensive and wasteful. One team merging a typo fix shouldn't trigger revalidation for 29,999 other sites. GitBook already had a reliable signal for when content becomes stale: a merge event, whether through GitBook's app, GitHub, or GitLab. The team built tag-based invalidation triggered directly by those events. Cached data is tagged by content unit, and when a merge occurs, only the affected tags are revalidated. Everything else stays cached. Today, when a change is merged, updated content becomes visible globally within 300 milliseconds. GitBook processes 40,000 of these invalidations daily. \"Outside of building our own caching, I don't think we considered anything else,\" says Hall. What changes when 41% of your traffic isn't human AI-driven traffic to GitBook documentation surged 5x year-over-year in 2025 and now accounts for 41% of all page views. LLMs and automated systems crawl docs programmatically, using GitBook as a source of truth for internal tooling, SDKs, and AI applications. That changes the infrastructure math. A human reader might visit a handful of pages on a single docs site, but an AI crawler can sweep every page across hundreds of sites in a single session, hitting cold cache paths that no human would visit. Multiply that across 30,000 sites and the caching foundation has to handle not just more traffic, but fundamentally less predictable traffic. Content still has to be immediately consistent after every change, and infrastructure costs have to stay predictable even as volume climbs. Hall says they didn't choose the caching architecture because of AI specifically, but it turned out to be the right foundation. \"We need fast docs regardless of whether AI or humans are reading them,\" he says. \"Our target is closer to 100% cache hits. Cache hits mean fast docs, and fast docs are a critical feature of GitBook.\" The next 30,000 sites The caching infrastructure isn't finished. Features like adaptive documentation, which modifies content based on who's reading it, make multi-tenant caching meaningfully more complex. And as AI traffic keeps climbing, the volume of requests flowing through 30,000 sites will only grow. \"Volume is going up everywhere,\" Hall says. \"Engineers shipping more means more docs changes. LLMs are crawling more pages every day. Our main goal is to maintain that high bar for latency and predictability as we scale.\" GitBook is an intelligent documentation platform used by more than 30,000 teams to create, publish, and maintain product and developer documentation at scale. GitBook's published content frontend is open-source. Read more",
+          "tags": [],
+          "discovered_at": "2026-05-02T08:20:44Z"
+        },
+        {
+          "id": "db88fa18761c",
+          "title": "Postgres connections now work through Sandbox firewall",
+          "url": "https://vercel.com/changelog/vercel-sandbox-firewall-now-supports-postgres-connections",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-01T02:00:00Z",
+          "summary": "Vercel Sandbox can now connect to hosted Postgres databases, including Neon , Supabase , AWS RDS , Nile , and Prisma Postgres . To enable a connection, add the database host to your Sandbox's allowed domains. Background When SNI based filtering is used with Vercel Sandbox, the sandbox firewall restricts outbound network access by checking the domain name during a connection's TLS handshake. This works seamlessly for HTTPS traffic, where the domain is visible at the start of the connection. Postgres, however, negotiates TLS differently. A Postgres client first opens a plain TCP connection and then upgrades to TLS. Because the domain isn't available when the firewall first needs it, Postgres connections through a standard domain-restricted Sandbox would fail. What changed The Sandbox firewall now adjusts for the Postgres TLS negotiation flow. It detects the protocol's startup sequence, waits for the TLS upgrade, and then applies your domain policy before forwarding the connection to the database. No changes are needed to your code or database configuration. Connecting to hosted database Here's a full example: create a Sandbox, install a Postgres client, lock down the network to only the database host, and run a query. Important to know TLS is required: Domain-based rules rely on the hostname being visible during the TLS handshake, so clients must connect with sslmode=require or higher. If your database doesn't support TLS, you can allow it by IP range instead. Most managed Postgres providers require TLS by default. GSSAPI encryption is not supported: Clients using gssencmode=prefer will fall back to TLS automatically; gssencmode=require will not connect. No silent downgrades: If a client uses sslmode=prefer and the database doesn't support TLS, the connection will fail rather than silently falling back to plain-text. Learn more about the Sandbox firewall . Read more",
+          "tags": [],
+          "discovered_at": "2026-05-02T08:20:44Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-05-01T09:00:06Z",
       "generated_at": "2026-05-01T09:00:06Z",
@@ -279,137 +325,6 @@
           "summary": "You can now sign up for or upgrade to a Vercel Pro plan directly from Stripe Projects using shared payment tokens (SPTs). Agents and developers can manage plan changes programmatically from the Stripe CLI, without leaving their workflow. What’s new Provision or upgrade to Vercel Pro directly from the Stripe CLI Support for both upgrade and downgrade flows Powered by shared payment tokens for secure, streamlined billing This builds on our Stripe Projects launch in developer preview by enabling end-to-end provisioning and billing in one place. Instead of switching between dashboards, you can now handle infrastructure setup and plan management directly from the terminal. Getting started If you’re already using Stripe Projects and have set up billing via stripe projects billing add , you can upgrade your Vercel plan from the CLI simply by running stripe projects add vercel/pro If you are new to Stripe Projects, Install the plugin and initialize your project: Read more",
           "tags": [],
           "discovered_at": "2026-04-30T09:10:23Z"
-        }
-      ]
-    },
-    {
-      "batch_id": "2026-04-29T08:12:31Z",
-      "generated_at": "2026-04-29T08:12:31Z",
-      "items": [
-        {
-          "id": "e2ae91dba497",
-          "title": "Quoting OpenAI Codex base_instructions",
-          "url": "https://simonwillison.net/2026/Apr/28/openai-codex/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-04-28T22:02:53Z",
-          "summary": "Never talk about goblins, gremlins, raccoons, trolls, ogres, pigeons, or other animals or creatures unless it is absolutely and unambiguously relevant to the user's query. &mdash; OpenAI Codex base_instructions , for GPT-5.5 Tags: openai , ai , llms , system-prompts , prompt-engineering , codex-cli , generative-ai , gpt",
-          "tags": [
-            "openai",
-            "ai",
-            "llms",
-            "system-prompts",
-            "prompt-engineering",
-            "codex-cli",
-            "generative-ai",
-            "gpt"
-          ],
-          "discovered_at": "2026-04-29T08:12:31Z"
-        },
-        {
-          "id": "9c9d8e8ea815",
-          "title": "Quoting Matthew Yglesias",
-          "url": "https://simonwillison.net/2026/Apr/28/matthew-yglesias/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-04-28T13:25:29Z",
-          "summary": "Five months in, I think I've decided that I don't want to vibecode — I want professionally managed software companies to use AI coding assistance to make more/better/cheaper software products that they sell to me for money. &mdash; Matthew Yglesias Tags: agentic-engineering , vibe-coding , ai-assisted-programming , ai",
-          "tags": [
-            "agentic-engineering",
-            "vibe-coding",
-            "ai-assisted-programming",
-            "ai"
-          ],
-          "discovered_at": "2026-04-29T08:12:31Z"
-        },
-        {
-          "id": "f4148baedd47",
-          "title": "Before GitHub",
-          "url": "https://lucumr.pocoo.org/2026/4/28/before-github/",
-          "source": "Armin Ronacher",
-          "category": "tech-blog",
-          "published_at": "2026-04-28T00:00:00Z",
-          "summary": "GitHub was not the first home of my Open Source software. SourceForge was . Before GitHub, I had my own Trac installation. I had Subversion repositories, tickets, tarballs, and documentation on infrastructure I controlled. Later I moved projects to Bitbucket, back when Bitbucket still felt like a serious alternative place for Open Source projects, especially for people who were not all-in on Git yet. And then, eventually, GitHub became the place, and I moved all of it there. It is hard for me to overstate how important GitHub became in my life. A large part of my Open Source identity formed there. Projects I worked on found users there. People found me there, and I found other people there. Many professional relationships and many friendships started because some repository, issue, pull request, or comment thread made two people aware of each other. That is why I find what is happening to GitHub today so sad and so disappointing. I do not look at it as just the folks at Microsoft making product decisions I dislike. GitHub was part of the social infrastructure of Open Source for a very long time. For many of us, it was not merely where the code lived; it was where a large part of the community lived. So when I think about GitHub&#8217;s decline, I also think about what came before it, and what might come after it. I have written a few times over the years about dependencies, and in particular about the problem of micro dependencies . In my mind, GitHub gave life to that phenomenon. It was something I definitely did not completely support, but it also made Open Source more inclusive. GitHub changed how Open Source feels, and later npm and other systems changed how dependencies feel. Put them together and you get a world in which publishing code is almost frictionless, consuming code is almost frictionless, and the number of projects in the world explodes. That has many upsides. But it is worth remembering that Open Source did not always work this way. A Smaller World Before GitHub, Open Source was a much smaller world. Not necessarily in the number of people who cared about it, but in the number of projects most of us could realistically depend on. There were well-known projects, maintained over long periods of time by a comparatively small number of people. You knew the names . You knew the mailing lists. You knew who had been around for years and who had earned trust. That trust was not perfect, and the old world had plenty of gatekeeping, but reputation mattered in a very direct way. We took pride (and got frustrated) when the Debian folks came and told us our licensing stuff was murky or the copyright headers were not up to snuff, because they packaged things up. A dependency was not just a package name. It was a project with a history, a website, a maintainer, a release process, a lot of friction, and often a place in a larger community. You did not add dependencies casually, because the act of depending on something usually meant you had to understand where it came from. Not all of this was necessarily intentional, but because these projects were comparatively large, they also needed to bring their own infrastructure. Small projects might run on a university server, and many of them were on SourceForge, but the larger ones ran their own show. They grouped together into larger collectives to make it work. We Ran Our Own Infrastructure My first Open Source projects lived on infrastructure I ran myself. There was a Trac installation, Subversion repositories, tarballs, documentation, and release files served from my own machines or from servers under my control. That was normal. If you wanted to publish software, you often also became a small-time system administrator. Georg and I ran our own collective for our Open Source projects: Pocoo . We shared server costs and the burden of maintaining Subversion and Trac, mailing lists and more. Subversion in particular made this &#8220;running your own forge&#8221; natural. It was centralized: you needed a server, and somebody had to operate it. The project had a home, and that home was usually quite literal: a hostname, a directory, a Trac instance, a mailing list archive. When Mercurial and Git arrived, they were philosophically the opposite. Both were distributed. Everybody could have the full repository. Everybody could have their own copy, their own branches, their own history. In principle, those distributed version control systems should have reduced the need for a single center. But despite all of this, GitHub became the center. That is one of the great ironies of modern Open Source. The distributed version control system won, and then the world standardized on one enormous centralized service for hosting it. What GitHub Gave Us It is easy now to talk only about GitHub&#8217;s failures, of which there are currently many, but that would be unfair: GitHub was, and continues to be, a tremendous gift to Open Source. It made creating a project easy and it made discovering projects easy. It made contributing understandable to people who had never subscribed to a development mailing list in their life. It gave projects issue trackers, pull requests, release pages, wikis, organization pages, API access, webhooks, and later CI. It normalized the idea that Open Source happens in the open, with visible history and visible collaboration. And it was an excellent and reasonable default choice for a decade. But maybe the most underappreciated thing GitHub did was archival work: GitHub became a library. It became an index of a huge part of the software commons because even abandoned projects remained findable. You could find forks, and old issues and discussions all stayed online. For all the complaints one can make about centralization, that centralization also created discoverable memory. The leaders there once cared a lot about keeping GitHub available even in countries that were sanctioned by the US. I know what the alternative looks like, because I was living it. Some of my earliest Open Source projects are technically still on PyPI , but the actual packages are gone. The metadata points to my old server, and that server has long stopped serving those files. That was normal before the large platforms. A personal domain expired, a VPS was shut down, a developer passed away, and with them went the services they paid for. The web was once full of little software homes, and many of them are gone 1 . npm and the Dependency Explosion The micro-dependency problem was not just that people published very small packages. The hosted infrastructure of GitHub and npm made it feel as if there was no cost to create, publish, discover, install, and depend on them. In the pre-GitHub world, reputation and longevity were part of the dependency selection process almost by necessity, and it often required vendoring. Plenty of our early dependencies were just vendored into our own Subversion trees by default, in part because we could not even rely on other services being up when we needed them and because maintaining scripts that fetched them, in the pre-API days, was painful. The implied friction forced some reflection, and it resulted in different developer behavior. With npm-style ecosystems, the package graph can grow faster than anybody&#8217;s ability to reason about it. The problem that this type of thinking created also meant that solutions had to be found along the way. GitHub helped compensate for the accountability problem and it helped with licensing. At one point, the newfound influx of developers and merged pull requests left a lot of open questions about what the state of licenses actually was. GitHub even attempted to rectify this with their terms of service. The thinking for many years was that if I am going to depend on some tiny package, I at least want to see its repository. I want to see whether the maintainer exists, whether there are issues, whether there were recent changes, whether other projects use it, whether the code is what the package claims it is. GitHub became part of the system that provides trust, and more recently it has even become one of the few systems that can publish packages to npm and other registries with trusted publishing. That means when trust in GitHub erodes, the problem is not isolated to source hosting. It affects the whole supply chain culture that formed around it. GitHub Is Slowly Dying GitHub is currently losing some of what made it feel inevitable. Maybe that&#8217;s just the life and death of large centralized platforms: they always disappoint eventually. Right now people are tired of the instability, the product churn, the Copilot AI noise, the unclear leadership, and the feeling that the platform is no longer primarily designed for the community that made it valuable. Obviously, GitHub also finds itself in the midst of the agentic coding revolution and that causes enormous pressure on the folks over there. But the site has no leadership! It&#8217;s a miracle that things are going as well as they are. For a while, leaving GitHub felt like a symbolic move mostly made by smaller projects or by people with strong views about software freedom. I definitely cringed when Zig moved to Codeberg! But I now see people with real weight and signal talking about leaving GitHub. The most obvious one is Mitchell Hashimoto, who announced that Ghostty will move . Where it will move is not clear, but it&#8217;s a strong signal. But there are others, too. Strudel moved to Codeberg and so did Tenacity . Will they cause enough of a shift? Probably not, but I find myself on non-GitHub properties more frequently again compared to just a year ago. One can argue that this is good: it is healthy for Open Source to stop pretending that one company should be the default home of everything. Git itself was designed for a world with many homes. Dispersion Has a Cost Going back to many forges, many servers, many small homes, and many independent communities will increase decentralization, and in many ways it will force systems to adapt. This can restore autonomy and make projects less dependent on the whims of Microsoft leadership. It can also allow different communities to choose different workflows. What&#8217;s happening in Pi &#8216;s issue tracker currently is largely a result of GitHub&#8217;s product choices not working in the present-day world of Open Source. It was built for engagement, not for maintainer sanity. It can also make the web forget again. I quite like software that forgets because it has a cleansing element. Maybe the real risk of loss will make us reflect more on actually taking advantage of a distributed version control system. But if projects move to something more akin to self-hosted forges, to their own self-hosted Mercurial or cgit servers, we run the risk of losing things that we don&#8217;t want to lose. The code might be distributed in theory, but the social context often is not. Issues, reviews, design discussions, release notes, security advisories, and old tarballs are fragile. They disappear much more easily than we like to admit. Mailing lists, which carried a lot of this in earlier years, have not kept up with the needs of today, and are largely a user experience disaster. We Need an Archive As much as I like the idea of things fading out of existence, we absolutely need libraries and archives. Regardless of whether GitHub is here to stay or projects find new homes, what I would like to see is some public, boring, well-funded archive for Open Source software. Something with the power of an endowment or public funding to keep it afloat. Something whose job is not to win the developer productivity market but just to make sure that the most important things we create do not disappear. The bells and whistles can be someone else&#8217;s problem, but source archives, release artifacts, metadata, and enough project context to understand what happened should be preserved somewhere that is not tied to the business model or leadership mood of a single company. GitHub accidentally became that archive because it became the center of Open Source activity. Once that no longer holds, we should not assume some magic archival function will emerge or that GitHub will continue to function as such. We have already seen what happens when project homes are just personal servers and good intentions, and we have seen what happened to Google Code and Bitbucket. I hope GitHub recovers, I really do, in part because a lot of history lives there and because the people still working on it inherited something genuinely important. But I no longer think it is responsible to let the continued memory of Open Source depend on GitHub remaining a healthy product. The world before GitHub had more autonomy and more loss, and in some ways, we&#8217;re probably going to move back there, at least for a while. Whatever people want to start building next should try to keep the memory and lose the dependence. It should be easier to move projects, easier to mirror their social context, easier to preserve releases, and harder for one company&#8217;s drift to become a cultural crisis for everyone else. I do not want to go back to the old web of broken tarball links and abandoned Trac instances. I also do not want Open Source to pretend that the last twenty years were normal or permanent. GitHub wrote a remarkable chapter of Open Source, and if that chapter is ending, the next one should learn from it and also from what came before. This is also a good reminder that we rely so very much on the Internet Archive for many projects of the time. &#8617;",
-          "tags": [],
-          "discovered_at": "2026-04-29T08:12:31Z"
-        },
-        {
-          "id": "3f616138b5b6",
-          "title": "Collective Speed Is Not the Summation of Individual Speed",
-          "url": "https://blog.jim-nielsen.com/2026/collective-speed-isnt-the-sum-of-individual-speed/",
-          "source": "Jim Nielsen",
-          "category": "tech-blog",
-          "published_at": "2026-04-26T19:00:00Z",
-          "summary": "I’ve been thinking about speed which is why Chris Coyier caught my attention in his latest piece discussing how AI might be 10✕ing the speed with which we code, but it’s not making our software 10✕ better: Faster individuals don’t make a fast company My mind immediately went to the 4✕100 relay at the Olympics. (Not sure which race that is? Watch the London 2012 one .) Imagine you were put in charge of winning the 4✕100 relay. All you gotta do is find the four faster sprinters in your country — right? I’m no track and field expert, but I doubt it’s that simple. In a relay race, the baton is arguably the most critical element. Passing it cleanly is vital because if you fumble it you’re easily behind a few meters or maybe even disqualified. So, one could argue, a sprinter’s ability to pass and receive the baton is more important than speed because all the speed in the world won’t help you overcome a dropped baton. (There are other considerations too, like which leg each runner takes, which sequence works best given individual pairings and rapport, and whether a slower veteran might perform better in the heat of the moment.) Faster runners won’t guarantee a faster team. And faster coders won’t guarantee a faster company. Like a relay race, it might be worth giving some thought to the relationships and interfaces between people. Reply via: Email · Mastodon · Bluesky",
-          "tags": [],
-          "discovered_at": "2026-04-29T08:12:31Z"
-        },
-        {
-          "id": "99264611a8a7",
-          "title": "Native Deployment Checks are now available",
-          "url": "https://vercel.com/changelog/native-deployment-checks",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-28T20:00:00Z",
-          "summary": "You can now run lint and typecheck on every Vercel deployment, in parallel with the build. Native Deployment Checks are available to every team and join your existing Deployment Checks alongside GitHub and Marketplace integrations. Once added from your project's Build and Deployment settings , Vercel runs the matching script from your package.json on each deployment, and skips the check if no matching script exists. You can mark a check as required to hold the deployment from production until it passes, and choose which environments each check runs on. When a Native Deployment Check fails on a pull request, Vercel Agent investigates the failure and suggests a fix you can review and merge. Read more",
-          "tags": [],
-          "discovered_at": "2026-04-29T08:12:31Z"
-        },
-        {
-          "id": "b922545ff66b",
-          "title": "2026 Vercel AI Accelerator recap",
-          "url": "https://vercel.com/blog/2026-vercel-ai-accelerator-recap",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-28T04:00:00Z",
-          "summary": "On April 16th, 39 teams took the stage at our San Francisco headquarters to pitch investors at Demo Day. During the prior six weeks, founders worked shoulder-to-shoulder with the Vercel team, our partners, and industry leaders to shape their ideas into the next generation of AI applications. Six weeks with the 2026 cohort Teams from around the world joined the 2026 cohort, building agents, developer tools, consumer apps, and vertical AI for finance, security, healthcare, and robotics. Each week, the cohort joined two sessions: a hands-on technical workshop and a fireside chat with an external speaker. The workshops covered the technical side of building AI products, from agents and models to deployment and scale. The fireside chats brought in industry leaders, Vercel experts, and investors. Speakers included Peter Steinberger (OpenAI/OpenClaw) and the Windsurf team, with topics ranging from the state of AI to pricing, legal, sales, marketing, and fundraising. Builder day Halfway through the program, the cohort came together with the broader Vercel startup ecosystem for Builder Day at Vercel's office. The day combined technical workshops, hands-on office hours with engineers from accelerator partners like AWS and Anthropic, open time to build and connect, and a special fireside chat between Malte Ubl (Vercel CTO) and Stephen Haney (Paper CEO). $8M in infrastructure and credits Beyond the programming, every team got over $200K to build with on Vercel and across the AI stack: Vercel AI stack : AI Gateway , Sandbox , Workflows , Fluid Compute , v0 , and more Partners : AWS , Anthropic , OpenAI , Browserbase , ElevenLabs , Auth0 , WorkOS , Notion , Modal , Neon , Supabase , and more Demo Day After six weeks of building, the cohort showed their work at Demo Day. Each team had a few minutes to present to a room of VCs, AI leaders, and partners, with a panel of judges from across the AI ecosystem selecting the winners. Winners On Demo Day, judges scored teams on problem validity, technology fit, product quality, and each team's final pitch. Three teams took home $100K+ in credits and prizes, and the first-place team also received an investment from Vercel Ventures. 1st: Rex Rex is building AI for the enterprise finance back office, unifying customer context across systems so agents can run accounts receivable end to end. In addition to credits, Rex received an investment from Vercel Ventures. 2nd: Hacktron AI Hacktron AI is an AI teammate for security. As AI writes more of the code shipping into production, vulnerabilities scale with it. Hacktron integrates into the development lifecycle to find and remediate real, exploitable issues. 3rd: Roots Roots is rebuilding how people buy and sell homes. Buyers save hundreds to thousands of dollars a month, and sellers net thousands more at closing. $100M+ in fundraising, and counting The 40 alumni from the last cohort have raised over $100M in venture funding, and several have been accepted to Y Combinator. Stably , the 2025 winner, is now converting enterprise pilots into contracts and shipping new product lines in hours instead of weeks. Other teams from past cohorts, including Jigsaw Stack , Belli AI , and General Translation , have signed enterprise customers and formed partnerships through the program. Apply to the next cohort If you're an early-stage founder building in AI, you can apply for the next AI Accelerator program. We will open applications later this year. Visit our startup hub to learn more and connect with our startups team. Read more",
-          "tags": [],
-          "discovered_at": "2026-04-29T08:12:31Z"
-        },
-        {
-          "id": "a9f7c3ca425f",
-          "title": "GitHub for Beginners: Getting started with Markdown",
-          "url": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-markdown/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-28T18:00:00Z",
-          "summary": "Discover how to format and edit your comments and posts using Markdown. The post GitHub for Beginners: Getting started with Markdown appeared first on The GitHub Blog .",
-          "tags": [
-            "Developer skills",
-            "GitHub",
-            "GitHub for beginners",
-            "Markdown"
-          ],
-          "discovered_at": "2026-04-29T08:12:31Z"
-        },
-        {
-          "id": "b83b06fe41db",
-          "title": "Securing the git push pipeline: Responding to a critical remote code execution vulnerability",
-          "url": "https://github.blog/security/securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vulnerability/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-28T15:30:00Z",
-          "summary": "How we validated, fixed, and investigated a critical vulnerability in under two hours, and confirmed no exploitation. The post Securing the git push pipeline: Responding to a critical remote code execution vulnerability appeared first on The GitHub Blog .",
-          "tags": [
-            "Security",
-            "CVE",
-            "GHES"
-          ],
-          "discovered_at": "2026-04-29T08:12:31Z"
-        },
-        {
-          "id": "876bd474dd84",
-          "title": "An update on GitHub availability",
-          "url": "https://github.blog/news-insights/company-news/an-update-on-github-availability/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-28T10:01:37Z",
-          "summary": "Here’s what we’ve done—and what we’re still doing—to improve our availability and reliability. The post An update on GitHub availability appeared first on The GitHub Blog .",
-          "tags": [
-            "Company news",
-            "News & insights"
-          ],
-          "discovered_at": "2026-04-29T08:12:31Z"
         }
       ]
     }
