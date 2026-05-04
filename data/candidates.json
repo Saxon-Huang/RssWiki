@@ -1,6 +1,54 @@
 {
-  "generated_at": "2026-05-03T08:45:56Z",
+  "generated_at": "2026-05-04T09:18:08Z",
   "batches": [
+    {
+      "batch_id": "2026-05-04T09:18:08Z",
+      "generated_at": "2026-05-04T09:18:08Z",
+      "items": [
+        {
+          "id": "1722432180f0",
+          "title": "Quoting Anthropic",
+          "url": "https://simonwillison.net/2026/May/3/anthropic/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-03T15:13:23Z",
+          "summary": "We used an automatic classifier which judged sycophancy by looking at whether Claude showed a willingness to push back, maintain positions when challenged, give praise proportional to the merit of ideas, and speak frankly regardless of what a person wants to hear. Most of the time in these situations, Claude expressed no sycophancy—only 9% of conversations included sycophantic behavior (Figure 2). But two domains were exceptions: we saw sycophantic behavior in 38% of conversations focused on spirituality, and 25% of conversations on relationships. &mdash; Anthropic , How people ask Claude for personal guidance Tags: ai-ethics , anthropic , claude , ai-personality , generative-ai , ai , llms , sycophancy",
+          "tags": [
+            "ai-ethics",
+            "anthropic",
+            "claude",
+            "ai-personality",
+            "generative-ai",
+            "ai",
+            "llms",
+            "sycophancy"
+          ],
+          "discovered_at": "2026-05-04T09:18:08Z"
+        },
+        {
+          "id": "403f4c4a9c8f",
+          "title": "Minimal Viable Zig Error Contexts",
+          "url": "https://matklad.github.io/2026/05/03/zig-error-context.html",
+          "source": "matklad",
+          "category": "tech-blog",
+          "published_at": "2026-05-03T00:00:00Z",
+          "summary": "Out of the box, Zig provides minimal and sufficient facilities for error handling --- strongly-typed error codes. Error reporting is left to the user. Idiomatic solution is to pass a Diagnostics out parameter (sink) to materialize human-readable strings as needed.",
+          "tags": [],
+          "discovered_at": "2026-05-04T09:18:08Z"
+        },
+        {
+          "id": "40465699693f",
+          "title": "Reminder: You Can Stitch Together Lots of Little HTML Pages With Navigations For Interactions",
+          "url": "https://blog.jim-nielsen.com/2026/small-html-pages/",
+          "source": "Jim Nielsen",
+          "category": "tech-blog",
+          "published_at": "2026-05-03T19:00:00Z",
+          "summary": "I wrote about building websites with LLMs — (L)ots of (L)ittle ht(M)l page(s) — and I think it’s time for a post-mortem on that approach: I like it. I’ve tweaked a few things from that original post but the underlying idea is still the same, which I would describe as: Avoid in-page interactions that require JavaScript in favor of multi-page navigations that rely on HTML and are enhanced with CSS view transitions (and a dash of JS if/where prudent). As an example, on my blog I have a “Menu”. It doesn’t “expand” or “slide out” or “pop in” or whatever else you can do with JS. Instead, it navigates to an entirely-new page that is focused on just the menu options of my site. I say “navigates” because it’s just a link — &lt;a href=&quot;/menu/&quot;&gt; — and it functions like a link, but the navigation interaction is enhanced by CSS view transitions. Have a newer device with a modern browser? Great, you get a nicer effect. Have an older device, or an older browser, or JS disabled, Et al.? It’ll still work. If you can follow a link — which is the most fundamental thing a browser can do — it will work. So how’s it all work under the hood? In essence, all the pages have a link to the menu (except the menu page). When you navigate to the menu, that link is changed to an “X” which “closes” the menu. The closing is still just a link (back to / ) but it’s enhanced with JS to actually do a “back” in the browser history. This makes it so “opening/closing” the menu doesn’t add an entry to your browser history. As a simplified example, the code looks like this: &lt;!-- Normal page --&gt; &lt; nav &gt; &lt; a href = &quot;/menu/&quot; &gt; &lt; svg &gt; ... &lt;/ svg &gt; &lt;/ a &gt; &lt;/ nav &gt; &lt;!-- Menu page --&gt; &lt; nav &gt; &lt; a href = &quot;/&quot; onclick = &quot;document.referrer ? history.back() : window.location.href = &#x27;/&#x27;; return false;&quot; &gt; &lt; svg &gt; ... &lt;/ svg &gt; &lt;/ a &gt; &lt;/ nav &gt; The document.referrer checks whether we came to this page as a navigation (mostly likely from within the blog itself) or via a direct visit (i.e. somebody typed it into the URL bar, unlikely but possible) which is how I suss out whether there’s a meaningful history.back() run or not. Here’s a video of how it all works, if that’s your thing: While this solution seems simplistic, it was not a simple thing to arrive at. It required me to spend time thinking about what was essential to navigation, how that interaction could work across multiple pages, and how I could ensure page size stayed small so the interaction was both fast and robust while remaining intuitive to use. In other words, the approach shaped the design. Turns out, if you have a website and you think of the browser as a way to navigate documents — rather than a runtime to execute arbitrary code and fetch, compile, and present them — things can be a lot simpler than our tools often prime us to make them. Reply via: Email · Mastodon · Bluesky",
+          "tags": [],
+          "discovered_at": "2026-05-04T09:18:08Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-05-03T08:45:56Z",
       "generated_at": "2026-05-03T08:45:56Z",
@@ -85,162 +133,6 @@
           "summary": "Vercel Sandbox can now connect to hosted Postgres databases, including Neon , Supabase , AWS RDS , Nile , and Prisma Postgres . To enable a connection, add the database host to your Sandbox's allowed domains. Background When SNI based filtering is used with Vercel Sandbox, the sandbox firewall restricts outbound network access by checking the domain name during a connection's TLS handshake. This works seamlessly for HTTPS traffic, where the domain is visible at the start of the connection. Postgres, however, negotiates TLS differently. A Postgres client first opens a plain TCP connection and then upgrades to TLS. Because the domain isn't available when the firewall first needs it, Postgres connections through a standard domain-restricted Sandbox would fail. What changed The Sandbox firewall now adjusts for the Postgres TLS negotiation flow. It detects the protocol's startup sequence, waits for the TLS upgrade, and then applies your domain policy before forwarding the connection to the database. No changes are needed to your code or database configuration. Connecting to hosted database Here's a full example: create a Sandbox, install a Postgres client, lock down the network to only the database host, and run a query. Important to know TLS is required: Domain-based rules rely on the hostname being visible during the TLS handshake, so clients must connect with sslmode=require or higher. If your database doesn't support TLS, you can allow it by IP range instead. Most managed Postgres providers require TLS by default. GSSAPI encryption is not supported: Clients using gssencmode=prefer will fall back to TLS automatically; gssencmode=require will not connect. No silent downgrades: If a client uses sslmode=prefer and the database doesn't support TLS, the connection will fail rather than silently falling back to plain-text. Learn more about the Sandbox firewall . Read more",
           "tags": [],
           "discovered_at": "2026-05-02T08:20:44Z"
-        }
-      ]
-    },
-    {
-      "batch_id": "2026-05-01T09:00:06Z",
-      "generated_at": "2026-05-01T09:00:06Z",
-      "items": [
-        {
-          "id": "c681fd61f7ba",
-          "title": "Codex CLI 0.128.0 adds /goal",
-          "url": "https://simonwillison.net/2026/Apr/30/codex-goals/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-04-30T23:23:17Z",
-          "summary": "Codex CLI 0.128.0 adds /goal The latest version of OpenAI's Codex CLI coding agent adds their own version of the Ralph loop : you can now set a /goal and Codex will keep on looping until it evaluates that the goal has been completed... or the configured token budget has been exhausted. It looks like the feature is mainly implemented though the goals/continuation.md and goals/budget_limit.md prompts, which are automatically injected at the end of a turn. Via @fcoury Tags: ai , openai , prompt-engineering , generative-ai , llms , coding-agents , system-prompts , codex-cli , agentic-engineering",
-          "tags": [
-            "ai",
-            "openai",
-            "prompt-engineering",
-            "generative-ai",
-            "llms",
-            "coding-agents",
-            "system-prompts",
-            "codex-cli",
-            "agentic-engineering"
-          ],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "f694684c7e4f",
-          "title": "Our evaluation of OpenAI's GPT-5.5 cyber capabilities",
-          "url": "https://simonwillison.net/2026/Apr/30/gpt-55-cyber-capabilities/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-04-30T23:03:24Z",
-          "summary": "Our evaluation of OpenAI&#x27;s GPT-5.5 cyber capabilities The UK's AI Security Institute previously evaluated Claude Mythos : now they've evaluated GPT-5.5 for finding security vulnerability and found it to be comparable to Mythos, but unlike Mythos it's generally available right now. Tags: ai , openai , generative-ai , llms , anthropic , claude , ai-security-research , gpt",
-          "tags": [
-            "ai",
-            "openai",
-            "generative-ai",
-            "llms",
-            "anthropic",
-            "claude",
-            "ai-security-research",
-            "gpt"
-          ],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "3dd60d61f086",
-          "title": "Quoting Andrew Kelley",
-          "url": "https://simonwillison.net/2026/Apr/30/andrew-kelley/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-04-30T21:24:55Z",
-          "summary": "It's a common misconception that we can't tell who is using LLM and who is not. I'm sure we didn't catch 100% of LLM-assisted PRs over the past few months, but the kind of mistakes humans make are fundamentally different than LLM hallucinations, making them easy to spot. Furthermore, people who come from the world of agentic coding have a certain digital smell that is not obvious to them but is obvious to those who abstain. It's like when a smoker walks into the room, everybody who doesn't smoke instantly knows it. I'm not telling you not to smoke, but I am telling you not to smoke in my house. &mdash; Andrew Kelley , Creator of Zig Tags: zig , llms , ai , generative-ai",
-          "tags": [
-            "zig",
-            "llms",
-            "ai",
-            "generative-ai"
-          ],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "9f56a8b63052",
-          "title": "We need RSS for sharing abundant vibe-coded apps",
-          "url": "https://simonwillison.net/2026/Apr/30/rss-vibe-coded-apps/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-04-30T18:38:48Z",
-          "summary": "We need RSS for sharing abundant vibe-coded apps Matt Webb: I would love an RSS web feed for all those various tools and apps pages, each item with an “Install” button. (But install to where?) The lesson here is that when vibe-coding accelerates app development, apps become more personal, more situated, and more frequent. Shipping a tool or a micro-app is less like launching a website and more like posting on a blog. This inspired me to have Claude add an Atom feed (and icon) to my /elsewhere/tools/ page, which itself is populated by content from my tools.simonwillison.net site. Tags: atom , matt-webb , rss , ai , vibe-coding",
-          "tags": [
-            "atom",
-            "matt-webb",
-            "rss",
-            "ai",
-            "vibe-coding"
-          ],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "f57ee3e9afd5",
-          "title": "Apr 30, 2026Societal ImpactsHow people ask Claude for personal guidance",
-          "url": "https://www.anthropic.com/research/claude-personal-guidance",
-          "source": "Anthropic Research",
-          "category": "ai-news",
-          "published_at": "2026-04-30T00:00:00Z",
-          "summary": "Apr 30, 2026Societal ImpactsHow people ask Claude for personal guidance",
-          "tags": [
-            "Research"
-          ],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "40cdabf4143f",
-          "title": "Continually improving our agent harness",
-          "url": "https://cursor.com/blog/continually-improving-agent-harness",
-          "source": "Cursor Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-30T12:00:00Z",
-          "summary": "No summary available.",
-          "tags": [
-            "research"
-          ],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "6187a41fec9d",
-          "title": "Grok 4.3 on AI Gateway",
-          "url": "https://vercel.com/changelog/grok-4-3-on-ai-gateway",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-30T07:00:00Z",
-          "summary": "Grok 4.3 is now available on Vercel AI Gateway . The model has a December 2025 knowledge cutoff and a 1M token context window. The model has improvements in accuracy, tool calling, and instruction following. To use Grok 4.3, set model to xai/grok-4.3 in the AI SDK . AI Gateway provides a unified API for calling models, tracking usage and cost, and configuring retries, failover, and performance optimizations for higher-than-provider uptime. It includes built-in custom reporting , observability , Bring Your Own Key support, and intelligent provider routing with automatic retries. Learn more about AI Gateway , view the AI Gateway model leaderboard or try it in our model playground . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "d7be91eb658e",
-          "title": "Custom tags available in beta on Vercel Sandbox",
-          "url": "https://vercel.com/changelog/custom-tags-available-in-beta-on-vercel-sandbox",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-29T14:00:00Z",
-          "summary": "As teams scale isolated environments for AI agents, code generation, or dev workflows, keeping track of which sandbox belongs to whom, and why, becomes critical. Custom tags allow you to organize, filter, and manage Vercel Sandboxes at scale. Each sandbox supports up to five tags. Organize by environment, team, or customer Tags are flexible by design. Use them to separate staging from production, attribute usage to specific teams, or isolate sandboxes per customer in multi-tenant platforms: Update tags as context changes Promote a sandbox from staging to production, reassign ownership, or mark it for cleanup without recreating it: Easily track your sandboxes Filter sandboxes by any tag to quickly surface the ones that matter. This is useful for dashboards, cleanup scripts, or routing logic that needs to find all sandboxes matching a specific environment or team: Use Cases AI agents at scale : Tag sandboxes by session, user, or agent run to track which execution environment belongs to which workflow. Multi-tenant platforms : Isolate and filter sandboxes per customer or workspace, making billing attribution and cleanup straightforward. Team-level visibility : Attribute sandbox usage to specific teams for cost tracking or capacity planning. This feature is in beta and requires upgrading to the beta SDK and CLI packages. Learn more in the documentation . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "1ab6a12085fe",
-          "title": "GitHub Copilot CLI for Beginners: Interactive v. non-interactive mode",
-          "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-for-beginners-interactive-v-non-interactive-mode/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-30T16:09:02Z",
-          "summary": "Learn the difference between CLI interactive v. non-interactive modes. The post GitHub Copilot CLI for Beginners: Interactive v. non-interactive mode appeared first on The GitHub Blog .",
-          "tags": [
-            "AI & ML",
-            "Generative AI",
-            "GitHub Copilot",
-            "GitHub Copilot CLI",
-            "GitHub Copilot CLI for Beginners"
-          ],
-          "discovered_at": "2026-05-01T09:00:06Z"
-        },
-        {
-          "id": "960e6bf14c40",
-          "title": "Enabling a new model for healthcare with AI co-clinician",
-          "url": "https://deepmind.google/blog/ai-co-clinician/",
-          "source": "DeepMind Blog",
-          "category": "ai-news",
-          "published_at": "2026-04-30T12:14:15Z",
-          "summary": "Researching the path to AI-augmented care and development of an AI co-clinician.",
-          "tags": [],
-          "discovered_at": "2026-05-01T09:00:06Z"
         }
       ]
     }
