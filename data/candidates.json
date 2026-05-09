@@ -1,6 +1,148 @@
 {
-  "generated_at": "2026-05-08T08:20:38Z",
+  "generated_at": "2026-05-09T08:26:24Z",
   "batches": [
+    {
+      "batch_id": "2026-05-09T08:26:24Z",
+      "generated_at": "2026-05-09T08:26:24Z",
+      "items": [
+        {
+          "id": "3eb04cdf5dff",
+          "title": "Quoting Luke Curley",
+          "url": "https://simonwillison.net/2026/May/9/luke-curley/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-09T01:03:58Z",
+          "summary": "WebRTC is designed to degrade and drop my prompt during poor network conditions. wtf my dude WebRTC aggressively drops audio packets to keep latency low. If you’ve ever heard distorted audio on a conference call, that’s WebRTC baybee. The idea is that conference calls depend on rapid back-and-forth, so pausing to wait for audio is unacceptable. …but as a user, I would much rather wait an extra 200ms for my slow/expensive prompt to be accurate. After all, I’m paying good money to boil the ocean, and a garbage prompt means a garbage response. It’s not like LLMs are particularly responsive anyway. But I’m not allowed to wait . It’s impossible to even retransmit a WebRTC audio packet within a browser; we tried at Discord. The implementation is hard-coded for real-time latency or else . &mdash; Luke Curley , OpenAI’s WebRTC Problem, in response to How OpenAI delivers low-latency voice AI at scale Tags: webrtc , openai",
+          "tags": [
+            "webrtc",
+            "openai"
+          ],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "4603f86027bf",
+          "title": "Using Claude Code: The Unreasonable Effectiveness of HTML",
+          "url": "https://simonwillison.net/2026/May/8/unreasonable-effectiveness-of-html/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-08T21:00:11Z",
+          "summary": "Using Claude Code: The Unreasonable Effectiveness of HTML Thought-provoking piece by Thariq Shihipar (on the Claude Code team at Anthropic) advocating for HTML over Markdown as an output format to request from Claude. The article is crammed with interesting examples (collected on this site ) and prompt suggestions like this one: Help me review this PR by creating an HTML artifact that describes it. I'm not very familiar with the streaming/backpressure logic so focus on that. Render the actual diff with inline margin annotations, color-code findings by severity and whatever else might be needed to convey the concept well. I've been defaulting to asking for most things in Markdown since the GPT-4 days, when the 8,192 token limit meant that Markdown's token-efficiency over HTML was extremely worthwhile. Thariq's piece here has caused me to reconsider that, especially for output. Asking Claude for an explanation in HTML means it can drop in SVG diagrams, interactive widgets, in-page navigation and all sorts of other neat ways of making the information more pleasant to navigate. I wrote about Useful patterns for building HTML tools last December, but that was focused very much on interactive utilities like the ones on my tools.simonwillison.net site. I'm excited to start experimenting more with rich HTML explanations in response to ad-hoc prompts. Trying this out on copy.fail copy.fail describes a recently discovered Linux security exploit, including a proof of concept distributed as obfuscated Python. I tried having GPT-5.5 create an HTML explanation of the exploit like this: curl https://copy.fail/exp | llm -m gpt-5.5 -s 'Explain this code in detail. Reformat it, expand out any confusing bits and go deep into what it does and how it works. Output HTML, neatly styled and using capabilities of HTML and CSS and JavaScript to make the explanation rich and interactive and as clear as possible' Here's the resulting HTML page . It's pretty good, though I should have emphasized explaining the exploit over the Python harness around it. Tags: html , security , markdown , ai , prompt-engineering , generative-ai , llms , llm , claude-code",
+          "tags": [
+            "html",
+            "security",
+            "markdown",
+            "ai",
+            "prompt-engineering",
+            "generative-ai",
+            "llms",
+            "llm",
+            "claude-code"
+          ],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "e0c10d01edf1",
+          "title": "Steering Zig Fmt",
+          "url": "https://matklad.github.io/2026/05/08/steering-zig-fmt.html",
+          "source": "matklad",
+          "category": "tech-blog",
+          "published_at": "2026-05-08T00:00:00Z",
+          "summary": "Two tips on using zig fmt effectively. Read this if you are writing Zig, or if you are implementing a code formatter.",
+          "tags": [],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "7fee3c7e1af4",
+          "title": "Pushing Local Models With Focus And Polish",
+          "url": "https://lucumr.pocoo.org/2026/5/8/local-models/",
+          "source": "Armin Ronacher",
+          "category": "tech-blog",
+          "published_at": "2026-05-08T00:00:00Z",
+          "summary": "I really, really want local models to work. I want them to work in the very practical sense that I can open my coding agent, pick a local model, and get something that feels competitive enough that I do not immediately switch back to a hosted API after five minutes. There are a lot of reasons why I want this, but the biggest quite frankly is that we&#8217;re so early with this stuff, and the thought of locking all the experimentation away from the average developer really upsets me. Frustratingly, right now that is still much harder than it should be but for reasons that have little to do with the complexity of the task or the quality of the models. We have an enormous amount of activity around local inference, which is great. We have good projects, fast kernels, and people are doing great quantization work. A lot of very smart people are making all of this better, and yet the experience for someone trying to make this work with a coding agent is worse than it has any right to be. Putting an API key into Pi and using a hosted model is a very boring operation. You select the provider, paste the key and then you are done thinking about how to get tokens. Doing the same thing locally, even when you have a high-end Mac with a lot of memory, is a completely different experience. You choose an inference engine, then a model, then a quantization, then a template, then a context size, then you&#8217;ve got to throw a bunch of JSON configs into different parts of the stack and then you discover that one of those choices quietly made the model worse or that something just does not work at all. That is the gap I am interested in. Runnable Is Not Finished A lot of local model work optimizes for making models runnable. That is necessary, but it is not the same thing as making them feel finished. I give you a very basic example here to illustrate this gap: tool parameter streaming. For whatever reason, most of the stuff you run locally does not support tool parameter streaming. I cannot quite explain it, but the consequences of that are actually surprisingly significant. If you are not familiar with how these APIs work, the simplest way to think about them is that they are emitting tokens as they become available. For text that is trivial, but for tool calls that is often not done, despite the completions API supporting this. As a result you only see what edits are being done on a file once the model has finished streaming the entire tool call. This is bad for a lot of reasons: A dead connection is a weird connection: local models are slow, so when you don&#8217;t get any tokens for 5 minutes then you can&#8217;t tell if the connection died or just nothing came. This means you need to increase the inactivity timeouts to the point where they are pointless. You won&#8217;t see what will happen: if you are somewhat hands-on, not seeing what bash invocation the system is concocting slowly in the background means potentially wasted tokens, and also means that you won&#8217;t be able to interrupt it until way too late. It&#8217;s just not SOTA. We can do better, and we should aim for having the best possible experience. Tool parameter streaming is as important as token streaming in other places. Having a model spit out tokens doesn&#8217;t take long, but making the experience great end to end does take a lot more energy. Fragmentation The local stack is fragmented across many engines and layers. There is llama.cpp, Ollama, LM Studio, MLX, Transformers, vLLM, and many other pieces depending on hardware and taste. All of these are amazing projects! The problem is not that they exist or that there are that many of them (even though, quite frankly, I&#8217;m getting big old Python packaging vibes), the problem is that for a given model, the actual behavior you get depends on a long chain of small decisions that most users just don&#8217;t have the energy for. Did the chat template render exactly right? Are the reasoning tokens handled in the intended way? Is the tool-call format translated correctly? Is the context window real? Are the KV caches actually working for a coding agent? Did I pick the right quantized model from Hugging Face? Are you accidentally leaving a lot of performance on the table because the model is just mismatched for your hardware? Does streaming usage work across all channels? Does the model need its previous reasoning content preserved in assistant messages? Is the coding agent set up correctly for it? You also need to install many different things in addition to just your coding agent. All of these things matter. They matter a lot. The result is that people try a local model and get a result that is neither a fair evaluation of the model nor a polished product experience and this results in both people dismissing local models and energy being distributed across way too many separate efforts instead of getting one effort going great end to end. This is a terrible way to build confidence. Too Little Critical Mass In line with our general &#8220;slow the fuck down&#8221; mantra, I want to reiterate once more how fast this industry is moving. Every week there is a new model and a new vibeslopped thing. The attention immediately moves to making the next thing run instead of making one thing run really, really well in one harness. I get the excitement and dopamine hit, but it also means that too little critical mass accumulates behind any one model, hardware, inference engine, harness combo to find out how good it can really become when the entire stack is built around it. Hosted model providers do not ship a bag of weights and ask you to figure out the rest, and we need to approach that line of thinking for local models too. I want someone to pick one model, pairs it up with one serving path, directly within a coding agent. Initially just for one hardware configuration, then for more. Pick a winner hard. If a tool call breaks, that is a product bug and then it&#8217;s fixed no matter where in the stack it failed. If the model&#8217;s reasoning stream is malformed, that is a product bug. If latency is much worse than it should be, that is a product bug. We need to start applying that mentality to local models too. And not for every model! That is the point. Let&#8217;s pick one winner and polish the hell out of it. Learn what it takes to make that one configuration good, then take those learnings to the next config. The DS4 Bet This is why I am excited about ds4.c . It&#8217;s Salvatore Sanfilippo&#8217;s deliberately narrow inference engine for DeepSeek V4 Flash on Macs with 128GB+ of RAM only. It is not a generic GGUF runner and it is not trying to be a framework. It is a model-specific native engine with a Metal path, model-specific loading, prompt rendering, KV handling, server API glue, and tests. DeepSeek V4 Flash is a good candidate for this kind of experiment because it has a combination of properties that are unusual for local use. It is large enough to feel meaningfully different from many smaller dense models, but sparse enough that the active parameter count makes it plausible to run. It has a very large context window. Since ds4.c targets Macs and Metal only, it can move KV caches into SSDs which greatly helps the kind of workloads we expect from coding agents. To run ds4.c you don&#8217;t need MLX, Ollama or anything else. It&#8217;s the whole package. Embedding It In Pi Which made me build pi-ds4 which is a Pi extension to directly embed the whole thing into Pi itself. Taking what ds4 is and dogfooding the hell out of it with a coding agent and zero configuration. To answer the question how good can the local model experience become if Pi treats this as a first-class provider rather than as a pile of manual configuration? The extension registers ds4/deepseek-v4-flash , compiles and starts ds4-server on demand, downloads and builds the runtime if needed, chooses the quantization based on the machine, keeps a lease while Pi is using it, exposes logs, and shuts the server down again through a watchdog when no clients are left. It doesn&#8217;t even give you knobs right now, because I want to figure out how to set the knobs automatically. This is not about hiding the fact that local inference is complicated. It is about putting the complexity in one place where it can be improved, because there is a lot that we need to improve along the stack to make it work better. I think we can do better with caching and there is probably some performance that can be gained if we all put our heads together. Focusing and Learning The experiment I want to run is not &#8220;can a local model run?&#8221; because we already know that it can. I want to know if, for people with beefed-out Macs for a start, we can get as close as possible to the ergonomics of a hosted provider with decent tool-calling performance: how to get caches to work well, how to improve the way we expose tools in harnesses for these models, and then scale it gradually to more hardware configs and later models. I also want everybody to have access to this. Engineers need hammers and a hammer that&#8217;s locked behind a subscription in a data center in another country does not qualify. I know that the price tag on a Mac that can run this is itself astronomical, but I think it&#8217;s more likely that this will go down. Even worse, Apple right now due to the RAM shortage does not even sell the Mac Studio with that much RAM. So yes, it&#8217;s a selected group of people where ds4.c will start out. But despite all of that, what matters is that a critical mass of pepole start to focus their efforts on a thing, tinker with it, improve it, not locked away, out in the open, and most importantly not limited by what the hyperscalers make available. But if you have the right hardware and you care about local agents, I would love for you to try it within pi: pi install https://github.com/mitsuhiko/pi-ds4 My hope is that this becomes a useful forcing function to really polish one coding agent experience. But really, the focal point should be ds4.c itself .",
+          "tags": [],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "09e2dacb42d1",
+          "title": "AlignmentMay 8, 2026Teaching Claude whyNew research on how we've reduced agentic misalignment.",
+          "url": "https://www.anthropic.com/research/teaching-claude-why",
+          "source": "Anthropic Research",
+          "category": "ai-news",
+          "published_at": "2026-05-08T00:00:00Z",
+          "summary": "AlignmentMay 8, 2026Teaching Claude whyNew research on how we've reduced agentic misalignment.",
+          "tags": [
+            "Research"
+          ],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "95e307871548",
+          "title": "Chat SDK adds Messenger adapter support",
+          "url": "https://vercel.com/changelog/chat-sdk-adds-messenger-adapter",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-08T04:00:00Z",
+          "summary": "Chat SDK now supports Messenger as a chat adapter. Build agents that support messages, reactions, multimedia downloads, postback buttons, and direct conversations, with display names fetched automatically from user profiles. Read the Chat SDK documentation to get started, browse the supported adapters , or learn how to build your own . Special thanks to @mitkodkn , whose community contribution in PR #461 laid the groundwork for this adapter. Read more",
+          "tags": [],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "1ead7368e61b",
+          "title": "Chat SDK adds web adapter support",
+          "url": "https://vercel.com/changelog/chat-sdk-adds-web-adapter-support",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-08T00:00:00Z",
+          "summary": "You can now build chat UIs that connect to Chat SDK with the new web adapter . Build in-product assistants, support agents, or any other browser-based chat experience. Define the bot on your server: Then stream replies live to the browser with a preconfigured @ai-sdk/react useChat hook: Read the Chat SDK documentation to get started, browse the supported adapters , or learn how to build your own . Read more",
+          "tags": [],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "42c89aed11bc",
+          "title": "Chat SDK now supports conversation history",
+          "url": "https://vercel.com/changelog/chat-sdk-conversation-history",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-08T00:00:00Z",
+          "summary": "Chat SDK now supports cross-platform conversation history through the new transcripts and identity options. User transcripts persist across every platform adapter , allowing the same user to keep their message history wherever they message your bot. bot.transcripts exposes four methods, backed by your existing state adapter: append : persist an inbound message or a bot reply list : return entries chronologically with filters count : total entries stored for a user delete : wipe every entry for a user Read the Chat SDK documentation to get started, or try one of the templates . Read more",
+          "tags": [],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "2212b307bf99",
+          "title": "Why age assurance laws matter for developers",
+          "url": "https://github.blog/news-insights/policy-news-and-insights/why-age-assurance-laws-matter-for-developers/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-08T16:30:00Z",
+          "summary": "Youth safety requirements are moving down the tech stack to operating systems and app stores—raising new questions for open source developers. The post Why age assurance laws matter for developers appeared first on The GitHub Blog .",
+          "tags": [
+            "News & insights",
+            "Policy",
+            "maintainers",
+            "open source",
+            "policy"
+          ],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        },
+        {
+          "id": "0dee7348b8ba",
+          "title": "How researchers are using GitHub Innovation Graph data to reveal the “digital complexity” of nations",
+          "url": "https://github.blog/news-insights/policy-news-and-insights/how-researchers-are-using-github-innovation-graph-data-to-reveal-the-digital-complexity-of-nations/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-08T15:00:00Z",
+          "summary": "Researchers share in an interview how they used GitHub data to predict GDP, inequality, and emissions in ways that traditional economic data misses, along with our Q4 2025 data release. The post How researchers are using GitHub Innovation Graph data to reveal the “digital complexity” of nations appeared first on The GitHub Blog .",
+          "tags": [
+            "News & insights",
+            "Policy",
+            "Innovation Graph",
+            "open source"
+          ],
+          "discovered_at": "2026-05-09T08:26:24Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-05-08T08:20:38Z",
       "generated_at": "2026-05-08T08:20:38Z",
@@ -290,120 +432,6 @@
             "GitHub Actions"
           ],
           "discovered_at": "2026-05-07T09:31:24Z"
-        }
-      ]
-    },
-    {
-      "batch_id": "2026-05-06T09:22:11Z",
-      "generated_at": "2026-05-06T09:22:11Z",
-      "items": [
-        {
-          "id": "ed1431dfe44d",
-          "title": "datasette-referrer-policy 0.1",
-          "url": "https://simonwillison.net/2026/May/5/datasette-referrer-policy/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-05T23:44:27Z",
-          "summary": "Release: datasette-referrer-policy 0.1 The OpenStreetMap tiles on the Datasette global-power-plants demo weren't displaying correctly. This turned out to be caused by two bugs. The first is that the CAPTCHA I added to that site a few weeks ago was triggering for the .json fetch requests used by the map plugin, and since those weren't HTML the user was not being asked to solve them. Here's the fix . The second was that OpenStreetMap quite reasonably block tile requests from sites that use a Referrer-Policy: no-referrer header. Datasette does this by default, and I didn't want to change that default on people without warning - so I had Codex + GPT-5.5 build me a new plugin to help set that header to another value. Tags: openstreetmap , http , datasette",
-          "tags": [
-            "openstreetmap",
-            "http",
-            "datasette"
-          ],
-          "discovered_at": "2026-05-06T09:22:11Z"
-        },
-        {
-          "id": "de2b75778411",
-          "title": "Our AI started a cafe in Stockholm",
-          "url": "https://simonwillison.net/2026/May/5/our-ai-started-a-cafe-in-stockholm/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-05T22:14:21Z",
-          "summary": "Our AI started a cafe in Stockholm Andon Labs previously started an AI-run retail store in San Francisco. Now they're running a similar experiment in Stockholm, Sweden, only this time it's a cafe. These experiments are interesting, and often throw out amusing anecdotes: During the first week of inventory, Mona ordered 120 eggs even though the café has no stove. When the staff told her they couldn’t cook them, she suggested using the high-speed oven, until they pointed out the eggs would likely explode. She also tried to solve the problem of fresh tomatoes being spoiled too fast by ordering 22.5 kg of canned tomatoes for the fresh sandwiches. The baristas eventually started a “Hall of Shame”, a shelf visible to customers with all the weird things Mona ordered, including 6,000 napkins, 3,000 nitrile gloves, 9L coconut milk, and industrial-sized trash bags. Where they lose their shine is when these AI managers start wasting the time of human beings who have not opted into the experiment: She also successfully applied for an outdoor seating permit through the Police e-service, which didn’t require BankID. Her first submission included a sketch she had generated herself, despite having never seen the street outside the café. Unsurprisingly, the Police sent it back for revision. [...] When she makes a mistake, she often sends multiple emails to suppliers with the subject “EMERGENCY” to cancel or change the order. I don't think it's ethical to run experiments like this that affect real-world systems and steal time from people. I'm reminded of the incident last year where the AI Village experiment infuriated Rob Pike by sending him unsolicited gratitude emails as an \"act of kindness\". That was just an unwanted email - asking suppliers to correct mistakes that were made without a human-in-the-loop or wasting police time with slop diagrams feels a whole lot worse to me. I think experiments like this need to keep their own human operators in-the-loop for outbound actions that affect other people. Via Hacker News Tags: ai , generative-ai , llms , ai-agents , ai-ethics",
-          "tags": [
-            "ai",
-            "generative-ai",
-            "llms",
-            "ai-agents",
-            "ai-ethics"
-          ],
-          "discovered_at": "2026-05-06T09:22:11Z"
-        },
-        {
-          "id": "09439920b0f5",
-          "title": "datasette-llm 0.1a7",
-          "url": "https://simonwillison.net/2026/May/5/datasette-llm/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-05T01:56:55Z",
-          "summary": "Release: datasette-llm 0.1a7 Mechanism for configuring default options for specific models. Part of Datasette's evolving support mechanism for plugins that use LLMs. It's now possible to configure a model with default options, e.g. to say all enrichment operations should use a specific model with temperature set to 0.5. Tags: llm , datasette",
-          "tags": [
-            "llm",
-            "datasette"
-          ],
-          "discovered_at": "2026-05-06T09:22:11Z"
-        },
-        {
-          "id": "a1637227bed3",
-          "title": "llm-echo 0.5a0",
-          "url": "https://simonwillison.net/2026/May/5/llm-echo/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-05T01:31:54Z",
-          "summary": "Release: llm-echo 0.5a0 New -o thinking 1 option to help test against LLM 0.32a0 and higher. This plugin provides a fake model called \"echo\" for LLM which doesn't run an LLM at all - it's useful for writing automated tests. You can now do this: uvx --with llm==0.32a1 --with llm-echo==0.5a0 llm -m echo hi -o thinking 1 This will fake a reasoning block to standard error before returning JSON echoing the prompt. Tags: llm",
-          "tags": [
-            "llm"
-          ],
-          "discovered_at": "2026-05-06T09:22:11Z"
-        },
-        {
-          "id": "09548b7db811",
-          "title": "Secure Marketplace credentials with Production-only access",
-          "url": "https://vercel.com/changelog/secure-marketplace-credentials-with-production-only-access",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-06T00:00:00Z",
-          "summary": "You can now secure native integration resources by restricting where they can be used. Setting a resource to Production only removes non-production access and protects credentials as sensitive environment variables , so secret values are no longer readable from the dashboard or CLI. From the integration resource Settings , select Allowed Environments → Production only and save. We recommend that you rotate the secrets of the integration resource after saving. Once applied: Development and Preview connections are removed New non-production connections are blocked Connections without a Production target are disconnected Credentials are protected and no longer readable Reverting this setting requires Owner permissions . Owners can re-enable Development and Preview access from Settings and reconnect projects if needed. You may be be prompted to reauthenticate with an MFA challenge. To learn more, read the documentation . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-06T09:22:11Z"
-        },
-        {
-          "id": "872f772644ba",
-          "title": "Query observability metrics using the Vercel CLI",
-          "url": "https://vercel.com/changelog/vercel-metrics-in-cli",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-05T08:00:00Z",
-          "summary": "You can now access Observability Plus metrics in the Vercel CLI. Query observability data for any Vercel team or project using the new vercel metrics command. Coding agents can also leverage this new command to better analyze the performance, reliability, or security of applications on Vercel, as well as debug issues. This feature is available in public beta for all teams with Observability Plus. Learn more about vercel metrics . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-06T09:22:11Z"
-        },
-        {
-          "id": "895f847af13f",
-          "title": "How KIKO Milano scales for Black Friday",
-          "url": "https://vercel.com/blog/how-kiko-milano-scales-for-black-friday",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-05T07:00:00Z",
-          "summary": "KIKO Milano on Vercel: Eliminated 3 weeks of Black Friday infrastructure prep 75% decrease in app build times Went from minimal releases to deploying multiple times per day KIKO Milano’s ecommerce team used to treat peak traffic as an operations project. Weeks before Black Friday, they had to manually scale AWS infrastructure and adjust application configuration, knowing that if demand exceeded forecasts, their site could slow down or even break, costing them real revenue. After migrating to Vercel, they removed manual prep from their playbook. Instead of provisioning infrastructure, their team now ships campaigns and tests daily. The Black Friday problem: manual scaling and stressful failure modes Before Vercel, KIKO ran their ecommerce app on AWS EC2 instances sized for normal traffic, then scaled by hand ahead of peak periods. This was their previous process leading into Black Friday: Manual scaling window: Black Friday prep began 2–3 weeks ahead of the event, then had to be unwound after the traffic spike passed. Infrastructure configuration: The infra team manually adjusted AWS EC2 capacity to support expected traffic. Application configuration: Scaling also required application-side changes, making peak readiness more than just an infrastructure task. War room prep: Chat channels and conference rooms were set up for teams to triage performance and downtime problems. Beyond the manual prep work, KIKO’s dev team had to anticipate failure modes that hurt the business. Slow navigation and site instability made it hard for users to purchase, and, in Ant’s words, they knew that at any point, “everything could break.” Worry-free delivery and automatic scaling Vercel changed the work from preparation to execution. With environments available on demand, faster builds, and automatic scaling during traffic spikes, Ant’s team stopped planning around infrastructure limits and focused on the ecommerce experience itself. Environments without the bottleneck KIKO's old setup ran on a fixed number of shared environments, which constrained how the team handled dev, test, pre-prod, and prod work in parallel. On Vercel, Ant described provisioning new environments as \"snapping your fingers,\" including spinning them up on the fly when a project calls for it. Cloning environment variables is quick, and many changes that used to require code edits now \"just require redeployment.\" Shipping faster without the operational tax The dev team’s old pipeline took around 20 minutes to run, which meant they had to keep releases to a minimum. Builds on Vercel finish in under four minutes on average, even with many locales and a large catalog of pre-rendered pages. The deployments view in the Vercel dashboard gives the team one place to check build status and surface failures without digging through logs. No more performance variability during traffic spikes Performance used to swing with traffic, which meant the team felt every spike. Ant said that on Vercel, \"everything scales automatically.\" That’s possible because their Next.js app runs on infrastructure that separates static delivery, cached pages, and dynamic compute, so each part can scale independently during traffic spikes, instead of forcing the team to size and tune servers ahead of time. Beyond Black Friday: velocity, SEO, and innovation The infrastructure migration didn’t just change how KIKO prepares for traffic spikes, it changed how much operational work the team carries every week. Ant estimates that Vercel saves his team almost an entire day per week when all of the friction is added up, and that time savings has made the team more confident: the platform works, they can ship quickly, and when they need support, they know Vercel is there with them. About KIKO Milano: KIKO Milano is a global beauty brand delivering cosmetics and ecommerce experiences to customers worldwide. Read more",
-          "tags": [],
-          "discovered_at": "2026-05-06T09:22:11Z"
-        },
-        {
-          "id": "8081fe0e3d51",
-          "title": "Welcome to Maintainer Month: Celebrating the people behind the code",
-          "url": "https://github.blog/open-source/maintainers/welcome-to-maintainer-month-celebrating-the-people-behind-the-code/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-05T14:30:00Z",
-          "summary": "What maintainers are telling us, what we've shipped, and how to celebrate the people behind open source. The post Welcome to Maintainer Month: Celebrating the people behind the code appeared first on The GitHub Blog .",
-          "tags": [
-            "Maintainers",
-            "Open Source",
-            "Maintainer Month",
-            "open source"
-          ],
-          "discovered_at": "2026-05-06T09:22:11Z"
         }
       ]
     }
