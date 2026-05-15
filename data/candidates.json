@@ -1,6 +1,131 @@
 {
-  "generated_at": "2026-05-14T09:34:27Z",
+  "generated_at": "2026-05-15T09:48:05Z",
   "batches": [
+    {
+      "batch_id": "2026-05-15T09:48:05Z",
+      "generated_at": "2026-05-15T09:48:05Z",
+      "items": [
+        {
+          "id": "fe2e6bebeddc",
+          "title": "Not so locked in any more",
+          "url": "https://simonwillison.net/2026/May/14/not-so-locked-in/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-14T22:53:49Z",
+          "summary": "This Mitchell Hashimoto quote about Bun migrating from Zig to Rust reminded me of a similar conversation I had at a conference last week. I was talking to someone who worked for a medium sized technology company with a pair of legacy/ legendary iPhone and Android apps. They told me they had just completed a coding-agent driven rewrite of both apps to React Native. I asked why they chose that, given that coding agents presumably drive down the cost of maintaining separate iPhone and Android apps. They said that React Native has improved a lot over the past few years and covered everything their apps needed to do. And... if it turned out to be the wrong decision, they could just port back to native in the future. Like Mitchell said: Programming languages used to be LOCK IN, and they're increasingly not so. Tags: react , coding-agents , ai-assisted-programming , generative-ai , ai , llms",
+          "tags": [
+            "react",
+            "coding-agents",
+            "ai-assisted-programming",
+            "generative-ai",
+            "ai",
+            "llms"
+          ],
+          "discovered_at": "2026-05-15T09:48:05Z"
+        },
+        {
+          "id": "0b7bb97ffb07",
+          "title": "Quoting Mitchell Hashimoto",
+          "url": "https://simonwillison.net/2026/May/14/mitchell-hashimoto/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-14T22:31:20Z",
+          "summary": "[...] On the interesting side is how fungible programming languages are nowadays. Programming languages used to be LOCK IN, and they're increasingly not so. You think the Bun rewrite in Rust is good for Rust? Bun has shown they can be in probably any language they want in roughly a week or two. Rust is expendable. Its useful until its not then it can be thrown out. That's interesting! &mdash; Mitchell Hashimoto , on Bun porting from Zig to Rust Tags: zig , ai , mitchell-hashimoto , llms , rust , generative-ai , agentic-engineering , bun",
+          "tags": [
+            "zig",
+            "ai",
+            "mitchell-hashimoto",
+            "llms",
+            "rust",
+            "generative-ai",
+            "agentic-engineering",
+            "bun"
+          ],
+          "discovered_at": "2026-05-15T09:48:05Z"
+        },
+        {
+          "id": "52ed20ae303a",
+          "title": "datasette-ip-rate-limit 0.1a0",
+          "url": "https://simonwillison.net/2026/May/14/datasette-ip-rate-limit/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-14T04:10:23Z",
+          "summary": "Release: datasette-ip-rate-limit 0.1a0 The datasette.io site was being hammered by poorly-behaved crawlers, so I had Codex (GPT-5.5 xhigh) build a configurable rate limiting plugin to block IPs that were hammering specific areas of the site too quickly. Here's the production configuration I'm using on that site for the new plugin: datasette-ip-rate-limit : header : Fly-Client-IP max_keys : 10000 exempt_paths : - \" /static/* \" - \" /-/turnstile* \" rules : - name : demo-databases paths : - \" /global-power-plants/* \" - \" /legislators/* \" window_seconds : 60 max_requests : 60 block_seconds : 20 Tags: datasette , rate-limiting , codex",
+          "tags": [
+            "datasette",
+            "rate-limiting",
+            "codex"
+          ],
+          "discovered_at": "2026-05-15T09:48:05Z"
+        },
+        {
+          "id": "fcda4d4689a8",
+          "title": "Catch Flakes On Main",
+          "url": "https://matklad.github.io/2026/05/14/catch-flakes-on-main.html",
+          "source": "matklad",
+          "category": "tech-blog",
+          "published_at": "2026-05-14T00:00:00Z",
+          "summary": "A small Mechanical Habit today:",
+          "tags": [],
+          "discovered_at": "2026-05-15T09:48:05Z"
+        },
+        {
+          "id": "1e8aba468656",
+          "title": "May 14, 2026Policy2028: Two scenarios for global AI leadership",
+          "url": "https://www.anthropic.com/research/2028-ai-leadership",
+          "source": "Anthropic Research",
+          "category": "ai-news",
+          "published_at": "2026-05-14T00:00:00Z",
+          "summary": "May 14, 2026Policy2028: Two scenarios for global AI leadership",
+          "tags": [
+            "Research"
+          ],
+          "discovered_at": "2026-05-15T09:48:05Z"
+        },
+        {
+          "id": "66dd106edba8",
+          "title": "GitHub availability report: April 2026",
+          "url": "https://github.blog/news-insights/company-news/github-availability-report-april-2026/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-14T22:02:43Z",
+          "summary": "In April, we experienced 10 incidents that resulted in degraded performance across GitHub services. The post GitHub availability report: April 2026 appeared first on The GitHub Blog .",
+          "tags": [
+            "Company news",
+            "News & insights",
+            "GitHub Availability Report"
+          ],
+          "discovered_at": "2026-05-15T09:48:05Z"
+        },
+        {
+          "id": "51fdee1a4069",
+          "title": "From latency to instant: Modernizing GitHub Issues navigation performance",
+          "url": "https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-14T16:00:00Z",
+          "summary": "How the GitHub Issues team used client-side caching, smart prefetching, and service workers to make navigation feel instant. The post From latency to instant: Modernizing GitHub Issues navigation performance appeared first on The GitHub Blog .",
+          "tags": [
+            "Architecture & optimization",
+            "Engineering",
+            "engineering",
+            "GitHub Issues"
+          ],
+          "discovered_at": "2026-05-15T09:48:05Z"
+        },
+        {
+          "id": "c7d5799b4d90",
+          "title": "A few words on DS4",
+          "url": "http://antirez.com/news/165",
+          "source": "antirez",
+          "category": "tech-blog",
+          "published_at": "2026-05-14T22:22:45Z",
+          "summary": "I didn’t expect DwarfStar 4 (https://github.com/antirez/ds4) to become so popular so fast. It is clear that there was a need for single-model integration focused local AI experience, and that a few things happened together: the release of a quasi-frontier model that is large and fast enough to change the game of local inference, and the fact that it works extremely well with an extremely asymmetric quants recipe of 2/8 bit, so that 96 or 128GB of RAM are enough to run it. And, of course: all the experience produced by the local AI movement in the latest years, that can be leveraged more promptly because of GPT 5.5 (otherwise you can’t build DS4 in one week — and even with all this help you need to know how to gently talk to LLMs). The last week was funny and also tiring, I worked 14 hours per day on average. My normal average is 4/6 since early Redis times, but the first few months of Redis were like that. So, what’s next? Is this a project that starts and ends with DeepSeek v4 Flash? Nope, the model can change over time. The space will be occupied, in my vision, by the best current open weights model that is *practically fast* on a high end Mac or “GPU in a box” gear (like the DGX Spark and other similar setups). I bet that the next contender is DeepSeek v4 Flash itself, in the new checkpoint that will be released and, hopefully, a version specifically tuned for coding, and who knows, other expert-variants (not in the sense of MoE experts) maybe. For local inference, to have a ds4-coding, ds4-legal, ds4-medical models make a lot of sense, after all. You just load what you need depending on the question. It is the first time since I play with local inference (I play with it since the start) that I find myself using a local model for serious stuff that I would normally ask to Claude / GPT. This, I think, is really a big thing. It is also the first time that using vector steering I can enjoy an experience where the LLM can be used with more freedom. DeepSeek v4 Flash is really an impressive model, no doubt about that. If you can imagine in your mind the small good local model experience as A, and the frontier model you use online as B, DS4 is a lot more B than A. I can’t wait for the new releases, honestly (btw, thank you DeepSeek). So, after those chaotic first days, I hope the project will focus on: quality benchmarks, potentially adding a coding agent that is also part of the project, a hardware setup here in my home that can run the CI test in order to ensure long term quality, more ports, and finally but as a very important point: distributed inference (both serial and parallel). For now, thank you for all the support: it was really appreciated :) AI is too critical to be just a provided service. Comments",
+          "tags": [],
+          "discovered_at": "2026-05-15T09:48:05Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-05-14T09:34:27Z",
       "generated_at": "2026-05-14T09:34:27Z",
@@ -262,177 +387,6 @@
             "GitHub Copilot CLI"
           ],
           "discovered_at": "2026-05-13T09:43:40Z"
-        }
-      ]
-    },
-    {
-      "batch_id": "2026-05-12T09:38:05Z",
-      "generated_at": "2026-05-12T09:38:05Z",
-      "items": [
-        {
-          "id": "b08efaa00443",
-          "title": "Thoughts on GitLab's workforce reduction\" and \"structural and strategic decisions\"",
-          "url": "https://simonwillison.net/2026/May/11/gitlab-act-2/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-11T23:58:55Z",
-          "summary": "GitLab Act 2 There's a lot going on in this announcement from GitLab about the \"workforce reduction\" and \"structural and strategic decisions\" they are making with respect to the agentic era. They're \"planning to reduce the number of countries by up to 30% where we have small teams\". One of the most interesting things about GitLab is that they have employees spread across a large number of countries - 18 are listed in their public employee handbook but this post says they are \"operating in nearly 60 countries\". That handbook used to document their payroll workflows for those countries too - they stopped publishing that in 2023 but the last public version (hooray for version control) remains a fascinating read. Since we don't know which of those 60 countries have small teams, we can't calculate how many countries that 30% applies to. \"We're planning to flatten the organization, removing up to three layers of management in some functions so leaders are closer to the work.\" - this isn't the first announcement of this type I've seen that's trimming management. Coinbase recently announced a much more aggressive version of this: they were \"flattening our org structure to 5 layers max below\" and \"No pure managers: Every leader at Coinbase must also be a strong and active individual contributor. Managers should be like player-coaches\". In terms of team structure: \"We're re-organizing R&amp;D to create roughly 60 smaller, more empowered teams with end-to-end ownership, nearly doubling the number of independent teams.\" I've always loved the idea of individual teams that can ship features unblocked by other teams, and it makes sense to me that agentic engineering can increase the capability of such teams. The 37signals public employee handbook used to have a section on working In self-sufficient, independent teams which perfectly captured this for me, I'm sad to see they removed that detail in January 2024! Tucked away towards the bottom: \" We will be retiring CREDIT as our values framework \" - that's the values framework described on this page : \"Collaboration, Results for Customers, Efficiency, Diversity, Inclusion &amp; Belonging, Iteration, and Transparency\". The new values are \"Speed with Quality, Ownership Mindset, Customer Outcomes\". The fact that \"Diversity\" is no longer in there is likely to attract a whole lot of attention, so it's worth noting that a sub-bullet under Customer Outcomes reads \"Interpersonal excellence: individuals who are good humans, embrace diversity, inclusion and belonging, assume good intent and treat everyone with respect\". Here's the part of their new strategy that most resonated with me: The agentic era multiplies demand for software . Software has been the force multiplier behind nearly every business transformation of the last two decades. The constraint was the cost and time of producing and managing it. That constraint is collapsing. As the cost of producing software collapses, demand for it will expand. Last year, the developer platform market used to be measured in tens of dollars per user per month, this year it is hundreds/user/month and headed to thousands. Not only is the value of software for builders increasing, but we believe there will be more software and builders than ever, and we will serve an increasing volume of both . That very much encapsulates my own optimistic, Jevons-paradox -inspired hope for how this will all work out. Their opinion on this does need to be taken with a big grain of salt though. GitLab's stock price was ~$52 a year ago and is ~$26 today, and it's plausible that the drop corresponds to uncertainty about GitLab's continued growth as agentic engineering eats its way through their core market. If your entire business depends on software engineering growing as a field and producing larger volumes of more lucrative seats, you have a strong incentive to believe that agents will have that effect! Via Hacker News Tags: 37signals , careers , ai , gitlab , coding-agents , jevons-paradox , agentic-engineering",
-          "tags": [
-            "37signals",
-            "careers",
-            "ai",
-            "gitlab",
-            "coding-agents",
-            "jevons-paradox",
-            "agentic-engineering"
-          ],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "016664074c31",
-          "title": "Quoting James Shore",
-          "url": "https://simonwillison.net/2026/May/11/james-shore/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-11T19:48:32Z",
-          "summary": "Your AI coding agent, the one you use to write code, needs to reduce your maintenance costs. Not by a little bit, either. You write code twice as quick now? Better hope you’ve halved your maintenance costs. Three times as productive? One third the maintenance costs. Otherwise, you’re screwed. You’re trading a temporary speed boost for permanent indenture. [...] The math only works if the LLM decreases your maintenance costs, and by exactly the inverse of the rate it adds code. If you double your output and your cost of maintaining that output, two times two means you’ve quadrupled your maintenance costs. If you double your output and hold your maintenance costs steady, two times one means you’ve still doubled your maintenance costs. &mdash; James Shore , You Need AI That Reduces Maintenance Costs Tags: coding-agents , ai-assisted-programming , generative-ai , agentic-engineering , ai , llms",
-          "tags": [
-            "coding-agents",
-            "ai-assisted-programming",
-            "generative-ai",
-            "agentic-engineering",
-            "ai",
-            "llms"
-          ],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "608d9206911f",
-          "title": "Your AI Use Is Breaking My Brain",
-          "url": "https://simonwillison.net/2026/May/11/zombie-internet/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-11T19:21:27Z",
-          "summary": "Your AI Use Is Breaking My Brain Excellent, angry piece by Jason Koebler on how AI writing online is becoming impossible to avoid, filtering it is mentally exhausting and it's even starting to distort regular human writing styles. I particularly liked his use of the term \"Zombie Internet\" to define a different, more insidious alternative to the \"Dead Internet\" (which is just bots talking to each other): I called it the Zombie Internet because the truth is that large parts of the internet are not just bots talking to bots or bots talking to people. It’s people talking to bots, people talking to people, people creating “AI agents” and then instructing them to interact with people. It’s people using AI talking to people who are not using AI, and it’s people using AI talking to other people who are using AI. It’s influencer hustlebros who are teaching each other how to make AI influencers and have spun up automated YouTube channels and blogs and social media accounts that are spamming the internet for the sole purpose of making money. It is whatever the fuck “Moltbook” is and whatever the fuck X and LinkedIn have become. It’s AI summaries of real books being sold as the book itself and inspirational Reddit posts and comment threads in which people give heartfelt advice to some account that’s actually being run by a marketing firm. [...] Via @jasonkoebler.bsky.social Tags: definitions , ai , generative-ai , llms , slop , jason-koebler , ai-ethics",
-          "tags": [
-            "definitions",
-            "ai",
-            "generative-ai",
-            "llms",
-            "slop",
-            "jason-koebler",
-            "ai-ethics"
-          ],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "d1b0467c32cd",
-          "title": "Using LLM in the shebang line of a script",
-          "url": "https://simonwillison.net/2026/May/11/llm-shebang/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-11T18:48:57Z",
-          "summary": "TIL: Using LLM in the shebang line of a script Kim_Bruning on Hacker News : But seriously, you can put a shebang on an english text file now (if you're sufficiently brave) [...] This inspired me to look at patterns for doing exactly that with LLM . Here's the simplest, which takes advantage of LLM fragments : #!/usr/bin/env -S llm -f Generate an SVG of a pelican riding a bicycle But you can also incorporate tool calls using the -T name_of_tool option: #!/usr/bin/env -S llm -T llm_time -f Write a haiku that mentions the exact current time Or even execute YAML templates directly that define extra tools as Python functions: # !/usr/bin/env -S llm -t model : gpt-5.4-mini system : | Use tools to run calculations functions : | def add(a: int, b: int) -&gt; int: return a + b def multiply(a: int, b: int) -&gt; int: return a * b Then: ./calc.sh 'what is 2344 * 5252 + 134' --td Which outputs (thanks to that --td tools debug option): Tool call: multiply({'a': 2344, 'b': 5252}) 12310688 Tool call: add({'a': 12310688, 'b': 134}) 12310822 2344 × 5252 + 134 = **12,310,822** Read the full TIL for a more complex example that uses the Datasette SQL API to answer questions about content on my blog. Tags: llm , llm-tool-use , llms , ai , generative-ai",
-          "tags": [
-            "llm",
-            "llm-tool-use",
-            "llms",
-            "ai",
-            "generative-ai"
-          ],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "af3b18e61db2",
-          "title": "Learning on the Shop floor",
-          "url": "https://simonwillison.net/2026/May/11/learning-on-the-shop-floor/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-11T15:46:36Z",
-          "summary": "Learning on the Shop floor Tobias Lütke describes Shopify's internal coding agent tool, River, which operates entirely in public on their Slack: River does not respond to direct messages. She politely declines and suggests to create a public channel for you and her to start working in. I myself work with river in #tobi_river channel and many followed this pattern. Every conversation is therefore searchable. Anyone at Shopify can jump in. In my own channel, there are over 100 people who, react to threads, add color and add context, pick up the torch, help with the reviews, remind me how rusty I am, and importantly, learn from watching. [...] As so often with German, there is a word for the kind of environment: Lehrwerkstatt . Literally: A teaching workshop . The whole shop floor is the classroom. You learn by being near the work. Being a constant learner is one of the core values of the firm. Shopify wants to be a Lehrwerkstatt at scale and River has now gotten us closer to this ideal than ever. It’s osmosis learning , because it does not require a curriculum, a training plan, or a manager. It just requires everyone's work to be visible to the maximum extent possible. Everyone learns from each other. I'm reminded of how Midjourney spent its first few years with the primary interface being public Discord channels, forcing users to share their prompts and learn from each other's experiments. I continue to believe that the early success of Midjourney was tied to this mechanism, helping to compensate for how weird and finicky text-to-image prompting is. Tags: ai , slack , generative-ai , llms , midjourney , coding-agents , tobias-lutke",
-          "tags": [
-            "ai",
-            "slack",
-            "generative-ai",
-            "llms",
-            "midjourney",
-            "coding-agents",
-            "tobias-lutke"
-          ],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "27f64a15f65d",
-          "title": "Learning Software Architecture",
-          "url": "https://matklad.github.io/2026/05/12/software-architecture.html",
-          "source": "matklad",
-          "category": "tech-blog",
-          "published_at": "2026-05-12T00:00:00Z",
-          "summary": "In reply to an email asking about learning software design skills as a researcher physicist:",
-          "tags": [],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "5e9b7fbac397",
-          "title": "Beyond efficiency: PayPal expands what's possible to build with AI",
-          "url": "https://cursor.com/blog/paypal",
-          "source": "Cursor Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-11T12:00:00Z",
-          "summary": "No summary available.",
-          "tags": [],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "a876daeb5b52",
-          "title": "Updates to Bugbot for Teams and Individuals",
-          "url": "https://cursor.com/blog/may-2026-bugbot-changes",
-          "source": "Cursor Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-11T12:00:00Z",
-          "summary": "No summary available.",
-          "tags": [
-            "product"
-          ],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "bf6af47b065b",
-          "title": "Automate progressive rollouts with Vercel Flags",
-          "url": "https://vercel.com/changelog/progressive-rollouts-in-vercel-flags",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-11T08:00:00Z",
-          "summary": "You can now use Vercel Flags to roll out a feature to a growing percentage of users on a schedule, with progressive rollouts. Unlike weighted splits, which hold a fixed distribution (for example, 50/50) for experiments, a progressive rollout follows a predefined schedule that gradually shifts the traffic percentage to the new variant. Each stage has a target percentage and a duration. Exposing a change in stages lets you catch a regression on a small slice of users before it hits everyone. Progressive rollouts are now available in the dashboard and through the new vercel flags rollout CLI command. Learn more in the Vercel Flags documentation . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "1c84b1f900a4",
-          "title": "How Superset built the IDE for AI agents on Vercel",
-          "url": "https://vercel.com/blog/how-superset-built-the-ide-for-ai-agents-on-vercel",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-10T14:00:00Z",
-          "summary": "Superset on Vercel 1,000–1,400 deployments per week ~600 preview deployments per day ~30 second average build time 57–64% week-over-week DAU growth Software development with AI started as a single engineer chatting with a single agent about a local repo. Today, developers direct fleets of agents in the cloud, but traditional tools were built for the old shape of the job: IDEs, terminals, and review systems designed for one developer moving one ticket at a time. Co-founders Kiet Ho, Satya Patel, and Avi Peltz, all former CTOs at YC-backed companies, built Superset as the IDE for multi-agent development. It runs up to 10 coding agents in parallel, each in its own isolated workspace. Developers use it to direct teams of agents generating code across multiple branches simultaneously. Running a team of agents in parallel changes what the platform underneath has to do. The product Superset offers its users only feels parallel because nothing on the platform forces the work to wait. If any layer slows down, even briefly, the parallelism on top collapses with it. Parallel agents need parallel infrastructure This workflow has a dependency that's invisible from the product surface. Every agent thread needs its own isolated environment, every branch needs a live URL, and every change needs a safe place to run. Without instant provisioning, parallel agents stop being parallel. CI pipelines have to be configured per branch, preview environments have to be managed by hand, and deploys back up behind one another. For a team running a dozen agents at once, that serialization is what breaks the product. Twelve workflows collapse into one queue, and a task that should take minutes takes hours. The developer is back to waiting, which is the exact problem Superset exists to solve. Six Next.js projects, no platform team Vercel was the default choice from the start, as all three founders had built on it at previous companies. From day one, Superset ran six Next.js projects on Vercel: the web app, marketing site, docs, and three supporting services. The team skipped platform engineering entirely and stayed focused on the product. Every branch a Superset developer or agent creates becomes a preview deployment automatically, often spinning up multiple services. At its peak, Superset generates roughly 600 preview deployments a day internally. Every branch gets a live URL, and the team never waits on a deploy queue. One AI stack for every workload Superset's AI stack grew with the product, and each piece of the Vercel platform was pulled in to solve a specific problem as functionality was added. Orchestration and model routing AI SDK and AI Elements run the agent orchestration itself, giving Superset a single interface for multi-model, multi-agent workflows. AI Gateway handles model routing without custom routing logic. Storage and compute Vercel Blob stores artifacts from agents and users, no object storage to manage. Fluid compute absorbs parallel tasks as agents fan out, scaling underneath without forcing the team to rearchitect. Active CPU pricing means cost is only incurred on actual compute, not round-trip time waiting on model responses. Operational controls Cron Jobs prevent parallel environments from piling up. BotID filters bots during high traffic periods, no custom middleware needed. As Superset has expanded into new product areas, the entire stack has stayed on Vercel. There's no second cloud to glue in, no orchestration layer to maintain, and no platform engineering team to keep it glued together. New surface areas gets built on the same primitives that handled the old surface area, which is what frees the team to keep moving on product instead of plumbing. Superset is its own super user The most credible proof how the Superset team uses Superset themselves. GitHub issues flow into Superset and get split across parallel workspaces, and Satya has tuned the team's setup to run up to a dozen instances at once. Multiple efforts move forward without anyone waiting on serial decisions. Compared to their previous dev workflows, Superset's commit graph looks exponential. Scaling through a Hacker News spike During a Hacker News \"Show HN\" launch , user counts tripled overnight. Superset absorbed the spike without anyone provisioning infrastructure mid-flight. That extends to incidents. If a customer reports an issue to Superset, their agents can spin up, write the fix, generate a preview, and merge the code in under thirty minutes. If the fix makes things worse, rollbacks are instant , so the cost of a bad deploy drops to near zero. \"Almost no time to deploy\" as the bar For Superset, immediate deployment matters because it keeps the loop between writing code, previewing it, and shipping it short enough that velocity never stalls, even across dozens of parallel workstreams. Build time averages around 30 seconds, and deployment volume runs between 1,000 and 1,400 a week. What's next The pattern for success is already clear: a product built for parallelism, by a team that works in parallel, on agentic infrastructure that doesn't force them back into a queue. Every new agent capability they ship to customers gets stress-tested first by their own engineers running a dozen at once. The dozen will become two dozen, and the infrastructure underneath was built to expect it. About Superset : Superset is built by a team of three ex-YC CTOs and its the IDE for the AI agents era, letting developers run multiple coding agents in parallel. Read more",
-          "tags": [],
-          "discovered_at": "2026-05-12T09:38:05Z"
-        },
-        {
-          "id": "ccd68ddd1079",
-          "title": "GitHub for Beginners: Getting started with OSS contributions",
-          "url": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-oss-contributions/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-11T16:00:00Z",
-          "summary": "Learn how to find opportunities to contribute to the open source community. The post GitHub for Beginners: Getting started with OSS contributions appeared first on The GitHub Blog .",
-          "tags": [
-            "Developer skills",
-            "GitHub",
-            "GitHub for beginners",
-            "open source"
-          ],
-          "discovered_at": "2026-05-12T09:38:05Z"
         }
       ]
     }
