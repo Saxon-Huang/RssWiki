@@ -1,6 +1,132 @@
 {
-  "generated_at": "2026-05-15T09:48:05Z",
+  "generated_at": "2026-05-16T08:47:40Z",
   "batches": [
+    {
+      "batch_id": "2026-05-16T08:47:40Z",
+      "generated_at": "2026-05-16T08:47:40Z",
+      "items": [
+        {
+          "id": "1d64c0e14e05",
+          "title": "inaturalist-clumper 0.1",
+          "url": "https://simonwillison.net/2026/May/15/inaturalist-clumper/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-15T23:53:11Z",
+          "summary": "Release: inaturalist-clumper 0.1 Part of the infrastructure I use for publishing my iNaturalist sightings on my blog . I've been running this in production for a few weeks now, inspiring some iterations on how it works, so I decided to ship a 0.1 release. You can see an example of the output in this JSON file . Tags: projects , inaturalist",
+          "tags": [
+            "projects",
+            "inaturalist"
+          ],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        },
+        {
+          "id": "fd6f1383b71d",
+          "title": "Western Gull, Rock Pigeon",
+          "url": "https://simonwillison.net/2026/May/15/sighting-361818285/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-15T14:42:00Z",
+          "summary": "Western Gull, Rock Pigeon, in Los Angeles Area (custom), CA, US I went for a bird walk in the morning before PyCon, and we spotted a local seagull enjoying a Starbucks.",
+          "tags": [],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        },
+        {
+          "id": "cacc9730059c",
+          "title": "QR code generator",
+          "url": "https://simonwillison.net/2026/May/15/qr-code-generator/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-15T04:00:49Z",
+          "summary": "Tool: QR code generator Claude helped me build this tool for creating QR codes, for both text/URLs and for connecting to WiFi networks. Tags: vibe-coding , tools , generative-ai , ai , llms",
+          "tags": [
+            "vibe-coding",
+            "tools",
+            "generative-ai",
+            "ai",
+            "llms"
+          ],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        },
+        {
+          "id": "c78ac9bb3d11",
+          "title": "datasette-llm-limits 0.1a0",
+          "url": "https://simonwillison.net/2026/May/15/datasette-llm-limits/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-15T00:42:09Z",
+          "summary": "Release: datasette-llm-limits 0.1a0 This plugin works in conjunction with datasette-llm and datasette-llm-accountant to let you configure a per-user (or global) spending limit for LLM usage inside of Datasette. Configuration looks something like this: plugins : datasette-llm-limits : limits : per-user-daily : scope : actor window : rolling-24h amount_usd : 1.00 Tags: llm , datasette",
+          "tags": [
+            "llm",
+            "datasette"
+          ],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        },
+        {
+          "id": "476826cc5deb",
+          "title": "Use native curl syntax with Vercel CLI",
+          "url": "https://vercel.com/changelog/use-native-curl-syntax-with-vercel-cli",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-15T00:00:00Z",
+          "summary": "You can now use native curl syntax with the Vercel CLI. The vercel curl command accepts full URLs, bare hostnames, and the --url flag, and uses your Vercel auth to bypass Deployment Protection . If you've linked a project, you can also pass just a path: Update to the latest Vercel CLI version and run vercel curl to get started. Learn more in the Vercel CLI documentation . Read more",
+          "tags": [],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        },
+        {
+          "id": "f2b0c966b5f6",
+          "title": "Sort providers by cost, latency, or throughput on AI Gateway",
+          "url": "https://vercel.com/changelog/sort-providers-by-cost-latency-or-throughput-on-ai-gateway",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-15T00:00:00Z",
+          "summary": "You can now sort the providers behind a model by cost, time to first token (TTFT), or throughput (TPS) in AI Gateway . The default provider order blends provider reliability, quality of model output, cost, and speed of response. You can now use sort for explicit control over ranking criteria. For models with many providers and noticeable cost or speed variation, you can use sort to optimize on your dimension of choice. Ranking is computed at request time, so newly added providers, price changes, and shifts in observed latency or throughput flow through automatically without any code changes. Set sort on providerOptions.gateway to one of the three values: Value Description Direction When to use 'cost' Sort by the provider's listed input price per million tokens Lowest price first High-volume, cost-sensitive work 'ttft' Sort by median time to first token, in ms Lowest latency first Latency-sensitive workloads where response speed matters 'tps' Sort by median tokens per second throughput Highest first Long-output generation where total response time matters most Basic usage Use sort to ensure optimizing for your metric of choice. In this example, AI Gateway has over five providers for GPT OSS 120B with different prices, so sorting by cost is a useful option for requests that want to route through the lowest price provider. Providers are tried in sort order. Fallback to the next provider only happens when the higher-ranked one is unavailable. Combine with other routing controls sort is compatible with other gateway routing options like Zero Data Retention (ZDR). The example below uses deepseek/deepseek-v4-pro for an interactive request where latency and data retention matter: AI Gateway filters to only providers for Deepseek V4 Pro that have zero data retention, and then sorts the remaining providers by time to first token (TTFT). sort also composes with order : providers listed in order are promoted to the front, and the remaining providers follow the requested sort criterion. Inspecting routing decisions See exactly why each request landed where it did. Every response includes a sort block in the routing metadata showing which providers were considered, the metric values used to rank them, the order they were attempted, and any that were deprioritized due to degraded health. For more information on sorting via AI Gateway, read the documentation . Read more",
+          "tags": [],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        },
+        {
+          "id": "f71661544a4a",
+          "title": "Protected Source Maps: Ship browser source maps securely",
+          "url": "https://vercel.com/changelog/protected-source-maps-ship-browser-source-maps-securely",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-14T00:00:00Z",
+          "summary": "You can now restrict access to production source maps with Protected Source Maps , which puts browser .map files behind Vercel Authentication . Your team can fetch them; everyone else gets a 404. Source maps are how you debug minified production code. They give you readable stack traces and your original source code, with the real filenames and line numbers intact. New projects have Protected Source Maps enabled by default. Existing projects can opt in from Settings → Deployment Protection, with no redeploy needed. Learn more in the documentation . Read more",
+          "tags": [],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        },
+        {
+          "id": "15e2ab30f961",
+          "title": "Building a general-purpose accessibility agent—and what we learned in the process",
+          "url": "https://github.blog/ai-and-ml/github-copilot/building-a-general-purpose-accessibility-agent-and-what-we-learned-in-the-process/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-15T16:00:00Z",
+          "summary": "Learn about the experimental general-purpose accessibility agent that GitHub is piloting. The post Building a general-purpose accessibility agent—and what we learned in the process appeared first on The GitHub Blog .",
+          "tags": [
+            "AI & ML",
+            "Generative AI",
+            "GitHub Copilot",
+            "accessibility"
+          ],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        },
+        {
+          "id": "585001b1978a",
+          "title": "Raising the bar: Quality, shared responsibility, and the future of GitHub’s bug bounty program",
+          "url": "https://github.blog/security/raising-the-bar-quality-shared-responsibility-and-the-future-of-githubs-bug-bounty-program/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-15T14:00:00Z",
+          "summary": "We're updating our bug bounty program standards to prioritize quality submissions, clarify shared responsibility boundaries, and evolve how we reward low-risk findings. The post Raising the bar: Quality, shared responsibility, and the future of GitHub&#8217;s bug bounty program appeared first on The GitHub Blog .",
+          "tags": [
+            "Security",
+            "bug bounty",
+            "security research"
+          ],
+          "discovered_at": "2026-05-16T08:47:40Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-05-15T09:48:05Z",
       "generated_at": "2026-05-15T09:48:05Z",
@@ -204,189 +330,6 @@
             "open source"
           ],
           "discovered_at": "2026-05-14T09:34:27Z"
-        }
-      ]
-    },
-    {
-      "batch_id": "2026-05-13T09:43:40Z",
-      "generated_at": "2026-05-13T09:43:40Z",
-      "items": [
-        {
-          "id": "bad92684dadf",
-          "title": "CSP Allow-list Experiment",
-          "url": "https://simonwillison.net/2026/May/13/csp-allow/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-13T04:50:45Z",
-          "summary": "Tool: CSP Allow-list Experiment An experiment that shows that you can load an app in a CSP-protected sandboxed iframe (see previous note ) and have a custom fetch() that intercepts CSP errors and passes them up to the parent window... which can then prompt the user to add that domain to an allow-list and then refresh the page. I built this one with GPT-5.5 xhigh running in the Codex desktop app. Tags: content-security-policy , iframes , security",
-          "tags": [
-            "content-security-policy",
-            "iframes",
-            "security"
-          ],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "4f7fd3e5d410",
-          "title": "datasette 1.0a29",
-          "url": "https://simonwillison.net/2026/May/12/datasette/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-12T23:41:06Z",
-          "summary": "Release: datasette 1.0a29 New TokenRestrictions.abbreviated(datasette) utility method for creating \"_r\" dictionaries. #2695 Table headers and column options are now visible even if a table contains zero rows. #2701 Fixed bug with display of column actions dialog on Mobile Safari. #2708 Fixed bug where tests could crash with a segfault due to a race condition between Datasette.close() and Datasette.close() . #2709 That segfault bug was gnarly . I added a mechanism to Datasette recently that would automatically close connections at the end of each test, but it turned out that introduced a race condition where an in-flight query could sometimes be executing in a thread against a connection while it was being closed. I ended up solving that by having Codex CLI (with GPT-5.5 xhigh) create a minimal Dockerfile that recreated the bug. Tags: projects , datasette",
-          "tags": [
-            "projects",
-            "datasette"
-          ],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "dbc4f9084771",
-          "title": "Quoting Mo Bitar",
-          "url": "https://simonwillison.net/2026/May/12/mo-bitar/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-12T22:59:58Z",
-          "summary": "Now, if your CEO has never heard the phrase Ralph Loop, oh man, you are less than 30 days away from your next promotion. I'm not even exaggerating. Walk into his office, close the door, and say, hey chief, been experimenting with something. It's called Ralph Loops. And I think it could change literally everything. And he's gonna say, what's a Ralph loop? And you will say, give me $18,000 worth of API credits and I'll show you. Now you won't actually do anything, because you can't do anything. Because nobody can, because nobody knows what they're doing. But by the time he figures that out, you'll have a new title, and equity bump. [...] Talk about automation constantly. Nothing arouses the slumbering capitalists than the mention of automation. Drop names too, bro. Like talk about specific team members you can automate out of existence. Be like, yo, I automated Gary, bro. Tag Gary in the message. Tag him in Slack in a very public channel. Be like, yo, I just automated @Gary. His function has been Ralph Looped. And tag your CEO in the same message. You think you're getting laid off after that? &mdash; Mo Bitar , The Unethical Guide to Surviving AI Layoffs, TikTok Tags: ai-ethics , tiktok , careers , ai",
-          "tags": [
-            "ai-ethics",
-            "tiktok",
-            "careers",
-            "ai"
-          ],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "8f1404f549b0",
-          "title": "Quoting Mitchell Hashimoto",
-          "url": "https://simonwillison.net/2026/May/12/mitchell-hashimoto/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-12T22:21:51Z",
-          "summary": "The thing about 90% of TDMs [Technical Decision Makers] is that they're motivated primarily by NOT GETTING FIRED. These aren't people who browser Lobsters or push to GH on the weekend. These are people that work 9 to 5, get paid, go home, and NEVER THINK ABOUT WORK AGAIN. So to achieve all that, they follow secular trends supported by analysts and broad public sentiment. Oh, Gartner said that \"AI strategy\" is most important? McKinsey said \"context\" needs to be managed? Well, \"Context Engine for AI Apps\" is going to be defensible. Buy it. &mdash; Mitchell Hashimoto , in a conversation about the design of the Redis homepage Tags: marketing , mitchell-hashimoto , redis",
-          "tags": [
-            "marketing",
-            "mitchell-hashimoto",
-            "redis"
-          ],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "f6cdc92adccd",
-          "title": "llm 0.32a2",
-          "url": "https://simonwillison.net/2026/May/12/llm/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-12T17:45:07Z",
-          "summary": "Release: llm 0.32a2 A bunch of useful stuff in this LLM alpha, but the most important detail is this one: Most reasoning-capable OpenAI models now use the /v1/responses endpoint instead of /v1/chat/completions . This enables interleaved reasoning across tool calls for GPT-5 class models. #1435 This means you can now see the summarized reasoning tokens when you run prompts against an OpenAI model, displayed in a different color to standard error. Use the -R or --hide-reasoning flags if you don't want to see that. Tags: llm , projects , openai , generative-ai , annotated-release-notes , ai , llms",
-          "tags": [
-            "llm",
-            "projects",
-            "openai",
-            "generative-ai",
-            "annotated-release-notes",
-            "ai",
-            "llms"
-          ],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "7327945961dc",
-          "title": "Building Software Requires Digestion",
-          "url": "https://blog.jim-nielsen.com/2026/software-requires-digestion/",
-          "source": "Jim Nielsen",
-          "category": "tech-blog",
-          "published_at": "2026-05-12T19:00:00Z",
-          "summary": "Here’s Scott Jenson in his insightful piece “The Ma of a New Machine” : the chatbot interface [makes us] feel like deep cognitive work is happening. But the interface is fundamentally reactive. It spits complex text at you, you skim it quickly, and you immediately type a reaction to keep the momentum going. My hypothesis is that the very structure of the chatbot interface (type, read, type again) actively discourages reflection. When you are moving too fast, you get stuck in a groove. You literally need to take a break, step back, and basically step out of this groove so you can view the problem from a new angle. We’ve all walked away from a tough problem only to have the solution arrive unbidden into our thoughts later in the day. In my decades+ experience designing and developing software, I can’t count the number of times I’ve stepped away from a problem at the computer only to return and find the problem magically resolved in my brain. But the human-computer interaction of prompting doesn’t encourage the use of that skill in our subconscious. In fact, I think it actively discourages it (our tools shape us). Scott talks about this Japanese concept called “Ma” which is about deliberately creating pauses between things. He quotes Studio Ghibli director Hayao Miyazaki who says “if you just have non-stop action with no breathing space at all, it’s just busyness.” Here’s Scott (emphasis mine): Ma provides a framework for understanding that a pause is not a lack of work As humans we need pauses. We need space to breathe. We need time to digest. Pausing, breathing, synthesizing, digesting — these are all necessary work . “Digestion” is an interesting word here. Putting food in your body is merely the beginning of feeding yourself. Our bodies must digest that food, break it down, absorb it, and get rid of the waste. But that’s all happening mostly without our attentive oversight, so I guess it’s not “real” work — right? Wrong. Building good, healthy software requires digestion. Reply via: Email · Mastodon · Bluesky",
-          "tags": [],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "a2052cbe644b",
-          "title": "Trusted Sources for Deployment Protection",
-          "url": "https://vercel.com/changelog/trusted-sources-for-deployment-protection",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-13T00:00:00Z",
-          "summary": "Trusted Sources lets protected deployments accept short-lived identity tokens (OIDC) from Vercel projects and external services you authorize, so you no longer have to share a long-lived Protection Bypass for Automation secret. Trusted Sources is the recommended approach, but Protection Bypass for Automation continues to work Callers attach an OIDC token in the x-vercel-trusted-oidc-idp-token header. Vercel then verifies the signature, checks the claims you configured, and confirms the environment matches the rule. Authorize Vercel projects By default, the Vercel OIDC token for a project can call its own deployments. To authorize another project in the same team, add it to Trusted Sources. Self-access and cross-project rules are both customizable with from / to environment pairs. To authenticate a request from a project, forward its Vercel OIDC token: Authorize external services Any custom OIDC provider can be authorized as a trusted external service, such as GitHub Actions, or a Vercel project in another team. Read the documentation to learn more. Read more",
-          "tags": [],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "798d523ed7ee",
-          "title": "Create Vercel Firewall rules with natural language",
-          "url": "https://vercel.com/changelog/create-vercel-waf-custom-rules-using-natural-language",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-12T19:00:00Z",
-          "summary": "Vercel Firewall now lets you create WAF custom rules using natural language. Describe the behavior you need and the dashboard will generate the rule. Visit the firewall custom rules page to try creating a rate-limiting rule: WAF custom rules let you control traffic to your site by logging, blocking, challenging, rate limiting, or redirecting requests based on conditions like IP address, path, country, user agent, and more. For example, you can: Log all requests to /api/webhook with a missing authorization header Block all requests to /wp-admin Challenge all traffic to /checkout that doesn't come from the US Generate your first rule or learn more in the documentation . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "7e45dcde8ee0",
-          "title": "Fast mode for Opus 4.7 available on AI Gateway",
-          "url": "https://vercel.com/changelog/fast-mode-for-opus-4-7-available-on-ai-gateway",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-12T08:00:00Z",
-          "summary": "Fast mode for Claude Opus 4.7 is now available on AI Gateway in research preview. Fast mode delivers ~2.5x faster output token generation with full Opus 4.7 intelligence. This is an early, experimental feature. To enable fast mode, pass speed: 'fast' in the anthropic provider options with anthropic/claude-opus-4.7 . You can use fast mode with Claude Code via AI Gateway by setting the CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK and CLAUDE_CODE_ENABLE_OPUS_4_7_FAST_MODE variables in your shell configuration file or in ~/.claude/settings.json . Fast mode is priced at 6x standard Opus rates. Standard Fast Mode Input: $5 / 1M tokens Output: $25 / 1M tokens Input: $30 / 1M tokens Output: $150 / 1M tokens All standard pricing multipliers (e.g., prompt caching) apply on top of these rates. Read more",
-          "tags": [],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "d64596b9f020",
-          "title": "Manage Vercel Firewall in the CLI",
-          "url": "https://vercel.com/changelog/manage-vercel-firewall-in-the-cli",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-12T04:00:00Z",
-          "summary": "You can now manage the Vercel Firewall directly from the CLI. Using the vercel firewall command, you can configure custom rules , IP blocks , system bypasses , attack mode , and system mitigations . Building on the new CLI commands, the Vercel Firewall skill lets agents interact with the Firewall and includes best practices for rolling out new Firewall rules safely. Update to the latest CLI version and run vercel firewall to get started. Learn more about the Vercel Firewall CLI commands. Read more",
-          "tags": [],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "e8c0b0850db6",
-          "title": "Node.js 26.x now available on Vercel Sandboxes",
-          "url": "https://vercel.com/changelog/node-js-26-x-now-available-on-vercel-sandboxes",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-12T00:00:00Z",
-          "summary": "Vercel Sandbox now supports Node.js version 26. To run a Sandbox with Node.js 26, upgrade @vercel/sandbox to 1.10.2 or later, or to 2.0.0-beta.19 or later if you're using v2 and set the runtime property to node26 : Get started today and learn more in the documentation . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "ce13f861b472",
-          "title": "GitHub Copilot individual plans: Introducing flex allotments in Pro and Pro+, and a new Max plan",
-          "url": "https://github.blog/news-insights/company-news/github-copilot-individual-plans-introducing-flex-allotments-in-pro-and-pro-and-a-new-max-plan/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-12T17:35:41Z",
-          "summary": "Starting June 1, our lineup of individual plans will update based on your feedback. The post GitHub Copilot individual plans: Introducing flex allotments in Pro and Pro+, and a new Max plan appeared first on The GitHub Blog .",
-          "tags": [
-            "Company news",
-            "News & insights"
-          ],
-          "discovered_at": "2026-05-13T09:43:40Z"
-        },
-        {
-          "id": "5135cdc46742",
-          "title": "Dungeons & Desktops: Building a procedurally generated roguelike with GitHub Copilot CLI",
-          "url": "https://github.blog/ai-and-ml/github-copilot/dungeons-desktops-building-a-procedurally-generated-roguelike-with-github-copilot-cli/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-12T15:00:00Z",
-          "summary": "Learn how one Hubber used GitHub Copilot CLI to build an extension that turns any codebase into a unique, roguelike dungeon. The post Dungeons &amp; Desktops: Building a procedurally generated roguelike with GitHub Copilot CLI appeared first on The GitHub Blog .",
-          "tags": [
-            "AI & ML",
-            "Application development",
-            "Gaming",
-            "GitHub Copilot",
-            "gaming",
-            "GitHub Copilot CLI"
-          ],
-          "discovered_at": "2026-05-13T09:43:40Z"
         }
       ]
     }
