@@ -1,6 +1,41 @@
 {
-  "generated_at": "2026-05-16T08:47:40Z",
+  "generated_at": "2026-05-17T09:04:31Z",
   "batches": [
+    {
+      "batch_id": "2026-05-17T09:04:31Z",
+      "generated_at": "2026-05-17T09:04:31Z",
+      "items": [
+        {
+          "id": "d8cb63d017bb",
+          "title": "Warelay -> OpenClaw",
+          "url": "https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-16T20:23:30Z",
+          "summary": "In preparation for a lightning talk I'm giving at PyCon US this afternoon I decided to figure out how many names OpenClaw has actually had since that first commit back in November. Thanks to this first_line_history.py tool ( code here ) the answer, according to the Git history of the OpenClaw README, is: Warelay → CLAWDIS → CLAWDBOT → Clawdbot → Moltbot →🦞 OpenClaw Or in detail (the output from the tool): 2025-11-24T11:23:15+01:00 16dfc1a # Warelay — WhatsApp Relay CLI (Twilio) 2025-11-24T11:41:37+01:00 d4153da # 📡 Warelay — WhatsApp Relay CLI (Twilio) 2025-11-24T17:47:57+01:00 343ef9b # 📡 warelay — WhatsApp Relay CLI (Twilio) 2025-11-25T04:44:10+01:00 14b3c6f # 📡 warelay — WhatsApp Relay CLI 2025-11-25T12:48:40+01:00 4814021 # 📡 warelay — Send, receive, and auto-reply on WhatsApp—Twilio-backed or QR-linked. 2025-11-25T13:50:18+01:00 d51a3e9 # warelay 📡 - Send, receive, and auto-reply on WhatsApp via Twilio or QR-linked WhatsApp Web; webhook setup in one command 2025-11-25T13:51:13+01:00 4d2a8a8 # 📡 warelay — Send, receive, and auto-reply on WhatsApp—Twilio-backed or QR-linked. 2025-11-25T14:52:43+01:00 1ef7f4d # 📡 warelay — Send, receive, and auto-reply on WhatsApp. 2025-12-03T15:45:32+00:00 a27ee23 # 🦞 CLAWDIS — WhatsApp Gateway for AI Agents 2025-12-08T12:43:13+01:00 17fa2f4 # 🦞 CLAWDIS — WhatsApp &amp; Telegram Gateway for AI Agents 2025-12-19T18:41:17+01:00 7710439 # 🦞 CLAWDIS — Personal AI Assistant 2026-01-04T14:32:47+00:00 246adaa # 🦞 CLAWDBOT — Personal AI Assistant 2026-01-10T05:14:09+01:00 cdb915d # 🦞 Clawdbot — Personal AI Assistant 2026-01-27T13:37:47-05:00 3fe4b25 # 🦞 Moltbot — Personal AI Assistant 2026-01-30T03:15:10+01:00 9a71607 # 🦞 OpenClaw — Personal AI Assistant Tags: openclaw , git , tools",
+          "tags": [
+            "openclaw",
+            "git",
+            "tools"
+          ],
+          "discovered_at": "2026-05-17T09:04:31Z"
+        },
+        {
+          "id": "6ce3e6ac5419",
+          "title": "Quoting Julia Evans",
+          "url": "https://simonwillison.net/2026/May/16/julia-evans/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-16T16:45:37Z",
+          "summary": "[...] in the last 10 years I’ve learned to really love and respect CSS as a technology. So I decided years ago that I wanted to react to “CSS is hard” by getting better at CSS and taking it seriously as a technology, instead of devaluing it. Doing that changed everything for me: I learned that so many of my frustrations (“centering is impossible”) had been addressed in CSS a long time ago, and that also what “centering” means is not always straightforward and it makes sense that there are many ways to do it. CSS is hard because it’s solving a hard problem! &mdash; Julia Evans , Moving away from Tailwind, and learning to structure my CSS Tags: css , julia-evans",
+          "tags": [
+            "css",
+            "julia-evans"
+          ],
+          "discovered_at": "2026-05-17T09:04:31Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-05-16T08:47:40Z",
       "generated_at": "2026-05-16T08:47:40Z",
@@ -249,87 +284,6 @@
           "summary": "I didn’t expect DwarfStar 4 (https://github.com/antirez/ds4) to become so popular so fast. It is clear that there was a need for single-model integration focused local AI experience, and that a few things happened together: the release of a quasi-frontier model that is large and fast enough to change the game of local inference, and the fact that it works extremely well with an extremely asymmetric quants recipe of 2/8 bit, so that 96 or 128GB of RAM are enough to run it. And, of course: all the experience produced by the local AI movement in the latest years, that can be leveraged more promptly because of GPT 5.5 (otherwise you can’t build DS4 in one week — and even with all this help you need to know how to gently talk to LLMs). The last week was funny and also tiring, I worked 14 hours per day on average. My normal average is 4/6 since early Redis times, but the first few months of Redis were like that. So, what’s next? Is this a project that starts and ends with DeepSeek v4 Flash? Nope, the model can change over time. The space will be occupied, in my vision, by the best current open weights model that is *practically fast* on a high end Mac or “GPU in a box” gear (like the DGX Spark and other similar setups). I bet that the next contender is DeepSeek v4 Flash itself, in the new checkpoint that will be released and, hopefully, a version specifically tuned for coding, and who knows, other expert-variants (not in the sense of MoE experts) maybe. For local inference, to have a ds4-coding, ds4-legal, ds4-medical models make a lot of sense, after all. You just load what you need depending on the question. It is the first time since I play with local inference (I play with it since the start) that I find myself using a local model for serious stuff that I would normally ask to Claude / GPT. This, I think, is really a big thing. It is also the first time that using vector steering I can enjoy an experience where the LLM can be used with more freedom. DeepSeek v4 Flash is really an impressive model, no doubt about that. If you can imagine in your mind the small good local model experience as A, and the frontier model you use online as B, DS4 is a lot more B than A. I can’t wait for the new releases, honestly (btw, thank you DeepSeek). So, after those chaotic first days, I hope the project will focus on: quality benchmarks, potentially adding a coding agent that is also part of the project, a hardware setup here in my home that can run the CI test in order to ensure long term quality, more ports, and finally but as a very important point: distributed inference (both serial and parallel). For now, thank you for all the support: it was really appreciated :) AI is too critical to be just a provided service. Comments",
           "tags": [],
           "discovered_at": "2026-05-15T09:48:05Z"
-        }
-      ]
-    },
-    {
-      "batch_id": "2026-05-14T09:34:27Z",
-      "generated_at": "2026-05-14T09:34:27Z",
-      "items": [
-        {
-          "id": "f97f65b9b60f",
-          "title": "Welcome to the Datasette blog",
-          "url": "https://simonwillison.net/2026/May/13/welcome-to-the-datasette-blog/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-13T23:59:39Z",
-          "summary": "Welcome to the Datasette blog We have a bunch of neat Datasette announcements in the pipeline so we decided it was time the project grew an official blog. I built this using OpenAI Codex desktop, which turns out to have the Markdown session transcript export feature I've always wanted. Here's the session that built the blog . See also issue 179 . Tags: ai , datasette , generative-ai , llms , ai-assisted-programming , codex",
-          "tags": [
-            "ai",
-            "datasette",
-            "generative-ai",
-            "llms",
-            "ai-assisted-programming",
-            "codex"
-          ],
-          "discovered_at": "2026-05-14T09:34:27Z"
-        },
-        {
-          "id": "b549a5489129",
-          "title": "Quoting Boris Mann",
-          "url": "https://simonwillison.net/2026/May/13/boris-mann/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-13T16:15:50Z",
-          "summary": "“11 AI agents” is meaningless as a phrase. If I said “I have 11 spreadsheets” or “I have 11 browser tabs” to do my work, it means about the same thing. &mdash; Boris Mann Tags: ai-agents , ai , agent-definitions",
-          "tags": [
-            "ai-agents",
-            "ai",
-            "agent-definitions"
-          ],
-          "discovered_at": "2026-05-14T09:34:27Z"
-        },
-        {
-          "id": "1342ac5560bf",
-          "title": "Development environments for your agents",
-          "url": "https://cursor.com/blog/cloud-agent-development-environments",
-          "source": "Cursor Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-13T12:00:00Z",
-          "summary": "No summary available.",
-          "tags": [
-            "product"
-          ],
-          "discovered_at": "2026-05-14T09:34:27Z"
-        },
-        {
-          "id": "1fc2aeb89c46",
-          "title": "AI Gateway production index",
-          "url": "https://vercel.com/blog/ai-gateway-production-index",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-12T04:00:00Z",
-          "summary": "Ask which AI model is best, and the answer changes before the ink dries. That's what happens in an industry where new models are released weekly. Every benchmark measures a different race, and every race crowns its own winner, but Vercel has a unique view of the industry through production workloads. AI Gateway serves tens of trillions of tokens across hundreds of models through real applications and agents. What we're seeing : Anthropic leads in spend despite a higher unit price, Google leads in volume OSS models are gaining traction, but there is no loyalty to specific labs OpenAI spend share is growing quickly after recent model updates High-volume workloads route across 30+ distinct models on average Agentic workloads carry 59% of all token volume (up 2x over 6 months) This report is built on data from seven months of production traffic from AI Gateway, with usage from over 200K+ unique teams. Anthropic leads in spend; Google leads in volume Cost and volume rankings disagree because they measure two different workloads, even for the same customer. By spend in April 2026, Anthropic took 61%, Google 21%, and OpenAI 12%. By token volume, the picture flipped. 38% of April traffic through AI Gateway routed to Google, 26% to Anthropic, 13% to OpenAI, and 10% to xAI. Smaller labs split the rest. Some models are positioned to win by being cheap enough per token to carry huge volume, while others are priced high enough to make sense only for quality-critical work. The different models are not competing for the same call. In aggregate the same customer base sits on both leaderboards, with premium reasoning calls landing on Claude Opus and cheap fast calls landing on Gemini Flash . Spend follows the high-stakes calls, and volume follows the low-stakes ones, with the labs each holding a different layer of the same applications. Volume-vs-spend also changes quickly at the lab level. A few specific signals: Gemini Flash helped Google take the lead on volume at a smaller share of spend Claude Opus helps Anthropic lead on spend with less volume than Google OpenAI's spend share tripled from March to April after the GPT-5.4/5.5 releases Google's spend share climbed from 8% in March to 21% in April as Gemini Flash usage scaled Spend follows the cost of being wrong The same cost/volume divide exists at a finer grain inside specific kinds workloads: Personal assistants account for 20% of cost on 40% of token volume Coding agents sit roughly balanced at 22% of cost on 20% of tokens Back office agents run at 6% of cost on 15% of tokens App generation runs at 7% of cost on 11% of tokens What a workload spends per token is a function of how expensive a wrong answer is to the use case. Personal assistants can run on cheap, fast models because mistakes only impact individual users and are quickly corrected. Back-office workflows pay for stronger reasoning because errors can trigger legal, financial, or operational risks that outweigh the per-call savings. The per-token economics are a stake map: applications spend more per token when mistakes cost more. The same pattern holds in a broader B2C/B2B split. B2C applications generate many low-cost calls, while B2B applications run fewer, more expensive ones. On a per-token basis, B2B costs roughly two times as much as B2C. No single provider wins across use cases Cutting the data by use case shows a fragmented provider landscape: Anthropic notably leads in software building Google over-indexes in consumer OpenAI is the most evenly distributed xAI and others are split across coding, consumer, and long-tail use cases Anthropic's pattern is concentration at the high-stakes layer. As the workload moves from back office to consumer, Anthropic's token share drops from 71% down to 7%. Its cost share follows a much shallower curve and keeps the lead through three of the four categories. The revenue concentrates wherever the answer has to be right, regardless of how much volume passes through. Google is the inverse shape. Its footprint concentrates in consumer, where Gemini Flash carries 28% of tokens at 15% of cost, and barely appears on the cost chart outside it. The position is a single-SKU bet that rises and falls with Flash adoption. xAI is a price wedge. Grok carries 20% of building tokens and 18% of outreach tokens at materially smaller cost shares in each. xAI wins on price-to-quality fit, and whoever matches the price closes the wedge. OpenAI is the most balanced of the four at 6% of building cost, 18% of consumer cost, and 28% of outreach cost. No single layer is load-bearing for OpenAI's overall share, which makes the company the least exposed of the four to disruption in any one layer. Open-weights families like Kimi , MiniMax , and GLM rotate through the consumer and building tiers where the cost ceiling is lowest. Their cost share stays small, and their token share inside consumer and building is large enough that any cost-only view of the market understates them. There is no single dominant provider across the whole market because there is no single dominant use case. The right question is not \"Who is winning AI?\", it is \"Which models are winning the use case I care about?\" The labs that look closest to even on a blended chart are competing for different layers of the same stack. Apps are becoming more agentic The shape of production AI requests has changed underneath all of this. In April 2026, 22.2% of AI Gateway requests ended with a tool call, up from 11.4% in October 2025. Measured by tokens, the shift is bigger. 58.9% of all tokens are now in tool-call requests, up from 31.6% six months ago. By both measures the agentic share roughly doubled in half a year, but the more telling number is the gap between the two shares. 22.2% of requests carry 58.9% of tokens, which means tool-using requests are about 2.6× more token-heavy than the rest. The cost surface of AI has shifted from chat-shaped to agent-shaped, while headline request counts barely budged. Every kind of round trip bills against the same meter, whether it's a function execution, an API call, a database query, or a code run, so an agent shipping ten tool calls bills roughly ten times the tokens a chat would. Where a chat bills one round trip per prompt, an agent bills a chain. Leaderboards rank one model, but production teams use 35+ at scale At scale, multi-model stops being a choice and becomes standard agent architecture. Teams running 1K to 10K requests averaged 3 distinct models. By the 10M+ requests bucket, the average is 35 models in regular use. The jump from 18 models in the 1M to 10M bucket to 35 in the 10M+ bucket is the inflection point. A 35-model fleet runs as a routing graph, with a cheap classifier for intent detection, a frontier model for the reasoning step, an embedding model for retrieval, a fast model for summarization, and a vision model for screenshots. Every one of those models is swappable. If a provider raises prices, degrades quality, or has an outage, traffic redistributes across the rest in hours. At the scale that produces most of the spend on the leaderboards, switching between labs is closer to a config change than to a vendor migration, and the standard story about lab lock-in inverts the higher you go on the request-volume curve. New models are adopted rapidly The same fleet design explains how fast new releases get absorbed. When a new version ships inside a model family, traffic moves to it within weeks. Claude Sonnet 4.6 absorbed most of the Sonnet family's share by its first full month after launch. The Opus family is moving through the same shape now, with Claude Opus 4.7 taking share from Opus 4.6 on a near-identical curve. Predecessor models stayed live and routable on AI Gateway throughout both windows, but teams moved anyway. The migration is a config change, and the labs no longer set the upgrade timeline of their own product lines. Provider outages have a hidden cost Roughly 3.5% of requests on AI Gateway complete after a fallback. That means the initial route hit an error, a rate limit, or a timeout, and the gateway reissued the request to a healthy alternative fast enough that the user still got a successful response. Measured in tokens the rescue rate runs at 5.1%, and in dollars at 4.9%. The token-weighted and cost-weighted rates run higher than the request-weighted rate because the requests that get rescued are, on average, bigger and more expensive than the ones that don't. Long context windows hit rate limits more often than short ones, multi-step agent runs accumulate failure across steps, and heavy reasoning calls time out under sustained load. Each of those failure modes targets the expensive end of the workload, which is why the dollar rate sits higher than the request rate. A provider's SLA measures request-level uptime, but a production application experiences cost-weighted uptime, and the two come apart on exactly the calls that paid for the model. Conclusion: Build for workload, not the lab Production workloads are designed for efficiency, reliability, and flexibility, not to match the latest model leaderboards. Across six cuts of the same data, the shape underneath stays the same. Different labs win different layers of the same applications, and the architecture that handles those layers is the one production teams at scale have already built for. This echoes the early cloud era. Teams expanded compute first (more instances, regions, redundancy) and squeezed per-unit cost later. The 35-model fleets visible at the top of the spend curve are the same patter at a faster cadence; the optimization that follows happens at the routing layer. For anyone shipping AI today: Plan for multiple models across providers Assume the need for fallbacks to optimize for uptime and cost Design routing as a core unit of architecture from the beginning We expect to revisit this data on a recurring cadence as the patterns shift. Live model rankings are available on the AI Gateway Leaderboards . About this data This analysis is based on anonymized, aggregate routing data from the Vercel AI Gateway through April 2026. A few notes on measurement: Spend uses market-rate pricing (published list price) to provide a normalized view across teams that bring their own API keys. Volume counts tokens routed through AI Gateway. B2C , B2B , and use-case classifications are aggregate. No individual team or workload is identified. Read more",
-          "tags": [],
-          "discovered_at": "2026-05-14T09:34:27Z"
-        },
-        {
-          "id": "e8f95781d013",
-          "title": "Dungeons & Desktops: 10 roguelikes that never die (because their communities won’t let them)",
-          "url": "https://github.blog/open-source/gaming/dungeons-desktops-10-roguelikes-that-never-die-because-their-communities-wont-let-them/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-13T16:00:00Z",
-          "summary": "Roguelikes don’t die. They fork, mutate, get argued over, rewritten, abandoned, and revived again. Sometimes all at once. The post Dungeons &amp; Desktops: 10 roguelikes that never die (because their communities won’t let them) appeared first on The GitHub Blog .",
-          "tags": [
-            "Application development",
-            "Developer skills",
-            "Gaming",
-            "Open Source",
-            "game development",
-            "open source"
-          ],
-          "discovered_at": "2026-05-14T09:34:27Z"
         }
       ]
     }
