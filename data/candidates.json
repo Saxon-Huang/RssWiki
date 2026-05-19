@@ -1,6 +1,131 @@
 {
-  "generated_at": "2026-05-18T11:06:26Z",
+  "generated_at": "2026-05-19T10:37:04Z",
   "batches": [
+    {
+      "batch_id": "2026-05-19T10:37:04Z",
+      "generated_at": "2026-05-19T10:37:04Z",
+      "items": [
+        {
+          "id": "1c555495cdda",
+          "title": "The last six months in LLMs in five minutes",
+          "url": "https://simonwillison.net/2026/May/19/5-minute-llms/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-19T01:09:44Z",
+          "summary": "I put together these annotated slides from my five minute lightning talk at PyCon US 2026, using the latest iteration of my annotated presentation tool . # I presented this lightning talk at PyCon US 2026, attempting to summarize the last six months of developments in LLMs in five minutes. # Six months is a pretty convenient time period to cover, because it captures what I've been calling the November 2025 inflection point . November was a critical month in LLMs, especially for coding. # For one thing, the supposedly \"best\" model (depending mostly on vibes) changed hands five times between the three big providers. # As always, I'm using my Generate an SVG of a pelican riding a bicycle test to help illustrate the differences between the models. Why this test? Because pelicans are hard to draw, bicycles are hard to draw, pelicans can't ride bicycles ... and there's zero chance any AI lab would train a model for such a ridiculous task. # At the start of November the widely acknowledged \"best\" model was Claude Sonnet 4.5, released on 29th September . It drew me this pelican. In November it was overtaken by GPT-5.1 , then Gemini 3 , then GPT-5.1 Codex Max , and then Anthropic took the crown back again with Claude Opus 4.5 . I think Gemini 3 drew the best pelican out of this lot, but pelicans aren't everything. Most practitioners will agree that Opus 4.5 held the crown for the next couple of months. # It took a little while for this to become clear, but the real news from November was that the coding agents got good . OpenAI and Anthropic had spent most of 2025 running Reinforcement Learning from Verifiable Rewards to increase the quality of code written by their models, especially when paired up with their Codex and Claude Code agent harnesses. In November the results of this work became apparent. Coding agents went from often-work to mostly-work, crossing a quality barrier where you could use them as a daily-driver to get real work done, without needing to spend most of your time fixing their stupid mistakes. # Also in November, this happened - the first commit to an obscure (back then) repo called \"Warelay\" by some guy called Pete. # Over the holiday period, from December to January, a whole lot of us took advantage of the break to have a poke at these new models and coding agents and see what they could do. They could do a lot! Some of us got a little bit over-excited. I had my own short-lived bout of a form of LLM psychosis as I started spinning up wildly ambitious projects to see how far I could push them. # One of my projects was a vibe-coded implementation of JavaScript in Python - a loose port of MicroQuickJS - which I called micro-javascript . You can try it out in your browser in this playground . # That playground demo shows JavaScript code run using my micro-javascript library, in Python, running inside Pyodide, running in WebAssembly, running in JavaScript, running in a browser! It's pretty cool! But did anyone out there need a buggy, slow, insecure half-baked implementation of JavaScript in Python? They did not. I have quite a few other projects from that holiday period that I have since quietly retired! # On to February. Remember that Warelay project that had its first commit at the end of November? # In December and January it had gone through quite a few name changes ... and by February it was taking the world by storm under its final name, OpenClaw . The amount of attention it got is pretty astonishing for a project that was less than three months old. # OpenClaw is a \"personal AI assistant\", and we actually got a generic term for these, based on NanoClaw and ZeroClaw and suchlike... they're called Claws . # Mac Minis started to sell out around Silicon Valley, because people were buying them to run their Claws. Drew Breunig joked to me that this is because they're the new digital pets, and a Mac Mini is the perfect aquarium for your Claw. # My favourite metaphor for Claws is Alfred Molina's Doc Ock in the 2004 movie Spider-Man 2. His claws were powered by AI, and were perfectly safe provided nothing damaged his inhibitor chip... after which they turned evil and took over. # Also in February: Gemini 3.1 Pro came out, and drew me a really good pelican riding a bicycle . Look at this! It's even got a fish in its basket. # And then Google's Jeff Dean tweeted this video of an animated pelican riding a bicycle, plus a frog on a penny-farthing and a giraffe driving a tiny car and an ostrich on roller skates and a turtle kickflipping a skateboard and a dachshund driving a stretch limousine. So maybe the AI labs have been paying attention after all! # A lot of stuff happened just in the past month. # Google released the Gemma 4 series of models, which are the most capable open weight models I've seen from a US company. # Also last month, Chinese AI lab GLM came out with GLM-5.1 - an open weight 1.5TB monster! This is a very effective model... if you can afford the hardware to run it. # GLM-5.1 drew me this very competent pelican on a bicycle. # ... though when it tried to animate it the bicycle bounced off into the top and the bicycle got warped. # Charles on Bluesky suggested I try it with a North Virginia Opossum on an E-scooter # And it did this! I've tried this on other models and they don't even come close. \"Cruising the commonwealth since dusk\" is perfect. It's animated too . # The other neat Chinese open weight models in April came from Qwen. Qwen3.6-35B-A3B on my laptop drew me a better pelican than Claude Opus 4.7 . That's a 20.9GB open weights model that runs on my laptop! (I think this mainly demonstrates that the pelican on the bicycle has firmly exceeded its limits as a useful benchmark.) # Here's that Claude Sonnet 4.5 pelican from September for comparison. # So those were the two main themes of the past six months. The coding agents got really good... and the laptop-available models, while a lot weaker than the frontier, have started wildly outperforming expectations. Tags: lightning-talks , pycon , speaking , ai , generative-ai , local-llms , llms , annotated-talks , pelican-riding-a-bicycle , coding-agents",
+          "tags": [
+            "lightning-talks",
+            "pycon",
+            "speaking",
+            "ai",
+            "generative-ai",
+            "local-llms",
+            "llms",
+            "annotated-talks",
+            "pelican-riding-a-bicycle",
+            "coding-agents"
+          ],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        },
+        {
+          "id": "41b2a2f6dff1",
+          "title": "Glaucous-winged Gull, Brown Pelican, Snowy Egret, Canada Goose",
+          "url": "https://simonwillison.net/2026/May/18/sighting-362781627/#atom-everything",
+          "source": "Simon Willison",
+          "category": "tech-blog",
+          "published_at": "2026-05-18T14:51:00Z",
+          "summary": "Glaucous-winged Gull, Brown Pelican, Snowy Egret, Canada Goose, in Los Angeles River, CA, US I'm heading home from PyCon US today so I went on a last morning walk to try and spot a pelican. I saw one! Didn't get a great photo of that, but I did see some goslings down by the swan boat lake.",
+          "tags": [],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        },
+        {
+          "id": "99cdedd263ef",
+          "title": "Always Be Blaming",
+          "url": "https://matklad.github.io/2026/05/18/always-be-blaming.html",
+          "source": "matklad",
+          "category": "tech-blog",
+          "published_at": "2026-05-18T00:00:00Z",
+          "summary": "A few tips on 4D-ing your code comprehension skills.",
+          "tags": [],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        },
+        {
+          "id": "a3559452d905",
+          "title": "Something’s Rotten in the State of macOS Icon Design",
+          "url": "https://blog.jim-nielsen.com/2026/rotten-macos-icon-design/",
+          "source": "Jim Nielsen",
+          "category": "tech-blog",
+          "published_at": "2026-05-18T19:00:00Z",
+          "summary": "This is an iconic observation : If you put the Apple icons in reverse it looks like the portfolio of someone getting really really good at icon design This isn’t, however, just the story of Apple’s Creator Studio icons. It’s the unfolding story of icon design across the entire macOS platform. For example, take a look at some of Apple’s other apps like iMovie : Or Remote Desktop : Apple sets the standard (and the rules) for how icons look on the Mac. Wherever they go, so goes the ecosystem — and they’re taking the entire ecosystem along down with them. It’s fast becoming the case that if you put any Mac app’s icons in reverse, it looks like the portfolio of someone getting really, really good at icon design. Even Microsoft — not exactly a bastion of design — starts to look pretty decent with their icons the further back you go. For example, with OneNote , the app icon’s progression looks like it went something like this: “I made this with AI” “I tried to make the AI one, but by hand myself” “I don’t need to be constrained by this squircle” “Hey, I’m getting better at this” Some 3rd-party apps continue to fight a good fight, even as Apple’s definition of what an icon should be — or what’s even possible — shrinks all around them. Apps like Capo (remember, these are reverse chronological ): Or BBEdit : Or Fantastical : Or Cot Editor : Everyone’s being put in a box squircle. The imposition is real. I don’t blame any of the 3rd-party app makers. Their designs have to play by Apple’s rules (or end up in icon jail ). World-class designers like Matthew Skiles or The Iconfactory are still out there striving for excellence, even as they’re hamstrung by the Mac’s latest rules. When it comes to icon design on the Mac, the sky is no longer the limit: Apple’s icon design sensibilities are. They set the examples of what world-class icon design should look like, but what do you do when the examples are no longer exemplary? Reply via: Email · Mastodon · Bluesky",
+          "tags": [],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        },
+        {
+          "id": "6633908f65ea",
+          "title": "Introducing Composer 2.5",
+          "url": "https://cursor.com/blog/composer-2-5",
+          "source": "Cursor Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-18T00:00:00Z",
+          "summary": "A substantial improvement in intelligence and behavior over Composer 2, particularly on long-horizon agentic tasks.",
+          "tags": [],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        },
+        {
+          "id": "0b15753826d9",
+          "title": "Consolidated Commit Status now available on GitHub",
+          "url": "https://vercel.com/changelog/consolidated-commit-status-now-available-for-github",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-18T20:42:00Z",
+          "summary": "Monorepos can now opt in to a single, consolidated commit status on pull requests instead of one commit status per project. For repos with many projects, teams can configure GitHub branch protection once, then manage which Vercel projects are required for merge in each project’s settings. Read more about Github Commit statuses and and enable Consolidated Commit Status from your project settings . Read more",
+          "tags": [],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        },
+        {
+          "id": "5c0bfb7520fd",
+          "title": "Firewall‑mitigated traffic is free on Vercel",
+          "url": "https://vercel.com/changelog/web-application-firewall-mitigated-traffic-is-free-on-vercel",
+          "source": "Vercel Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-18T20:00:00Z",
+          "summary": "Vercel Firewall now waives CDN Requests and Fast Data Transfer for any traffic denied, challenged, or rate‑limited by Web Application Firewall (WAF). Vercel has always provided unlimited DDoS mitigation at no cost. Vercel WAF, included in CDN cost, gives you custom rules, managed rules, and rate limiting for bad traffic that isn't DDoS. With this change, you don't pay for requests or bandwidth that WAF denies, challenges, or rate‑limits. That means no surprise bill when a scraper hammers your product pages, a credential‑stuffing botnet hits your login route, or a bot abuses an expensive endpoint. The waiver applies automatically to every project using Vercel Firewall and no configuration is required. Learn how to implement WAF rules in the Firewall documentation . Read more",
+          "tags": [],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        },
+        {
+          "id": "98af69a4eb7a",
+          "title": "Take your local GitHub sessions anywhere",
+          "url": "https://github.blog/news-insights/product-news/take-your-local-github-sessions-anywhere/",
+          "source": "GitHub Blog",
+          "category": "ai-news",
+          "published_at": "2026-05-18T16:54:53Z",
+          "summary": "Kick off work in VS Code or the CLI, finish it from your phone. Remote control for GitHub Copilot sessions is now generally available on github.com and GitHub Mobile. The post Take your local GitHub sessions anywhere appeared first on The GitHub Blog .",
+          "tags": [
+            "AI & ML",
+            "GitHub Copilot",
+            "News & insights",
+            "Product",
+            "agentic AI",
+            "CLI",
+            "GitHub Mobile",
+            "VS Code"
+          ],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        },
+        {
+          "id": "a9be0014ddbc",
+          "title": "Alternatives for the EDIT tool of LLM agents",
+          "url": "http://antirez.com/news/166",
+          "source": "antirez",
+          "category": "tech-blog",
+          "published_at": "2026-05-19T07:26:03Z",
+          "summary": "EDIT: of course this was already done in the past! I had little doubts but people just confirmed me about it on Twitter :) But, keep reading: the CRC32 compromise at the end is an interesting tradeoff, and this is a good discussion to have in general. Right now I'm working to an agent for my DS4 project. Local inference is token-poor, it's a battlefield where optimizations count. I was quite surprised by the fact the EDIT tool everybody is using right now forces the LLM to emit the old version of the text verbatim. This CAS (check and set) mode of operation, where I say EDIT old=\"foo\" new=\"bar\", is needed because there are often colliding edits (the user is editing as well, or checked out a different branch, and so forth) and because the LLM can just hallucinate that a given line had a given content. This means, basically, that just using line numbers is very fragile: to say, change line 22 with new=\"foobar\" is not good. Yet I don't want my local LLM to throw away tokens rewriting the old text each time, also because certain times the old text has a lot of special chars and spaces that the model may get wrong; in this case the tool would fail, forcing the LLM to do the same edit again. So I (re)designed a tag-based EDIT tool that is still CAS style, but more tokens efficient. The READ and SEARCH tools return something like that: 10:Q8fA int count = 10; 11:rA3_ if (count > limit) { 12:Kq9z count = limit; 13:PX0b } So there are line numbers and tags. The tag is 4 chars, on average 2.5 LLM tokens, representing a checksum of the line. Now the LLM can edit like this: { \"tool\": \"edit\", \"path\": \"/tmp/example.c\", \"line\": 10, \"tag\": \"Q8fA\", \"new\": \"int count = 11;\" } Or, multi line, like this: { \"tool\": \"edit\", \"path\": \"/tmp/example.c\", \"lines\": \"11:rA3_\\n12:Kq9z\\n13:PX0b\", \"new\": \"if (count > limit)\\n return limit;\" } The saving is significant especially when the agent is deleting big amounts of text, but also in the general case. However, there is some overhead due to the fact we have line numbers and tags. There are potential tradeoffs, maybe the tag should be 8 chars and include the line number in the hash, there is to check exactly collisions possibilities and tokenization to see how much this is a win, but I like the line:tag format as later the LLM is often able to exploit the line information in many ways, like to get ranges in successive tool calls. Maybe there are other ways to exploit the tag, too, like: is this line still dj4_? The interesting thing is that DeepSeek v4 Flash is able to use this tool in a very effective way, so apparently it is natural for it. And while I did't measure the exact savings I saw in the field that edits are much faster and even more reliable. The alternative to this is to return just the whole file CRC32 each time (basically the tag becomes a file tag, even for partial reads). So that we can only work with line numbers + CRC, the edit would just specify 11,12,13,14. Less tokens, of course. This forces, however, to recompute the CRC32 of the file each time, but for reasonably sized files this is cheap enough. But this approach has limits: we fail the edit even if *unrelated* changes happened, so there is a strong tradeoff at play. To be fair to the whole file method, there is to say that it allows to specify ranges as 10:23, which is a huge win. I have the feeling I can decide which is better only with enough practical evidence, by using ds4-agent over multiple sessions with the two systems. For now maybe a command line to switch the edit mode is the first right step to do. Comments",
+          "tags": [],
+          "discovered_at": "2026-05-19T10:37:04Z"
+        }
+      ]
+    },
     {
       "batch_id": "2026-05-18T11:06:26Z",
       "generated_at": "2026-05-18T11:06:26Z",
@@ -60,132 +185,6 @@
             "julia-evans"
           ],
           "discovered_at": "2026-05-17T09:04:31Z"
-        }
-      ]
-    },
-    {
-      "batch_id": "2026-05-16T08:47:40Z",
-      "generated_at": "2026-05-16T08:47:40Z",
-      "items": [
-        {
-          "id": "1d64c0e14e05",
-          "title": "inaturalist-clumper 0.1",
-          "url": "https://simonwillison.net/2026/May/15/inaturalist-clumper/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-15T23:53:11Z",
-          "summary": "Release: inaturalist-clumper 0.1 Part of the infrastructure I use for publishing my iNaturalist sightings on my blog . I've been running this in production for a few weeks now, inspiring some iterations on how it works, so I decided to ship a 0.1 release. You can see an example of the output in this JSON file . Tags: projects , inaturalist",
-          "tags": [
-            "projects",
-            "inaturalist"
-          ],
-          "discovered_at": "2026-05-16T08:47:40Z"
-        },
-        {
-          "id": "fd6f1383b71d",
-          "title": "Western Gull, Rock Pigeon",
-          "url": "https://simonwillison.net/2026/May/15/sighting-361818285/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-15T14:42:00Z",
-          "summary": "Western Gull, Rock Pigeon, in Los Angeles Area (custom), CA, US I went for a bird walk in the morning before PyCon, and we spotted a local seagull enjoying a Starbucks.",
-          "tags": [],
-          "discovered_at": "2026-05-16T08:47:40Z"
-        },
-        {
-          "id": "cacc9730059c",
-          "title": "QR code generator",
-          "url": "https://simonwillison.net/2026/May/15/qr-code-generator/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-15T04:00:49Z",
-          "summary": "Tool: QR code generator Claude helped me build this tool for creating QR codes, for both text/URLs and for connecting to WiFi networks. Tags: vibe-coding , tools , generative-ai , ai , llms",
-          "tags": [
-            "vibe-coding",
-            "tools",
-            "generative-ai",
-            "ai",
-            "llms"
-          ],
-          "discovered_at": "2026-05-16T08:47:40Z"
-        },
-        {
-          "id": "c78ac9bb3d11",
-          "title": "datasette-llm-limits 0.1a0",
-          "url": "https://simonwillison.net/2026/May/15/datasette-llm-limits/#atom-everything",
-          "source": "Simon Willison",
-          "category": "tech-blog",
-          "published_at": "2026-05-15T00:42:09Z",
-          "summary": "Release: datasette-llm-limits 0.1a0 This plugin works in conjunction with datasette-llm and datasette-llm-accountant to let you configure a per-user (or global) spending limit for LLM usage inside of Datasette. Configuration looks something like this: plugins : datasette-llm-limits : limits : per-user-daily : scope : actor window : rolling-24h amount_usd : 1.00 Tags: llm , datasette",
-          "tags": [
-            "llm",
-            "datasette"
-          ],
-          "discovered_at": "2026-05-16T08:47:40Z"
-        },
-        {
-          "id": "476826cc5deb",
-          "title": "Use native curl syntax with Vercel CLI",
-          "url": "https://vercel.com/changelog/use-native-curl-syntax-with-vercel-cli",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-15T00:00:00Z",
-          "summary": "You can now use native curl syntax with the Vercel CLI. The vercel curl command accepts full URLs, bare hostnames, and the --url flag, and uses your Vercel auth to bypass Deployment Protection . If you've linked a project, you can also pass just a path: Update to the latest Vercel CLI version and run vercel curl to get started. Learn more in the Vercel CLI documentation . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-16T08:47:40Z"
-        },
-        {
-          "id": "f2b0c966b5f6",
-          "title": "Sort providers by cost, latency, or throughput on AI Gateway",
-          "url": "https://vercel.com/changelog/sort-providers-by-cost-latency-or-throughput-on-ai-gateway",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-15T00:00:00Z",
-          "summary": "You can now sort the providers behind a model by cost, time to first token (TTFT), or throughput (TPS) in AI Gateway . The default provider order blends provider reliability, quality of model output, cost, and speed of response. You can now use sort for explicit control over ranking criteria. For models with many providers and noticeable cost or speed variation, you can use sort to optimize on your dimension of choice. Ranking is computed at request time, so newly added providers, price changes, and shifts in observed latency or throughput flow through automatically without any code changes. Set sort on providerOptions.gateway to one of the three values: Value Description Direction When to use 'cost' Sort by the provider's listed input price per million tokens Lowest price first High-volume, cost-sensitive work 'ttft' Sort by median time to first token, in ms Lowest latency first Latency-sensitive workloads where response speed matters 'tps' Sort by median tokens per second throughput Highest first Long-output generation where total response time matters most Basic usage Use sort to ensure optimizing for your metric of choice. In this example, AI Gateway has over five providers for GPT OSS 120B with different prices, so sorting by cost is a useful option for requests that want to route through the lowest price provider. Providers are tried in sort order. Fallback to the next provider only happens when the higher-ranked one is unavailable. Combine with other routing controls sort is compatible with other gateway routing options like Zero Data Retention (ZDR). The example below uses deepseek/deepseek-v4-pro for an interactive request where latency and data retention matter: AI Gateway filters to only providers for Deepseek V4 Pro that have zero data retention, and then sorts the remaining providers by time to first token (TTFT). sort also composes with order : providers listed in order are promoted to the front, and the remaining providers follow the requested sort criterion. Inspecting routing decisions See exactly why each request landed where it did. Every response includes a sort block in the routing metadata showing which providers were considered, the metric values used to rank them, the order they were attempted, and any that were deprioritized due to degraded health. For more information on sorting via AI Gateway, read the documentation . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-16T08:47:40Z"
-        },
-        {
-          "id": "f71661544a4a",
-          "title": "Protected Source Maps: Ship browser source maps securely",
-          "url": "https://vercel.com/changelog/protected-source-maps-ship-browser-source-maps-securely",
-          "source": "Vercel Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-14T00:00:00Z",
-          "summary": "You can now restrict access to production source maps with Protected Source Maps , which puts browser .map files behind Vercel Authentication . Your team can fetch them; everyone else gets a 404. Source maps are how you debug minified production code. They give you readable stack traces and your original source code, with the real filenames and line numbers intact. New projects have Protected Source Maps enabled by default. Existing projects can opt in from Settings → Deployment Protection, with no redeploy needed. Learn more in the documentation . Read more",
-          "tags": [],
-          "discovered_at": "2026-05-16T08:47:40Z"
-        },
-        {
-          "id": "15e2ab30f961",
-          "title": "Building a general-purpose accessibility agent—and what we learned in the process",
-          "url": "https://github.blog/ai-and-ml/github-copilot/building-a-general-purpose-accessibility-agent-and-what-we-learned-in-the-process/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-15T16:00:00Z",
-          "summary": "Learn about the experimental general-purpose accessibility agent that GitHub is piloting. The post Building a general-purpose accessibility agent—and what we learned in the process appeared first on The GitHub Blog .",
-          "tags": [
-            "AI & ML",
-            "Generative AI",
-            "GitHub Copilot",
-            "accessibility"
-          ],
-          "discovered_at": "2026-05-16T08:47:40Z"
-        },
-        {
-          "id": "585001b1978a",
-          "title": "Raising the bar: Quality, shared responsibility, and the future of GitHub’s bug bounty program",
-          "url": "https://github.blog/security/raising-the-bar-quality-shared-responsibility-and-the-future-of-githubs-bug-bounty-program/",
-          "source": "GitHub Blog",
-          "category": "ai-news",
-          "published_at": "2026-05-15T14:00:00Z",
-          "summary": "We're updating our bug bounty program standards to prioritize quality submissions, clarify shared responsibility boundaries, and evolve how we reward low-risk findings. The post Raising the bar: Quality, shared responsibility, and the future of GitHub&#8217;s bug bounty program appeared first on The GitHub Blog .",
-          "tags": [
-            "Security",
-            "bug bounty",
-            "security research"
-          ],
-          "discovered_at": "2026-05-16T08:47:40Z"
         }
       ]
     }
